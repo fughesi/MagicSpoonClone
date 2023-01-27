@@ -5,11 +5,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 
+import themeReducer from "./features/themeSlice";
+
 import App from "./App";
 import "./index.css";
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    theme: themeReducer,
+  },
 });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
