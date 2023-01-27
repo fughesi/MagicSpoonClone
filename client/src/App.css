@@ -1,0 +1,40 @@
+:root {
+  /* COLORS */
+  --gradientOne: #fff;
+
+  /* SIZES */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: Oswald, sans-serif;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+button {
+  outline: none;
+  border: none;
+}
+
+li {
+  text-decoration: none;
+}
+
+a,
+*:hover {
+  cursor: pointer;
+}
