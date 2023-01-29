@@ -1,17 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { useEffect } from "react";
 
-const initialState = {};
+const initialState = {
+  windowWidth: 0,
+  // windowWidth: window.innerWidth,
+};
 
 export const themeSlice = createSlice({
   name: "theme",
   initialState,
   reducers: {
-    sayHi: (state, { payload }) => {
-      console.log("hi");
+    getWindowWidth: (state, { payload }) => {
+      // window.addEventListener("resize", () => state.windowWidth);
+      // useEffect(() => {
+      //   return window.removeEventListener("resize", state.windowWidth);
+      // }, [state.windowWidth]);
+      state.windowWidth = payload;
     },
   },
 });
 
-export const { sayHi } = themeSlice.actions;
+export const { getWindowWidth } = themeSlice.actions;
 
 export default themeSlice.reducer;

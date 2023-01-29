@@ -1,0 +1,6 @@
+.hero-section__homepage {
+  width: 100vw;
+  height: 100vh;
+
+  background: var(--gradientOne);
+}
