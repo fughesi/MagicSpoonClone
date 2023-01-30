@@ -1,9 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { useEffect } from "react";
 
 const initialState = {
   windowWidth: 0,
-  // windowWidth: window.innerWidth,
+  blur: false,
 };
 
 export const themeSlice = createSlice({
@@ -11,15 +10,14 @@ export const themeSlice = createSlice({
   initialState,
   reducers: {
     getWindowWidth: (state, { payload }) => {
-      // window.addEventListener("resize", () => state.windowWidth);
-      // useEffect(() => {
-      //   return window.removeEventListener("resize", state.windowWidth);
-      // }, [state.windowWidth]);
-      state.windowWidth = payload;
+      state.windowWidth = Number(payload);
+    },
+    blur: (state, { payload }) => {
+      state.blur = !state.blur;
     },
   },
 });
 
-export const { getWindowWidth } = themeSlice.actions;
+export const { getWindowWidth, blur } = themeSlice.actions;
 
 export default themeSlice.reducer;
