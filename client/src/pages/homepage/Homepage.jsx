@@ -1,8 +1,12 @@
 import "./Homepage.css";
-import { useSelector } from "react-redux";
+import { setDarkMode } from "../../features/themeSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 export const Homepage = () => {
   const blur = useSelector((state) => state.theme.blur);
+  const dark = useSelector((state) => state.theme.darkMode);
+
+  const dispatch = useDispatch();
 
   const content = (
     <main className={`homePageContainer ${blur ? "blur" : ""}`}>

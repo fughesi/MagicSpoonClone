@@ -56,3 +56,9 @@
   opacity: 0;
   transition: all 750ms ease-in-out;
 }
+
+.darkmode {
+  height: 300px;
+  aspect-ratio: 1/1;
+  background-color: red;
+}

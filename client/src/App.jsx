@@ -8,6 +8,7 @@ import "./App.css";
 import { Homepage } from "./pages/homepage/Homepage";
 import NavbarDesktop from "./components/navbar/NavbarDesktop";
 import NavbarMobile from "./components/navbar/NavbarMobile";
+import Darkmode from "./components/darkmode/Darkmode";
 
 function App() {
   const [width, setWidth] = useState(window.innerWidth);
@@ -28,6 +29,7 @@ function App() {
       <Routes>
         <Route index element={<Homepage />} />
       </Routes>
+      <Darkmode />
     </main>
   );
 

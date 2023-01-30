@@ -1,7 +1,9 @@
 import "./Navbar.css";
 
 const NavbarDesktop = () => {
-  return <div>NavbarDesktop</div>;
+  let content = <nav></nav>;
+
+  return content;
 };
 
 export default NavbarDesktop;

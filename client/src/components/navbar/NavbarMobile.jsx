@@ -1,5 +1,12 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { blur } from "../../features/themeSlice";
+import {
+  addItemToCart,
+  decrementItemQuantity,
+  incrementItemQuantity,
+  deleteItemFromCart,
+  clearCart,
+} from "../../features/cartSlice";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import "./Navbar.css";
@@ -25,13 +32,13 @@ const NavbarMobile = () => {
           <li name="THINGS">
             <Link to="/">THINGS</Link>
           </li>
-          <li>
+          <li name="STUFF">
             <Link to="/">STUFF</Link>
           </li>
-          <li>
+          <li name="MORE STUFF">
             <Link to="/">MORE STUFF</Link>
           </li>
-          <li>
+          <li name="MORE THINGS">
             <Link to="/">MORE THINGS</Link>
           </li>
         </ul>
