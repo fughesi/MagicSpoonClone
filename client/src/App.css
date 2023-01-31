@@ -32,10 +32,12 @@
   --white: hsla(0, 0%, 100%, 1);
   --black: hsla(0, 0%, 0%, 1);
 
-  --gradientOne: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
-  --gradientTwo: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
-  --gradientThree: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
-  --gradientFour: linear-gradient(19deg, #3eecac 0%, #ee74e1 100%);
+  --color1: #3f0791;
+
+  --gradient1: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+  --gradient2: linear-gradient(270deg, #d034a2, #5222e3);
+  --gradient3: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
+  --gradient4: linear-gradient(19deg, #3eecac 0%, #ee74e1 100%);
 
   --outline: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;
 
@@ -48,6 +50,15 @@
   --h1: clamp(2.07rem, calc(1.1rem + 4.89vw), 4.68rem);
   --size1: clamp(1.75rem, calc(0.9107rem + 4.1964vw), 4.6875rem);
   --title1: max(2.5vw, 1.2rem);
+
+  --font1: clamp(0.78rem, calc(0.77rem + 0.03vw), 0.8rem);
+  --font2: clamp(0.94rem, calc(0.92rem + 0.11vw), 1rem);
+  --font3: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
+  --font4: clamp(1.35rem, calc(1.28rem + 0.37vw), 1.56rem);
+  --font5: clamp(1.62rem, calc(1.5rem + 0.58vw), 1.95rem);
+  --font6: clamp(1.94rem, calc(1.77rem + 0.87vw), 2.44rem);
+  --font7: clamp(2.33rem, calc(2.08rem + 1.25vw), 3.05rem);
+  --font8: clamp(2.8rem, calc(2.45rem + 1.77vw), 3.82rem);
 
   /* WEIGHTS */
   --reg: 300;

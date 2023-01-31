@@ -6,10 +6,27 @@
 }
 
 .homepage__section_1 {
-  padding-top: 4rem;
+  padding: 4rem 2rem;
   height: 100vh;
 
-  background: var(--gradientOne);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-image: url("../../assets//img/hero-mobile.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.homepage__section_1 h1 {
+  margin-bottom: 30px;
+
+  font-size: var(--font7);
+  text-align: center;
+  letter-spacing: 0.1rem;
+  line-height: 3rem;
+  color: var(--color1);
+  font-weight: 700;
 }
 
 .homepage__section_2 {
