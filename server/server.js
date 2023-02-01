@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
 import testimonialRoutes from "./routes/testimonialsRoutes.js";
-//import { URL } from "url"; // in Browser, the URL in native accessible on window
+//import { URL } from "url"; // in Browser, the URL is native accessible on window
 
 const __filename = new URL("", import.meta.url).pathname;
 const __dirname = new URL(".", import.meta.url).pathname;

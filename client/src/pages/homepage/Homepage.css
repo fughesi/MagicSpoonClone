@@ -79,3 +79,11 @@
   aspect-ratio: 1/1;
   background-color: red;
 }
+
+/* //// */
+
+.stringify {
+  font-size: large;
+  color: brown;
+  background-color: antiquewhite;
+}
