@@ -22,9 +22,20 @@ export const Homepage = () => {
       <section className="homepage__section_2" aria-label="home page hero section">
         <h4>Find Your Flavor</h4>
         <p>carousel with photos and title of each cereal here</p>
+
+        <div className="carouselContainer">
+          {new Array(8).fill({ title: "name" }).map((i, index) => {
+            return (
+              <div key={index}>
+                <div className="carouselDiv"></div>
+                <p>{i.title}</p>
+              </div>
+            );
+          })}
+        </div>
       </section>
       <section className="homepage__section_3" aria-label="home page hero section">
-        <p className="stringify">{isSuccess ? JSON.stringify(data) : error?.status}</p>
+        {/* <p className="stringify">{isSuccess ? JSON.stringify(data) : error?.status}</p> */}
         <p>add testimonial carousel here</p>
       </section>
       <section className="homepage__section_4" aria-label="home page hero section">
