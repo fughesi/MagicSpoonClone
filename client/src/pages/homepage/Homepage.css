@@ -1,22 +1,21 @@
 .homePageContainer {
   min-height: 100%;
   display: grid;
-  /* grid-template-columns: 1fr; */
-  grid-template: 100vh auto auto auto 1rem / 1fr;
+  grid-template-columns: 100%;
+  grid-template-rows: 100vh;
 
   overflow-x: hidden;
 }
 
 .homepage__section_1 {
   padding: 4rem 2rem;
-  height: 75vh;
+  /* height: 75vh; */
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
   background-image: url("../../assets//img/hero-mobile.png");
-
   background-size: cover;
   background-position: 20% 60%;
   background-repeat: no-repeat;
@@ -35,41 +34,33 @@
 
 .homepage__section_2 {
   background: var(--gradientTwo);
-  height: 100px;
 }
 
 .homepage__section_3 {
   background: var(--gradientThree);
-  height: 100px;
 }
 
 .homepage__section_4 {
   background: var(--gradientTwo);
-  height: 100px;
 }
 
 .homepage__section_5 {
   background: var(--gradientOne);
-  height: 100px;
 }
 
 .homepage__section_6 {
   background: var(--gradientFour);
-  height: 100px;
 }
 
 .homepage__section_7 {
   background: var(--gradientTwo);
-  height: 100px;
 }
 
 .homepage__section_8 {
   background: var(--gradientTwo);
-  height: 100px;
 }
 .homepage__section_9 {
   background: var(--gradientTwo);
-  height: 100px;
 }
 
 .blur {
@@ -93,16 +84,47 @@
 }
 
 .carouselContainer {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 35%;
+  grid-template-rows: max-content;
+  /* grid-template-rows: 8rem; */
+
+  align-items: center;
+  justify-content: start;
+
+  overflow-x: scroll;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.carouselContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.carouselElement {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 1.5rem;
+  max-width: fit-content;
+
+  scroll-snap-align: start;
 }
 
 .carouselDiv {
-  width: 60px;
+  /* width: 60px; */
   aspect-ratio: 1/1;
 
+  padding: 1rem;
   margin: 0 1rem;
-  overflow-x: scroll;
+  overflow-x: auto;
 
   border-radius: 50%;
-  background-color: blue;
+  background-color: rgb(189, 58, 222);
+
+  inline-size: 100%;
 }

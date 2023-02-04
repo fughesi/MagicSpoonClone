@@ -21,12 +21,11 @@ export const Homepage = () => {
       </section>
       <section className="homepage__section_2" aria-label="home page hero section">
         <h4>Find Your Flavor</h4>
-        <p>carousel with photos and title of each cereal here</p>
 
         <div className="carouselContainer">
-          {new Array(8).fill({ title: "name" }).map((i, index) => {
+          {new Array(22).fill({ title: "name" }).map((i, index) => {
             return (
-              <div key={index}>
+              <div key={index} className="carouselElement">
                 <div className="carouselDiv"></div>
                 <p>{i.title}</p>
               </div>
