@@ -2,11 +2,12 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
+import cerealsRoutes from "./routes/cerealsRoutes.js";
 import testimonialRoutes from "./routes/testimonialsRoutes.js";
-//import { URL } from "url"; // in Browser, the URL is native accessible on window
+import { URL } from "url"; // in Browser, the URL is native accessible on window
 
-const __filename = new URL("", import.meta.url).pathname;
-const __dirname = new URL(".", import.meta.url).pathname;
+export const __filename = new URL("..", import.meta.url).pathname; // use periods to go up in file/directory path
+export const __dirname = new URL(".", import.meta.url).pathname;
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use(cors());
 
 // ROUTES LIST
 app.use("/testimonials", testimonialRoutes);
+app.use("/cereals", cerealsRoutes);
 
 app.listen(port, () => console.log(`Server running on ${port}`));
 
