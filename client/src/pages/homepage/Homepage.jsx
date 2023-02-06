@@ -1,6 +1,8 @@
 import "./Homepage.css";
+import { useEffect, useState, useRef, useMemo } from "react";
 import { setDarkMode } from "../../features/themeSlice";
 import { useGetAllTestimonialsQuery } from "../../services/testimonialsApi";
+import { useGetAllCerealsQuery } from "../../services/cerealsApi";
 import { useSelector, useDispatch } from "react-redux";
 import CallToAction from "../../components/cta/CallToAction";
 import { Link } from "react-router-dom";
@@ -12,6 +14,33 @@ export const Homepage = () => {
   const dispatch = useDispatch();
 
   const { data, error, isLoading, isError, isSuccess } = useGetAllTestimonialsQuery();
+  const { data: cereal } = useGetAllCerealsQuery();
+
+  const targetRef = useRef(null);
+
+  const [viz, setViz] = useState(false);
+
+  const callBack = (entries) => {
+    //first argument to intersectionalObserver
+    entries.forEach((i) => {
+      setViz((prev) => (prev = i.isIntersecting));
+    });
+  };
+  const options = useMemo(() => {
+    //second argument to intersectionalObserver
+    return { root: null, rootMargin: "0px", threshold: 0.3 };
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(callBack, options);
+
+    const currentTarget = targetRef.current;
+    if (currentTarget) observer.observe(currentTarget);
+
+    return () => {
+      if (currentTarget) observer.unobserve(currentTarget);
+    };
+  }, [targetRef]);
 
   const content = (
     <main className={`homePageContainer ${blur ? "blur" : ""}`}>
@@ -23,14 +52,20 @@ export const Homepage = () => {
         <h4>Find Your Flavor</h4>
 
         <div className="carouselContainer">
-          {new Array(22).fill({ title: "name" }).map((i, index) => {
-            return (
-              <div key={index} className="carouselElement">
-                <div className="carouselDiv"></div>
-                <p>{i.title}</p>
-              </div>
-            );
-          })}
+          {/* {new Array(22).fill({ title: "name" }).map((i, index) => { */}
+          {cereal &&
+            cereal.map((i) => {
+              console.log(i.image.data.toString("base64"));
+
+              return (
+                <div key={i._id} className="carouselElement">
+                  <div className="carouselDiv">
+                    <img src={`data:image/png;base64,${i.image.data.toString("base64")}`} alt="photo of cereal" />
+                  </div>
+                  <p>{i.title}</p>
+                </div>
+              );
+            })}
         </div>
       </section>
       <section className="homepage__section_3" aria-label="home page hero section">

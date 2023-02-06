@@ -82,14 +82,13 @@
   background-color: red;
 }
 
-/* //// */
-
 .stringify {
   font-size: large;
   color: brown;
   background-color: antiquewhite;
 }
 
+/* --------- CAROUSEL CONTAINER */
 .carouselContainer {
   display: grid;
   grid-auto-flow: column;
@@ -129,6 +128,7 @@
 }
 
 .carouselDiv {
+  width: 60px;
   aspect-ratio: 1/1;
 
   padding: 1.75rem;
@@ -137,5 +137,18 @@
   border-radius: 50%;
   background-color: rgb(51, 219, 141);
 
-  inline-size: 100%;
+  /* inline-size: 100%; */
+}
+
+/* ------ INTERSECTIONAL OBSERVER */
+.noViewport {
+  transform: translateY(200px);
+  transition: all 750ms;
+  /* opacity: 0; */
+}
+
+.visible {
+  transform: translatY(0px);
+  transition: all 750ms;
+  /* opacity: 1; */
 }

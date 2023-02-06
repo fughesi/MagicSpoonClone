@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import "./App.css";
 
 import { Homepage } from "./pages/homepage/Homepage";
+import TestPage from "./pages/testing/TestPage";
 import NavbarDesktop from "./components/navbar/NavbarDesktop";
 import NavbarMobile from "./components/navbar/NavbarMobile";
 import Darkmode from "./components/darkmode/Darkmode";
@@ -28,8 +29,9 @@ function App() {
       {width < 500 ? <NavbarMobile /> : <NavbarDesktop />}
       <Routes>
         <Route index element={<Homepage />} />
+        {/* <Route index element={<TestPage />} /> */}
       </Routes>
-      <Darkmode />
+      {/* <Darkmode /> */}
     </main>
   );
 

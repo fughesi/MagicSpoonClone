@@ -3,18 +3,13 @@ import multer from "multer";
 import Joi from "joi";
 import Cereals from "../models/cerealModel.js";
 
-import { __dirname, __filename } from "../server.js";
-
-const tit = new URL(import.meta.url);
-// const __dirname = new URL("..", import.meta.url);
-
-console.log(tit);
+const path = new URL("..", import.meta.url).pathname;
 
 const router = express.Router();
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, `${__dirname}images`);
+    cb(null, `${path}images/cereal`);
   },
   filename: (req, file, cb) => {
     const ext = file?.originalname.split(".")[1];
@@ -22,41 +17,58 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({ storage: storage }).single("image");
+
+///// ----- GET
+router.get("/", async (req, res) => {
+  const allCereals = await Cereals.find();
+
+  try {
+    res.status(200).send(allCereals);
+    // res.status(200).send(allCereals, Buffer.from(allCereals.image).toString("base64"));
+  } catch (error) {
+    console.log(`failed to fetch cereals, ${error?.message}`);
+    res.status(500).send(`failed to fetch cereals, ${error?.message}`);
+  }
+});
 
 router.get("/upload", (req, res) => {
-  res.sendFile(`${__dirname}views/upload.html`);
+  res.sendFile(`${path}views/upload.html`);
 });
 
-router.get("/", (req, res) => {
-  res.send("howdy");
-});
+///////------- POST
+router.post("/upload", (req, res, next) => {
+  upload(req, res, (err) => {
+    if (err) {
+      return console.log(err);
+    } else {
+      const schema = Joi.object({
+        title: Joi.string().required().min(3).max(50),
+        price: Joi.number().required(),
+        image: Joi.binary().encoding("base64"),
+      });
 
-router.post("/upload", upload.single("image"), (req, res) => {
-  // upload(req, res, (err) => {
-  //   if (err) {
-  //     console.log(err);
-  //   } else {
-  // const Cereals = new Cereals({
-  //   title: req.body.title,
-  //   price: req.body.price,
-  //   image: {
-  //     data: req.file.filename,
-  //     contentType: "image/apng",
-  //     contentType: "image/png",
-  //   },
-  // });
-  // Cereals.save()
-  //   .then(() => res.send("file successfully uploaded"))
-  //   .catch((err) => console.log(err));
+      const { error } = schema.validate(req.body);
 
-  // }
-  // });
+      if (error) return res.status(400).send(error?.details[0]?.message);
 
-  // res.sendFile(
-  //   `${__filename}images/1675607070135MS_PDP_VARIETY_FRUITY_BOWL_TRANSPARENT_947x960_8beb727b-5ef8-47c0-9416-3524f3f0934d_medium.png`
-  // );
-  res.send("file uploaded successfully");
+      const cerealPost = new Cereals({
+        title: String(req.body.title),
+        price: Number(req.body.price),
+        image: {
+          data: req.file.filename,
+          contentType: "image/png",
+        },
+      });
+      cerealPost
+        .save()
+        .then(() => res.send("file saved to DB"))
+        .catch((err) => console.log(err));
+    }
+    next();
+  });
+
+  res.status(200).send("file uploaded successfully");
 });
 
 export default router;
