@@ -52,10 +52,10 @@ export const Homepage = () => {
         <h4>Find Your Flavor</h4>
 
         <div className="carouselContainer">
-          {/* {new Array(22).fill({ title: "name" }).map((i, index) => { */}
           {cereal &&
             cereal.map((i) => {
               console.log(i.image.data.toString("base64"));
+              console.log(i.title);
 
               return (
                 <div key={i._id} className="carouselElement">

@@ -16,6 +16,8 @@ const db = process.env.DB;
 const port = process.env.PORT || 5005;
 
 // app.use("/", express.static(__dirname + "static"));
+app.use(express.static("static"));
+app.set("view engine", "ejs");
 app.use(express.json());
 app.use(cors());
 
