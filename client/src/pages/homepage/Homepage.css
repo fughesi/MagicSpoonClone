@@ -1,10 +1,9 @@
 .homePageContainer {
-  min-height: 100%;
+  overflow-x: hidden;
+
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 80vh auto;
-
-  overflow-x: hidden;
 }
 
 .homepage__section_1 {
@@ -48,6 +47,8 @@
 }
 
 .homepage__section_4 {
+  position: relative;
+
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -67,13 +68,73 @@
 .homepage__section_4 p {
   margin-top: 0;
 
-  font-size: var(--font2);
   text-align: center;
   color: var(--color3);
+  font-size: var(--font2);
+}
+
+.floatingCereal {
+  width: 100%;
+}
+
+img[alt="floating cereal"] {
+  width: 4rem;
+  position: absolute;
+  z-index: 10;
+
+  filter: drop-shadow(30px 10px 2px #1113);
+}
+
+img[alt="floating cereal"]:nth-child(7) {
+  top: -3.15em;
+  left: 5vw;
+  scale: 0.7;
+}
+
+img[alt="floating cereal"]:nth-child(1) {
+  top: 8.125em;
+  left: 12vw;
+  scale: 0.9;
+}
+
+img[alt="floating cereal"]:nth-child(3) {
+  top: 1em;
+  left: 85vw;
+  scale: 0.62;
+}
+
+img[alt="floating cereal"]:nth-child(4) {
+  top: 12em;
+  left: 73vw;
+  scale: 1.05;
+}
+
+img[alt="floating cereal"]:nth-child(5) {
+  top: 20em;
+  left: -3vw;
+  scale: 1.35;
+}
+
+img[alt="floating cereal"]:nth-child(6) {
+  top: 18em;
+  left: 94vw;
+  scale: 1.5;
+}
+
+img[alt="floating cereal"]:nth-child(2) {
+  top: 24em;
+  left: 83.5vw;
+  scale: 0.75;
 }
 
 .homepage__section_5 {
-  background: var(--gradientOne);
+  position: relative;
+  height: 60vh;
+
+  background-image: url("../../assets/img/cereal-pose.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  object-fit: cover;
 }
 
 .homepage__section_6 {
@@ -95,18 +156,6 @@
   filter: blur(var(--blur)) brightness(110%);
   opacity: 0;
   transition: all 750ms ease-in-out;
-}
-
-.darkmode {
-  height: 300px;
-  aspect-ratio: 1/1;
-  background-color: red;
-}
-
-.stringify {
-  font-size: large;
-  color: brown;
-  background-color: antiquewhite;
 }
 
 /* --------- CAROUSEL CONTAINER */
@@ -171,4 +220,26 @@
   transform: translatY(0px);
   transition: all 750ms;
   /* opacity: 1; */
+}
+
+.badge {
+  position: absolute;
+  bottom: -2rem;
+  left: 80vw;
+  width: 4rem;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: 5px solid white;
+  border-bottom: 5px solid black;
+
+  animation: rotate 1250ms linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
 }

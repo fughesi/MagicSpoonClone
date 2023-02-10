@@ -1,6 +1,5 @@
 import "./Homepage.css";
 import { useEffect, useState, useRef, useMemo } from "react";
-import { setDarkMode } from "../../features/themeSlice";
 import { useGetAllTestimonialsQuery } from "../../services/testimonialsApi";
 import { useGetAllCerealsQuery } from "../../services/cerealsApi";
 import { useSelector, useDispatch } from "react-redux";
@@ -9,8 +8,10 @@ import { Link } from "react-router-dom";
 import { img1, img2, img3, img4, img5, img6, img7 } from "../../assets/img/floatingCereal/__exports";
 
 export const Homepage = () => {
+  const [offsetY, setOffsetY] = useState(0);
+  const [viz, setViz] = useState(false);
+
   const blur = useSelector((state) => state.theme.blur);
-  const dark = useSelector((state) => state.theme.darkMode);
 
   const dispatch = useDispatch();
 
@@ -18,8 +19,6 @@ export const Homepage = () => {
   const { data: cereal } = useGetAllCerealsQuery();
 
   const targetRef = useRef(null);
-
-  const [viz, setViz] = useState(false);
 
   const callBack = (entries) => {
     //first argument to intersectionalObserver
@@ -43,7 +42,12 @@ export const Homepage = () => {
     };
   }, [targetRef]);
 
-  const content = (
+  useEffect(() => {
+    window.addEventListener("scroll", () => setOffsetY(window.pageYOffset));
+    return window.removeEventListener("scroll", () => setOffsetY(window.pageYOffset));
+  }, []);
+
+  return (
     <main className={`homePageContainer ${blur ? "blur" : ""}`}>
       <section className="homepage__section_1" aria-label="home page hero section">
         <h1>High protein cereal that tastes too good to be true.</h1>
@@ -85,18 +89,18 @@ export const Homepage = () => {
           <p>Tastes just like you remember, only better.</p>
         </div>
         <div className="floatingCereal">
-          <img1 />
-          <img2 />
-          {/* <img src={img1} alt="floating cereal" />
-          <img src={img2} alt="floating cereal" />
-          <img src={img3} alt="floating cereal" />
-          <img src={img4} alt="floating cereal" />
-          <img src={img5} alt="floating cereal" />
-          <img src={img6} alt="floating cereal" />
-          <img src={img7} alt="floating cereal" /> */}
+          <img src={img1} alt="floating cereal" style={{ transform: `translateY(${offsetY * 0.03}px)` }} />
+          <img src={img2} alt="floating cereal" style={{ transform: `translateY(${offsetY * 0.045}px)` }} />
+          <img src={img3} alt="floating cereal" style={{ transform: `translateY(${offsetY * 0.05}px)` }} />
+          <img src={img4} alt="floating cereal" style={{ transform: `translateY(${offsetY * 0.047}px)` }} />
+          <img src={img5} alt="floating cereal" style={{ transform: `translateY(${offsetY * 0.053}px)` }} />
+          <img src={img6} alt="floating cereal" style={{ transform: `translateY(${offsetY * 0.074}px)` }} />
+          <img src={img7} alt="floating cereal" style={{ transform: `translateY(${offsetY * 0.04}px)` }} />
         </div>
       </section>
-      <section className="homepage__section_5" aria-label="home page hero section"></section>
+      <section className="homepage__section_5" aria-label="home page hero section">
+        <div className="badge"></div>
+      </section>
       <section className="homepage__section_6" aria-label="home page hero section">
         <div>
           <h3>A whole world of flavor.</h3>
@@ -136,6 +140,4 @@ export const Homepage = () => {
       </section>
     </main>
   );
-
-  return content;
 };
