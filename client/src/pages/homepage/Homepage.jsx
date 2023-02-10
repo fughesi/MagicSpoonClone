@@ -6,6 +6,7 @@ import { useGetAllCerealsQuery } from "../../services/cerealsApi";
 import { useSelector, useDispatch } from "react-redux";
 import CallToAction from "../../components/cta/CallToAction";
 import { Link } from "react-router-dom";
+import { img1, img2, img3, img4, img5, img6, img7 } from "../../assets/img/floatingCereal/__exports";
 
 export const Homepage = () => {
   const blur = useSelector((state) => state.theme.blur);
@@ -54,13 +55,11 @@ export const Homepage = () => {
         <div className="carouselContainer">
           {cereal &&
             cereal.map((i) => {
-              console.log(i.image.data.toString("base64"));
-              console.log(i.title);
-
               return (
                 <div key={i._id} className="carouselElement">
                   <div className="carouselDiv">
-                    <img src={`data:image/png;base64,${i.image.data.toString("base64")}`} alt="photo of cereal" />
+                    <img src={i.image.data} alt="photo of cereal" />
+                    {/* <img src={`data:image/png;base64,${i.image.data.toString("base64")}`} alt="photo of cereal" /> */}
                   </div>
                   <p>{i.title}</p>
                 </div>
@@ -84,6 +83,17 @@ export const Homepage = () => {
         <div>
           <h3>Sweet & Delicious</h3>
           <p>Tastes just like you remember, only better.</p>
+        </div>
+        <div className="floatingCereal">
+          <img1 />
+          <img2 />
+          {/* <img src={img1} alt="floating cereal" />
+          <img src={img2} alt="floating cereal" />
+          <img src={img3} alt="floating cereal" />
+          <img src={img4} alt="floating cereal" />
+          <img src={img5} alt="floating cereal" />
+          <img src={img6} alt="floating cereal" />
+          <img src={img7} alt="floating cereal" /> */}
         </div>
       </section>
       <section className="homepage__section_5" aria-label="home page hero section"></section>
