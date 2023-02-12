@@ -1,0 +1,21 @@
+.FooterMobileContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.legalText {
+  text-align: center;
+  margin: 1.5rem;
+}
+.copyrightText {
+  color: #fff3;
+  font-size: var(--font1);
+}
+
+.MagicSpoonLogo {
+  width: 7rem;
+  margin-top: 1rem;
+  align-self: center;
+
+  fill: #fff;
+}

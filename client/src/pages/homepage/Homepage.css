@@ -134,22 +134,68 @@ img[alt="floating cereal"]:nth-child(2) {
   background-image: url("../../assets/img/cereal-pose.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  object-fit: cover;
 }
 
 .homepage__section_6 {
-  background: var(--gradientFour);
+  height: 70vh;
+
+  background-image: var(--gradient1);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 0rem 15rem;
+
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+img[alt="cereal boxes"] {
+  height: 70%;
+}
+
+.worldOfFlavor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.homepage__section_6 h3 {
+  font-size: var(--font7);
+  text-shadow: var(--shadow3), var(--outline);
+  color: #fff;
 }
 
 .homepage__section_7 {
-  background: var(--gradientTwo);
 }
 
 .homepage__section_8 {
-  background: var(--gradientTwo);
 }
 .homepage__section_9 {
   background: var(--gradientTwo);
+  /* background: #000; */
+}
+
+.homepage__section_10 {
+  color: #fff;
+  background: #000;
+}
+
+.homepage__section_10 h4 {
+  text-align: center;
+  font-size: var(--font4);
+  margin-bottom: 0.5em;
+}
+
+.legalText {
+  text-align: center;
+  margin: 1.5rem;
+}
+.copyrightText {
+  color: #fff3;
+  font-size: var(--font1);
 }
 
 .blur {
@@ -210,29 +256,31 @@ img[alt="floating cereal"]:nth-child(2) {
 }
 
 /* ------ INTERSECTIONAL OBSERVER */
-.noViewport {
+.worldOfFlavor {
+  text-align: center;
+
   transform: translateY(200px);
-  transition: all 750ms;
-  /* opacity: 0; */
+  transition: all 1000ms;
+  opacity: 0;
 }
 
-.visible {
-  transform: translatY(0px);
-  transition: all 750ms;
-  /* opacity: 1; */
+.observer {
+  transition: all 1000ms;
+
+  transform: translateY(0px);
+  opacity: 1;
 }
 
 .badge {
   position: absolute;
-  bottom: -2rem;
-  left: 80vw;
-  width: 4rem;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  border: 5px solid white;
-  border-bottom: 5px solid black;
+  z-index: 2;
+  bottom: -3rem;
+  left: 70vw;
 
-  animation: rotate 1250ms linear infinite;
+  width: 7rem;
+  aspect-ratio: 1/1;
+
+  animation: rotate 3000ms linear infinite;
 }
 
 @keyframes rotate {

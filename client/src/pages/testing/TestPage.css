@@ -19,11 +19,11 @@ img[alt="image"] {
 .noViewport {
   transform: translateY(200px);
   transition: all 750ms;
-  /* opacity: 0; */
+  opacity: 0;
 }
 
 .visible {
   transform: translatY(0px);
   transition: all 750ms;
-  /* opacity: 1; */
+  opacity: 1;
 }
