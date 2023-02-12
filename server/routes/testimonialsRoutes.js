@@ -20,6 +20,7 @@ router
     const schema = Joi.object({
       title: Joi.string().required().min(3).max(45),
       statement: Joi.string().required().min(5),
+      company: Joi.string().required(),
       rating: Joi.number(),
     });
 
@@ -30,6 +31,7 @@ router
     let testimonialPost = new Testimonials({
       title: req.body.title,
       statement: req.body.statement,
+      company: req.body.company,
       rating: req.body.rating,
     });
 

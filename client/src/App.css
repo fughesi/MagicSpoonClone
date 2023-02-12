@@ -133,3 +133,9 @@ a,
   text-decoration: none;
   color: inherit;
 }
+
+.blur {
+  filter: blur(var(--blur)) brightness(110%);
+  opacity: 0;
+  transition: all 750ms ease-in-out;
+}

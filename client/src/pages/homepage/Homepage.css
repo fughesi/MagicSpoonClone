@@ -175,7 +175,6 @@ img[alt="cereal boxes"] {
 }
 .homepage__section_9 {
   background: var(--gradientTwo);
-  /* background: #000; */
 }
 
 .homepage__section_10 {
@@ -187,21 +186,6 @@ img[alt="cereal boxes"] {
   text-align: center;
   font-size: var(--font4);
   margin-bottom: 0.5em;
-}
-
-.legalText {
-  text-align: center;
-  margin: 1.5rem;
-}
-.copyrightText {
-  color: #fff3;
-  font-size: var(--font1);
-}
-
-.blur {
-  filter: blur(var(--blur)) brightness(110%);
-  opacity: 0;
-  transition: all 750ms ease-in-out;
 }
 
 /* --------- CAROUSEL CONTAINER */

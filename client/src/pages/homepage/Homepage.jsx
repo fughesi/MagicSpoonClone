@@ -1,6 +1,6 @@
 import "./Homepage.css";
 import { useEffect, useState, useRef } from "react";
-import { useGetAllTestimonialsQuery } from "../../services/testimonialsApi";
+
 import { useGetAllCerealsQuery } from "../../services/cerealsApi";
 import { useSelector, useDispatch } from "react-redux";
 import CallToAction from "../../components/cta/CallToAction";
@@ -9,6 +9,7 @@ import { img1, img2, img3, img4, img5, img6, img7 } from "../../assets/img/float
 import cerealBoxBG from "../../assets/img/cereal-boxes.png";
 import FooterMobile from "../../components/footer/FooterMobile";
 import SpinningLogo from "../../assets/svg/SpinningLogo";
+import TestimonialSlider from "../../components/testimonials/TestimonialSlider";
 
 export const Homepage = () => {
   const [offsetY, setOffsetY] = useState(0);
@@ -18,7 +19,6 @@ export const Homepage = () => {
 
   const dispatch = useDispatch();
 
-  const { data: testimonials, error, isLoading, isError, isSuccess } = useGetAllTestimonialsQuery();
   const { data: cereal } = useGetAllCerealsQuery();
 
   const targetRef = useRef(null);
@@ -47,7 +47,7 @@ export const Homepage = () => {
     return window.removeEventListener("scroll", () => setOffsetY(window.pageYOffset));
   }, []);
 
-  return (
+  const content = (
     <main className={`homePageContainer ${blur ? "blur" : ""}`}>
       <section className="homepage__section_1" aria-label="home page hero section">
         <h1>High protein cereal that tastes too good to be true.</h1>
@@ -72,9 +72,7 @@ export const Homepage = () => {
         </div>
       </section>
       <section className="homepage__section_3" aria-label="home page hero section">
-        <p className="stringify">{isSuccess ? JSON.stringify(testimonials) : error?.status}</p>
-
-        <p>add testimonial carousel here</p>
+        <TestimonialSlider />
       </section>
       <section className="homepage__section_4" aria-label="home page hero section">
         <div>
@@ -135,4 +133,6 @@ export const Homepage = () => {
       </section>
     </main>
   );
+
+  return content;
 };

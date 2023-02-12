@@ -1,4 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import MagicSpoonLogo from "../../assets/svg/MagicSpoonLogo";
 import { blur } from "../../features/themeSlice";
 import {
   addItemToCart,
@@ -46,7 +47,7 @@ const NavbarMobile = () => {
 
       <section className="title-logo__link" aria-label="home page link with logo as button">
         <Link to="/">
-          <h1>MAGIC SPOON</h1>
+          <MagicSpoonLogo className="MagicSpoonLogo" style={{ fill: "var(--color1)" }} />
         </Link>
       </section>
 
