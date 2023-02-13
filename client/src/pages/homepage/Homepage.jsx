@@ -1,6 +1,6 @@
 import "./Homepage.css";
 import { useEffect, useState, useRef } from "react";
-
+import StrokeText from "../../assets/svg/StrokeText";
 import { useGetAllCerealsQuery } from "../../services/cerealsApi";
 import { useSelector, useDispatch } from "react-redux";
 import CallToAction from "../../components/cta/CallToAction";
@@ -114,6 +114,7 @@ export const Homepage = () => {
         <h3>
           Why did we grow up, <span className="outlinedText">but our cereal didn't?</span>
         </h3>
+        <StrokeText text={"but our cereal didn't?"} className="outlinedText" />
         ///add link to OUR STORY
       </section>
       <section className="homepage__section_8" aria-label="home page hero section">

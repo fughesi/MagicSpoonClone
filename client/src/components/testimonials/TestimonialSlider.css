@@ -1,27 +1,17 @@
 .testimonialSliderContainer {
+  position: relative;
   height: 15rem;
   min-height: 100%;
+  padding: 1rem 2.5rem;
 
-  position: relative;
   margin-bottom: 2rem;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 
   background-color: var(--color3);
-}
-.testimonialButtons {
-  position: absolute;
-  top: 50%;
-  left: 4rem;
-
-  font-size: 4rem;
-}
-
-.gt {
-  right: 4rem;
 }
 
 .testimonialSlider {
@@ -32,9 +22,22 @@
   font-size: var(--font6);
 }
 .testimonialSlider p {
-  /* margin: 0 0 0 4em; */
-
   font-size: var(--font2);
+}
+
+.testimonialButtonsLT,
+.testimonialButtonsGT {
+  position: absolute;
+  top: 50%;
+  left: 10vw;
+
+  font-size: 4rem;
+  user-select: none;
+}
+
+.testimonialButtonsGT {
+  left: calc(90vw - 1.5rem);
+  /* left: calc(90vw - 23.875px); */
 }
 
 .testimonialDots {
@@ -45,9 +48,12 @@
 .dotElement {
   width: 1rem;
   aspect-ratio: 1/1;
+  margin: 0.25em 0.4em;
+
   border-radius: 50%;
   background-color: var(--color1);
 }
 
 .selected {
+  filter: brightness(1.75);
 }

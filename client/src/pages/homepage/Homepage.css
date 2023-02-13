@@ -275,3 +275,8 @@ img[alt="cereal boxes"] {
     rotate: 360deg;
   }
 }
+
+.outlinedText {
+  font-size: 3rem;
+  stroke-width: 33px;
+}

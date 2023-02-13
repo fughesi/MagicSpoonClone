@@ -17,7 +17,7 @@ export default function TestimonialSlider() {
 
   const content = (
     <div className="testimonialSliderContainer">
-      <div className="testimonialButtons LT" onClick={() => prevSlide()}>
+      <div className="testimonialButtonsLT" onClick={() => prevSlide()}>
         &lt;
       </div>
       {isSuccess && (
@@ -27,7 +27,7 @@ export default function TestimonialSlider() {
         </div>
       )}
 
-      <div className="testimonialButtons GT" onClick={() => nextSlide()}>
+      <div className="testimonialButtonsGT" onClick={() => nextSlide()}>
         &gt;
       </div>
 
