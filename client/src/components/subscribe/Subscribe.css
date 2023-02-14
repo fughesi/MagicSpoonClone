@@ -10,7 +10,6 @@
 input[type="submit"] {
   width: 18rem;
   aspect-ratio: 4.5 / 1;
-  /* padding: 1rem 2rem; */
   border-radius: 10rem;
   border: 4px solid #fff;
   background-color: unset;

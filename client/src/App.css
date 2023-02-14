@@ -127,11 +127,16 @@ li {
   list-style: none;
 }
 
-a,
-*:hover {
-  cursor: pointer;
+a {
   text-decoration: none;
   color: inherit;
+}
+
+a:hover,
+button:hover,
+[type="submit"]:hover {
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .blur {

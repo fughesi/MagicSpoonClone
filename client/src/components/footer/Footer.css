@@ -1,12 +1,36 @@
 .FooterMobileContainer {
+  margin-top: 4rem;
+
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.socialsSVGContainer {
+  width: 50vw;
+  margin-top: 0.5rem;
+
+  display: flex;
+  align-items: baseline;
+  justify-content: space-around;
+}
+
+.socialsSVG {
+  height: 1.5rem;
+  fill: #fff;
+  cursor: pointer;
+}
+
+.socialsSVG:hover {
+  fill: var(--color2);
+  filter: saturate(300%);
 }
 
 .legalText {
   text-align: center;
   margin: 1.5rem;
 }
+
 .copyrightText {
   color: #fff3;
   font-size: var(--font1);

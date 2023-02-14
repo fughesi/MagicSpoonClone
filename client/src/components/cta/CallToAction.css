@@ -1,6 +1,6 @@
 .cta-btn {
   padding: 1em;
-  width: 8rem;
+  width: fit-content;
   border-radius: 50px;
   box-shadow: var(--shadow1), 0 0 15px rgba(121, 33, 164, 0.5) inset;
 
@@ -18,12 +18,22 @@
   /* animation: btnOpacity 1000ms ease infinite; */
 }
 
-@keyframes btnOpacity {
-  0%,
-  100% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 0.5;
-  }
+/* ---style 1--- */
+.buttonStyle1 {
+  margin: 0.5rem;
+  aspect-ratio: 4.5 / 1;
+
+  border-radius: 10rem;
+  border: 4px solid #fff;
+
+  text-shadow: none;
+  box-shadow: none;
+  font-size: var(--font2);
+  font-weight: bold;
+  background-color: unset;
+}
+
+.buttonStyle1:hover {
+  color: var(--color1);
+  background-color: #fff;
 }

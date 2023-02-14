@@ -1,12 +1,21 @@
-import Subscribe from "../subscribe/Subscribe";
 import { Link } from "react-router-dom";
+import Subscribe from "../subscribe/Subscribe";
+import CallToAction from "../cta/CallToAction";
 import MagicSpoonLogo from "../../assets/svg/MagicSpoonLogo";
+import InstagramLogo from "../../assets/svg/InstagramLogo";
+import TwitterLogo from "../../assets/svg/TwitterLogo";
+import FacebookLogo from "../../assets/svg/FacebookLogo";
 import "./Footer.css";
 
 export default function FooterMobile() {
   const content = (
     <div className="FooterMobileContainer">
-      ////contact us ////socials
+      <CallToAction address={"/"} name={"CONTACT US"} style={"buttonStyle1"} />
+      <div className="socialsSVGContainer">
+        <InstagramLogo className="socialsSVG" />
+        <FacebookLogo className="socialsSVG" />
+        <TwitterLogo className="socialsSVG" />
+      </div>
       <h4>Don't miss the magic:</h4>
       <Subscribe />
       <MagicSpoonLogo className="MagicSpoonLogo" />
