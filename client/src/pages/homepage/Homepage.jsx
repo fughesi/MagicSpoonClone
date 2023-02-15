@@ -1,7 +1,5 @@
 import "./Homepage.css";
 import { useEffect, useState, useRef } from "react";
-import StrokeText from "../../assets/svg/StrokeText";
-import { useGetAllCerealsQuery } from "../../services/cerealsApi";
 import { useSelector, useDispatch } from "react-redux";
 import CallToAction from "../../components/cta/CallToAction";
 import { Link } from "react-router-dom";
@@ -10,6 +8,7 @@ import cerealBoxBG from "../../assets/img/cereal-boxes.png";
 import FooterMobile from "../../components/footer/FooterMobile";
 import SpinningLogo from "../../assets/svg/SpinningLogo";
 import TestimonialSlider from "../../components/testimonials/TestimonialSlider";
+import Carousel from "../../components/carousel/Carousel";
 
 export const Homepage = () => {
   const [offsetY, setOffsetY] = useState(0);
@@ -19,7 +18,7 @@ export const Homepage = () => {
 
   const dispatch = useDispatch();
 
-  const { data: cereal } = useGetAllCerealsQuery();
+  // const { data: cereal } = useGetAllCerealsQuery();
 
   const targetRef = useRef(null);
 
@@ -55,21 +54,7 @@ export const Homepage = () => {
       </section>
       <section className="homepage__section_2" aria-label="home page hero section">
         <h4>Find Your Flavor</h4>
-
-        <div className="carouselContainer">
-          {cereal &&
-            cereal.map((i) => {
-              return (
-                <div key={i._id} className="carouselElement">
-                  <div className="carouselDiv">
-                    <img src={i.image.data} alt="photo of cereal" />
-                    {/* <img src={`data:image/png;base64,${i.image.data.toString("base64")}`} alt="photo of cereal" /> */}
-                  </div>
-                  <p>{i.title}</p>
-                </div>
-              );
-            })}
-        </div>
+        <Carousel />
       </section>
       <section className="homepage__section_3" aria-label="home page hero section">
         <TestimonialSlider />
@@ -112,10 +97,11 @@ export const Homepage = () => {
       <section className="homepage__section_7" aria-label="home page hero section">
         <p>reviews carousel</p>
         <h3>
-          Why did we grow up, <span className="outlinedText">but our cereal didn't?</span>
+          Why did we grow up,
+          <br />
+          <span className="outlinedText">but our cereal didn't?</span>
         </h3>
-        <StrokeText text={"but our cereal didn't?"} className="outlinedText" />
-        ///add link to OUR STORY
+        <CallToAction name={"OUR STORY"} address={"/"} style={"buttonStyle1"} />
       </section>
       <section className="homepage__section_8" aria-label="home page hero section">
         ////grid of 4 photos

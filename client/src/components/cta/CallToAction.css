@@ -1,5 +1,5 @@
 .cta-btn {
-  padding: 1em;
+  padding: 1em 2.5em;
   width: fit-content;
   border-radius: 50px;
   box-shadow: var(--shadow1), 0 0 15px rgba(121, 33, 164, 0.5) inset;
@@ -7,15 +7,15 @@
   background-color: var(--color1);
   color: var(--white);
   text-shadow: var(--outline);
-  font-size: var(--font2);
+  font-size: var(--font3);
   font-weight: 700;
 
   user-select: none;
+  transition: all 1000ms ease;
 }
 
 .cta-btn:hover {
-  /* background-color: var(--gradient2); */
-  /* animation: btnOpacity 1000ms ease infinite; */
+  /* background-image: var(--gradient2); */
 }
 
 /* ---style 1--- */
