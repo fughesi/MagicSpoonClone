@@ -45,15 +45,7 @@
   --outline: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;
 
   /* SIZES */
-  --p0: clamp(0.69rem, calc(0.5rem + 0.99vw), 1.5rem);
-  --p1: clamp(0.75rem, calc(0.48rem + 1.34vw), 0.85rem);
-  --p2: clamp(0.5rem, calc(0.32rem + 0.45vw), 0.91rem);
-  --h4: clamp(0.75rem, calc(0.6rem + 0.73vw), 1.13rem);
-  --h3: clamp(1.1875rem, calc(0.8661rem + 1.6071vw), 2.3125rem);
-  --h1: clamp(2.07rem, calc(1.1rem + 4.89vw), 4.68rem);
-  --size1: clamp(1.75rem, calc(0.9107rem + 4.1964vw), 4.6875rem);
-  --title1: max(2.5vw, 1.2rem);
-
+  --font0: clamp(0.59rem, calc(0.5rem + 0.99vw), 0.55rem);
   --font1: clamp(0.78rem, calc(0.77rem + 0.03vw), 0.8rem);
   --font2: clamp(0.94rem, calc(0.92rem + 0.11vw), 1rem);
   --font3: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);

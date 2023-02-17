@@ -6,7 +6,7 @@
   grid-template-rows: 80vh auto;
 }
 
-.homepage__section_1 {
+.homepageSection1 {
   padding: 3rem 2rem;
 
   display: flex;
@@ -19,7 +19,7 @@
   background-repeat: no-repeat;
 }
 
-.homepage__section_1 h1 {
+.homepageSection1 h1 {
   margin-bottom: 30px;
 
   font-size: var(--font7);
@@ -30,23 +30,23 @@
   font-weight: 700;
 }
 
-.homepage__section_2 {
+.homepageSection2 {
   background-color: var(--color2);
 }
 
-.homepage__section_2 h4 {
+.homepageSection2 h4 {
   text-align: center;
-  color: var(--color1);
+  color: var(--color4);
   font-size: var(--font4);
-  font-weight: 700;
+  font-weight: var(--bold);
   margin: 0.25em 0 0;
 }
 
-.homepage__section_3 {
+.homepageSection3 {
   background: var(--gradientThree);
 }
 
-.homepage__section_4 {
+.homepageSection4 {
   position: relative;
 
   display: flex;
@@ -57,7 +57,7 @@
   background: var(--color4);
 }
 
-.homepage__section_4 h3 {
+.homepageSection4 h3 {
   margin-bottom: 0;
 
   font-size: var(--font7);
@@ -65,16 +65,12 @@
   color: var(--color3);
 }
 
-.homepage__section_4 p {
+.homepageSection4 p {
   margin-top: 0;
 
   text-align: center;
   color: var(--color3);
   font-size: var(--font2);
-}
-
-.floatingCereal {
-  width: 100%;
 }
 
 img[alt="floating cereal"] {
@@ -127,9 +123,8 @@ img[alt="floating cereal"]:nth-child(2) {
   scale: 0.75;
 }
 
-.homepage__section_5 {
+.homepageSection5 {
   position: relative;
-  /* height: 60vh; */
   height: 500px;
 
   background-image: url("../../assets/img/cereal-pose.jpg");
@@ -137,7 +132,7 @@ img[alt="floating cereal"]:nth-child(2) {
   background-repeat: no-repeat;
 }
 
-.homepage__section_6 {
+.homepageSection6 {
   height: 700px;
 
   background-image: var(--gradient1);
@@ -163,13 +158,13 @@ img[alt="cereal boxes"] {
   justify-content: space-between;
 }
 
-.homepage__section_6 h3 {
+.homepageSection6 h3 {
   font-size: var(--font7);
   text-shadow: var(--shadow3), var(--outline);
   color: #fff;
 }
 
-.homepage__section_7 {
+.homepageSection7 {
   height: 25.5rem;
   background-image: var(--gradient2);
 
@@ -178,7 +173,7 @@ img[alt="cereal boxes"] {
   align-items: center;
 }
 
-.homepage__section_7 h3 {
+.homepageSection7 h3 {
   font-size: var(--font7);
   color: #fff;
   text-align: center;
@@ -190,26 +185,29 @@ img[alt="cereal boxes"] {
   -webkit-text-stroke: 1.65px white;
 }
 
-.homepage__section_8 {
-  height: 25rem;
+.homepageSection9 {
+  height: 28rem;
 
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-}
-.homepage__section_9 {
-  background: var(--gradientTwo);
+  place-content: center;
+  justify-items: center;
+
+  background: var(--gradient2);
+  background-size: 200% 200%;
+  animation: backgroundRotate 4500ms infinite ease-in-out;
 }
 
-.homepage__section_10 {
-  color: #fff;
-  background: #000;
-}
-
-.homepage__section_10 h4 {
+.homepageSection9 h3 {
   text-align: center;
-  font-size: var(--font4);
-  margin-bottom: 0.5em;
+  font-size: calc(var(--font7) + 0.25rem);
+  line-height: 2.8rem;
+}
+
+.homepageSection9 a {
+  margin-top: 0.75rem;
+
+  color: #fff;
+  font-size: var(--font0);
 }
 
 /* ------ INTERSECTIONAL OBSERVER */
@@ -217,7 +215,7 @@ img[alt="cereal boxes"] {
   text-align: center;
 
   transform: translateY(200px);
-  transition: all 1000ms;
+  transition: all 1750ms;
   opacity: 0;
 }
 
@@ -246,5 +244,16 @@ img[alt="cereal boxes"] {
   }
   100% {
     rotate: 360deg;
+  }
+}
+
+@keyframes backgroundRotate {
+  0%,
+  100% {
+    background-position: 100% 100%;
+  }
+
+  50% {
+    background-position: 100% 40%;
   }
 }

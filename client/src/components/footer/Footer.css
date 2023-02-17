@@ -1,9 +1,18 @@
 .FooterMobileContainer {
-  margin-top: 4rem;
+  padding-top: 4rem;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  color: #fff;
+  background: #000;
+}
+
+.FooterMobileContainer h4 {
+  text-align: center;
+  font-size: var(--font4);
+  margin-bottom: 0.5em;
 }
 
 .socialsSVGContainer {

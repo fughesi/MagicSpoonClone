@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import CallToAction from "../../components/cta/CallToAction";
 import { Link } from "react-router-dom";
 import { img1, img2, img3, img4, img5, img6, img7 } from "../../assets/img/floatingCereal/__exports";
+import PhotoGrid from "../../components/photoGrid/PhotoGrid";
 import cerealBoxBG from "../../assets/img/cereal-boxes.png";
 import FooterMobile from "../../components/footer/FooterMobile";
 import SpinningLogo from "../../assets/svg/SpinningLogo";
@@ -48,18 +49,18 @@ export const Homepage = () => {
 
   const content = (
     <main className={`homePageContainer ${blur ? "blur" : ""}`}>
-      <section className="homepage__section_1" aria-label="home page hero section">
+      <section className="homepageSection1" aria-label="home page hero section">
         <h1>High protein cereal that tastes too good to be true.</h1>
         <CallToAction />
       </section>
-      <section className="homepage__section_2" aria-label="home page hero section">
+      <section className="homepageSection2" aria-label="home page hero section">
         <h4>Find Your Flavor</h4>
         <Carousel />
       </section>
-      <section className="homepage__section_3" aria-label="home page hero section">
+      <section className="homepageSection3" aria-label="home page hero section">
         <TestimonialSlider />
       </section>
-      <section className="homepage__section_4" aria-label="home page hero section">
+      <section className="homepageSection4" aria-label="home page hero section">
         <div>
           <h3>High Protein</h3>
           <p>12g-14g complete protein in every bowl.</p>
@@ -72,7 +73,7 @@ export const Homepage = () => {
           <h3>Sweet & Delicious</h3>
           <p>Tastes just like you remember, only better.</p>
         </div>
-        <div className="floatingCereal">
+        <div>
           <img src={img1} alt="floating cereal" style={{ transform: `translateY(${offsetY * 0.03}px)` }} />
           <img src={img2} alt="floating cereal" style={{ transform: `translateY(${offsetY * 0.045}px)` }} />
           <img src={img3} alt="floating cereal" style={{ transform: `translateY(${offsetY * 0.05}px)` }} />
@@ -82,10 +83,10 @@ export const Homepage = () => {
           <img src={img7} alt="floating cereal" style={{ transform: `translateY(${offsetY * 0.04}px)` }} />
         </div>
       </section>
-      <section className="homepage__section_5" aria-label="home page hero section">
+      <section className="homepageSection5" aria-label="home page hero section">
         <SpinningLogo className="badge" />
       </section>
-      <section className="homepage__section_6" aria-label="home page hero section">
+      <section className="homepageSection6" aria-label="home page hero section">
         <div className={`worldOfFlavor ${observer}`} ref={targetRef}>
           <h3>
             A whole world <br /> of flavor.
@@ -94,8 +95,8 @@ export const Homepage = () => {
         </div>
         <img src={cerealBoxBG} alt="cereal boxes" />
       </section>
-      <section className="homepage__section_7" aria-label="home page hero section">
-        <p>reviews carousel</p>
+      <section className="homepageSection7" aria-label="home page hero section">
+        <Carousel />
         <h3>
           Why did we grow up,
           <br />
@@ -103,19 +104,17 @@ export const Homepage = () => {
         </h3>
         <CallToAction name={"OUR STORY"} address={"/"} style={"buttonStyle1"} />
       </section>
-      <section className="homepage__section_8" aria-label="home page hero section">
-        ////grid of 4 photos
+      <section className="homepageSection8" aria-label="home page hero section">
+        <PhotoGrid />
       </section>
-      <section className="homepage__section_9" aria-label="home page hero section">
+      <section className="homepageSection9" aria-label="home page hero section">
         <h3>
           Happiness <span className="outlinedText">100% Guaranteed</span>
         </h3>
         <CallToAction />
-        <Link to="/">
-          <span className="smallText">SEE TERMS OF USE.</span>
-        </Link>
+        <Link to="/">SEE TERMS OF USE.</Link>
       </section>
-      <section className="homepage__section_10" aria-label="home page hero section">
+      <section className="homepageSection10" aria-label="home page hero section">
         <FooterMobile />
       </section>
     </main>
