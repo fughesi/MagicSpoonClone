@@ -1,9 +1,9 @@
 .carouselContainer {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: 35%;
-  grid-template-rows: max-content;
-  grid-template-rows: 7rem;
+  /* grid-auto-columns: max-content; */
+  grid-auto-columns: 29%;
+  grid-template-rows: 11rem;
 
   align-items: center;
   justify-content: start;
@@ -25,7 +25,7 @@
   flex-direction: column;
   align-items: center;
 
-  padding: 1.5rem;
+  padding: 0.5rem;
   max-width: fit-content;
 
   scroll-snap-align: start;
@@ -33,17 +33,17 @@
 
 .carouselElement p {
   margin: 0;
+
+  word-break: keep-all;
   font-size: calc(var(--font2) * 0.85);
   color: var(--color1);
 }
 
 .carouselDiv {
-  width: 60px;
   aspect-ratio: 1/1;
-
-  padding: 1.75rem;
-  overflow-x: auto;
-
   border-radius: 50%;
-  background-color: rgb(51, 219, 141);
+}
+
+.carouselDiv img {
+  width: 100%;
 }

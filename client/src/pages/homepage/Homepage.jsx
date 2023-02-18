@@ -7,9 +7,10 @@ import { img1, img2, img3, img4, img5, img6, img7 } from "../../assets/img/float
 import PhotoGrid from "../../components/photoGrid/PhotoGrid";
 import cerealBoxBG from "../../assets/img/cereal-boxes.png";
 import FooterMobile from "../../components/footer/FooterMobile";
-import SpinningLogo from "../../assets/svg/SpinningLogo";
 import TestimonialSlider from "../../components/testimonials/TestimonialSlider";
+import SpinningLogo from "../../assets/svg/SpinningLogo";
 import Carousel from "../../components/carousel/Carousel";
+import CTAsection from "../../components/cta-section/CTAsection";
 
 export const Homepage = () => {
   const [offsetY, setOffsetY] = useState(0);
@@ -96,7 +97,7 @@ export const Homepage = () => {
         <img src={cerealBoxBG} alt="cereal boxes" />
       </section>
       <section className="homepageSection7" aria-label="home page hero section">
-        <Carousel />
+        //testimonials
         <h3>
           Why did we grow up,
           <br />
@@ -108,11 +109,12 @@ export const Homepage = () => {
         <PhotoGrid />
       </section>
       <section className="homepageSection9" aria-label="home page hero section">
-        <h3>
+        {/* <h3>
           Happiness <span className="outlinedText">100% Guaranteed</span>
         </h3>
         <CallToAction />
-        <Link to="/">SEE TERMS OF USE.</Link>
+        <Link to="/">SEE TERMS OF USE.</Link> */}
+        <CTAsection />
       </section>
       <section className="homepageSection10" aria-label="home page hero section">
         <FooterMobile />

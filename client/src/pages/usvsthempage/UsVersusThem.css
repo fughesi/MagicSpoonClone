@@ -1,0 +1,11 @@
+.UsVersusThemContainer {
+}
+
+.UsVersusThemSection1 {
+  background-image: var(--gradient1);
+}
+
+.UsVersusThemSection1 p {
+  font-size: var(--font3);
+  color: #fff;
+}
