@@ -210,7 +210,7 @@ img[alt="cereal boxes"] {
   width: 7rem;
   aspect-ratio: 1/1;
 
-  animation: rotate 3000ms linear infinite;
+  animation: rotate 4500ms linear infinite;
 }
 
 @keyframes rotate {

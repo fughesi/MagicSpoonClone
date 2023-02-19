@@ -1,6 +1,7 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MagicSpoonLogo from "../../assets/svg/MagicSpoonLogo";
-import { blur } from "../../features/themeSlice";
+import SpinningLogo from "../../assets/svg/SpinningLogo";
+import { blur, navbar } from "../../features/themeSlice";
 import {
   addItemToCart,
   decrementItemQuantity,
@@ -9,39 +10,39 @@ import {
   clearCart,
 } from "../../features/cartSlice";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import "./Navbar.css";
 
 const NavbarMobile = () => {
-  const [toggle, setToggle] = useState(false);
+  const toggle = useSelector((state) => state.theme.navbarEngaged);
 
   const dispatch = useDispatch();
 
   const content = (
-    <nav className="nav-mobile__container">
+    <nav className={`nav-mobile__container ${toggle ? "fixedMenuPosition" : ""}`}>
       <section
         className="hamburger-section"
         aria-label="hamburger bar for toggling menu"
-        onClick={() => (setToggle((i) => !i), dispatch(blur()))}
+        onClick={() => (dispatch(blur()), dispatch(navbar()))}
       >
         <div className={`hamburger-element ${toggle ? "menu-open" : ""}`}></div>
 
         <ul className={`mobile-nav-menu ${toggle ? "" : "hide"}`}>
-          <li name="MENU">
-            <Link to="/">MENU</Link>
+          <li>
+            <Link to="/us-vs-them">US VS. THEM</Link>
           </li>
-          <li name="THINGS">
-            <Link to="/">THINGS</Link>
+          <li>
+            <Link to="/us-vs-them">OUR STORY</Link>
           </li>
-          <li name="STUFF">
-            <Link to="/">STUFF</Link>
+          <li>
+            <Link to="/us-vs-them">BUNDLES</Link>
           </li>
-          <li name="MORE STUFF">
-            <Link to="/">MORE STUFF</Link>
+          <li>
+            <Link to="/us-vs-them">CEREAL</Link>
           </li>
-          <li name="MORE THINGS">
-            <Link to="/">MORE THINGS</Link>
+          <li>
+            <Link to="/us-vs-them">BARS</Link>
           </li>
+          <SpinningLogo className="logoSpinMenu" />
         </ul>
       </section>
 

@@ -1,12 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getWindowWidth } from "./features/themeSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./App.css";
 
 import { Homepage } from "./pages/homepage/Homepage";
-import TestPage from "./pages/testing/TestPage";
 import NavbarDesktop from "./components/navbar/NavbarDesktop";
 import NavbarMobile from "./components/navbar/NavbarMobile";
 import UsVersusThem from "./pages/usvsthempage/UsVersusThem";
@@ -17,6 +16,8 @@ function App() {
 
   const dispatch = useDispatch();
 
+  const stopScroll = useSelector((state) => state.theme.navbarEngaged);
+
   const windowWidth = () => setWidth(window.innerWidth);
   window.addEventListener("resize", windowWidth);
 
@@ -26,12 +27,11 @@ function App() {
   }, [width]);
 
   let content = (
-    <main className="App">
+    <main className={`App ${stopScroll ? "stopScroll" : ""}`}>
       {width < 500 ? <NavbarMobile /> : <NavbarDesktop />}
       <Routes>
         <Route index element={<Homepage />} />
         <Route path="/us-vs-them" element={<UsVersusThem />} />
-        {/* <Route index element={<TestPage />} /> */}
       </Routes>
       {/* <Darkmode /> */}
     </main>

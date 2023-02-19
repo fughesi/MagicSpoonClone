@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   windowWidth: 0,
   darkMode: JSON.parse(localStorage.getItem("darkMode")) || false,
+  navbarEngaged: false,
   blur: false,
 };
 
@@ -29,9 +30,12 @@ export const themeSlice = createSlice({
     blur: (state, { payload }) => {
       state.blur = !state.blur;
     },
+    navbar: (state, { payload }) => {
+      state.navbarEngaged = !state.navbarEngaged;
+    },
   },
 });
 
-export const { getWindowWidth, setDarkMode, blur } = themeSlice.actions;
+export const { getWindowWidth, setDarkMode, blur, navbar } = themeSlice.actions;
 
 export default themeSlice.reducer;
