@@ -2,10 +2,38 @@
 }
 
 .UsVersusThemSection1 {
-  background-image: var(--gradient1);
+  background-image: var(--gradient3);
+  height: 100%;
 }
 
 .UsVersusThemSection1 p {
-  font-size: var(--font3);
-  color: #fff;
+  padding: 8rem 2rem;
+  margin: 0;
+
+  text-align: center;
+  font-size: var(--font5);
+}
+
+.UsVersusThemSection2 {
+  height: 30rem;
+  background-image: var(--gradient3);
+
+  display: grid;
+  place-content: center;
+}
+
+.UsVersusThemSection2 div {
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+}
+.UsVersusThemSection2 div h6 {
+  font-size: var(--font5);
+  margin-bottom: 0;
+}
+
+img[alt="cereal loop"] {
+  align-self: center;
+  /* width: 70%; */
 }
