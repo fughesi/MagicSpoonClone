@@ -17,9 +17,6 @@ export default function UsVersusThem() {
       <section className="UsVersusThemSection4">
         <CTAsection />
       </section>
-      <section className="UsVersusThemSection5">
-        <FooterMobile />
-      </section>
     </main>
   );
 

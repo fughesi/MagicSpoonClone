@@ -116,9 +116,6 @@ export const Homepage = () => {
         <Link to="/">SEE TERMS OF USE.</Link> */}
         <CTAsection />
       </section>
-      <section className="homepageSection10" aria-label="home page hero section">
-        <FooterMobile />
-      </section>
     </main>
   );
 

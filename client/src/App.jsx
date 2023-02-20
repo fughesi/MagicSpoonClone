@@ -6,10 +6,13 @@ import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 
 import { Homepage } from "./pages/homepage/Homepage";
+import OurStory from "./pages/ourstorypage/OurStory";
 import NavbarDesktop from "./components/navbar/NavbarDesktop";
 import NavbarMobile from "./components/navbar/NavbarMobile";
 import UsVersusThem from "./pages/usvsthempage/UsVersusThem";
 import Darkmode from "./components/darkmode/Darkmode";
+import FooterMobile from "./components/footer/FooterMobile";
+import FooterDesktop from "./components/footer/FooterDesktop";
 
 function App() {
   const [width, setWidth] = useState(window.innerWidth);
@@ -32,8 +35,10 @@ function App() {
       <Routes>
         <Route index element={<Homepage />} />
         <Route path="/us-vs-them" element={<UsVersusThem />} />
+        <Route path="/our-story" element={<OurStory />} />
       </Routes>
       {/* <Darkmode /> */}
+      {width < 500 ? <FooterMobile /> : <FooterDesktop />}
     </main>
   );
 
