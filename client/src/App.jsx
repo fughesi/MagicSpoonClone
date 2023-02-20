@@ -13,6 +13,7 @@ import UsVersusThem from "./pages/usvsthempage/UsVersusThem";
 import Darkmode from "./components/darkmode/Darkmode";
 import FooterMobile from "./components/footer/FooterMobile";
 import FooterDesktop from "./components/footer/FooterDesktop";
+import ShoppingCart from "./pages/cartpage/ShoppingCart";
 
 function App() {
   const [width, setWidth] = useState(window.innerWidth);
@@ -39,6 +40,9 @@ function App() {
       </Routes>
       {/* <Darkmode /> */}
       {width < 500 ? <FooterMobile /> : <FooterDesktop />}
+      <Routes>
+        <Route path="/shopping-cart" element={<ShoppingCart />} />
+      </Routes>
     </main>
   );
 

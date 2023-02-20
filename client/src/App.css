@@ -61,7 +61,7 @@
 
   /* SHADOWS */
   --textInset: 2px 3px 4px #fff, 0 0 0 #000;
-  --shadow1: 0px 2px 1px -1px #0002, 0px 1px 1px 0px #00000014, 0px 1px 3px 0px #00000012;
+  --shadow1: 0px 2px 1px -1px #0002, 0px 1px 1px 0px #00000014, 0px 1px 3px 0px #0002;
   --shadow2: 0px 0px 10px #0005;
   --shadow3: 0 0.3125rem 0.625rem #0007;
   --shadow4: 0rem 0px 1rem var(--color6);

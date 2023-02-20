@@ -31,7 +31,7 @@ const NavbarMobile = () => {
             <Link to="/us-vs-them">US VS. THEM</Link>
           </li>
           <li>
-            <Link to="/us-vs-them">OUR STORY</Link>
+            <Link to="/our-story">OUR STORY</Link>
           </li>
           <li>
             <Link to="/us-vs-them">BUNDLES</Link>
