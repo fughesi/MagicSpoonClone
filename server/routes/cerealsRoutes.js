@@ -1,9 +1,8 @@
 import express from "express";
 import multer from "multer";
 import fs, { readFileSync } from "fs";
-import Joi from "joi";
 import Cereals from "../models/cerealModel.js";
-
+import storage from "../middleware/imageLoader.js";
 const path = new URL("..", import.meta.url).pathname;
 
 const router = express.Router();

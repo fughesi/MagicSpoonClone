@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
 import cerealsRoutes from "./routes/cerealsRoutes.js";
+import cartRoutes from "./routes/cartRoutes.js";
 import testimonialRoutes from "./routes/testimonialsRoutes.js";
 import { URL } from "url"; // in Browser, the URL is natively accessible
 
@@ -25,7 +26,7 @@ app.use(cors());
 // ROUTES LIST
 app.use("/testimonials", testimonialRoutes);
 app.use("/cereals", cerealsRoutes);
-// app.use("/", (req, res) => res.send("backend server page"));
+app.use("/cart", cartRoutes);
 
 app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
 

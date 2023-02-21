@@ -1,7 +1,7 @@
 .cta-btn {
-  padding: 1em 2.5em;
-  width: fit-content;
-  border-radius: 50px;
+  padding: 1em;
+  aspect-ratio: 4/1;
+  border-radius: 200px;
   box-shadow: var(--shadow1), 0 0 15px rgba(121, 33, 164, 0.5) inset;
 
   background-color: var(--color1);
@@ -10,12 +10,12 @@
   font-size: var(--font3);
   font-weight: 700;
 
+  display: flex;
+  place-content: center;
+  place-items: center;
+
   user-select: none;
   transition: all 1000ms ease;
-}
-
-.cta-btn:hover {
-  /* background-image: var(--gradient2); */
 }
 
 /* ---style 1--- */
@@ -36,4 +36,11 @@
 .buttonStyle1:hover {
   color: var(--color1);
   background-color: #fff;
+}
+
+.buttonStyle2 {
+  width: 80%;
+  height: 42.4px;
+  max-width: 28.75rem;
+  aspect-ratio: 10.85/1;
 }

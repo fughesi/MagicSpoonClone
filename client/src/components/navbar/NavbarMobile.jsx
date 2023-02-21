@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import MagicSpoonLogo from "../../assets/svg/MagicSpoonLogo";
 import SpinningLogo from "../../assets/svg/SpinningLogo";
 import { blur, navbar } from "../../features/themeSlice";
+import { cartReveal } from "../../features/themeSlice";
 import {
   addItemToCart,
   decrementItemQuantity,
@@ -18,15 +19,15 @@ const NavbarMobile = () => {
   const dispatch = useDispatch();
 
   const content = (
-    <nav className={`nav-mobile__container ${toggle ? "fixedMenuPosition" : ""}`}>
+    <nav className={`navMobileContainer ${toggle ? "fixedMenuPosition" : ""}`}>
       <section
-        className="hamburger-section"
+        className="hamburgerSection"
         aria-label="hamburger bar for toggling menu"
         onClick={() => (dispatch(blur()), dispatch(navbar()))}
       >
-        <div className={`hamburger-element ${toggle ? "menu-open" : ""}`}></div>
+        <div className={`hamburgerElement ${toggle ? "menuOpen" : ""}`}></div>
 
-        <ul className={`mobile-nav-menu ${toggle ? "" : "hide"}`}>
+        <ul className={`mobileNavMenu ${toggle ? "" : "hide"}`}>
           <li>
             <Link to="/us-vs-them">US VS. THEM</Link>
           </li>
@@ -46,14 +47,14 @@ const NavbarMobile = () => {
         </ul>
       </section>
 
-      <section className="title-logo__link" aria-label="home page link with logo as button">
+      <section className="titleLogoLink" aria-label="home page link with logo as button">
         <Link to="/">
           <MagicSpoonLogo className="MagicSpoonLogo" style={{ fill: "var(--color1)" }} />
         </Link>
       </section>
 
-      <section className="cart_signup" aria-label="shopping cart element and signup link">
-        cart
+      <section className="cartSignup" aria-label="shopping cart element and signup link">
+        <p onClick={() => dispatch(cartReveal())}>CART</p>
       </section>
     </nav>
   );

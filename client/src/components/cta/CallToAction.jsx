@@ -6,7 +6,7 @@ export default function CallToAction({ address, name, style }) {
 
   const content = (
     <button className={`cta-btn ${style}`} onClick={() => navigate(address || "/")}>
-      {name || "TRY NOW"}
+      {name || `TRY NOW`}
     </button>
   );
 

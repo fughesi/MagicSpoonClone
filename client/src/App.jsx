@@ -38,11 +38,10 @@ function App() {
         <Route path="/us-vs-them" element={<UsVersusThem />} />
         <Route path="/our-story" element={<OurStory />} />
       </Routes>
+      <ShoppingCart />
+
       {/* <Darkmode /> */}
-      {width < 500 ? <FooterMobile /> : <FooterDesktop />}
-      <Routes>
-        <Route path="/shopping-cart" element={<ShoppingCart />} />
-      </Routes>
+      {/* {width < 500 ? <FooterMobile /> : <FooterDesktop />} */}
     </main>
   );
 

@@ -1,0 +1,30 @@
+import multer from "multer";
+const path = new URL("..", import.meta.url).pathname;
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, `${path}images/cereal`);
+  },
+  filename: (req, file, cb) => {
+    const ext = file?.originalname.split(".")[1];
+    cb(null, `${Date.now().toString()}.${ext.toString()}`);
+  },
+});
+
+// const upload = multer({ storage: storage }).single("image");
+const upload = multer({
+  storage: storage,
+  fileFilter: (req, file, callback) => {
+    if (file.mimetype == "image/png" || file.mimetype == "image/jpg") {
+      callback(null, true);
+    } else {
+      console.log("only jpg and png supported");
+      callback(null, false);
+    }
+  },
+  limits: {
+    fileSize: 1024 * 1024 * 2,
+  },
+}).single("image");
+
+export default storage;

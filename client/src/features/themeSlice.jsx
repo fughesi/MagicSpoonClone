@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   windowWidth: 0,
   darkMode: JSON.parse(localStorage.getItem("darkMode")) || false,
+  cartReveal: false,
   navbarEngaged: false,
   blur: false,
 };
@@ -33,9 +34,12 @@ export const themeSlice = createSlice({
     navbar: (state, { payload }) => {
       state.navbarEngaged = !state.navbarEngaged;
     },
+    cartReveal: (state, { payload }) => {
+      state.cartReveal = !state.cartReveal;
+    },
   },
 });
 
-export const { getWindowWidth, setDarkMode, blur, navbar } = themeSlice.actions;
+export const { getWindowWidth, setDarkMode, blur, navbar, cartReveal } = themeSlice.actions;
 
 export default themeSlice.reducer;
