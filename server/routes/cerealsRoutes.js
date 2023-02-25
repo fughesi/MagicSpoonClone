@@ -1,37 +1,11 @@
 import express from "express";
-import multer from "multer";
+import Joi from "joi";
 import fs, { readFileSync } from "fs";
 import Cereals from "../models/cerealModel.js";
-import storage from "../middleware/imageLoader.js";
+import { uploadCereal } from "../middleware/imageLoader.js";
 const path = new URL("..", import.meta.url).pathname;
 
 const router = express.Router();
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, `${path}images/cereal`);
-  },
-  filename: (req, file, cb) => {
-    const ext = file?.originalname.split(".")[1];
-    cb(null, `${Date.now().toString()}.${ext.toString()}`);
-  },
-});
-
-// const upload = multer({ storage: storage }).single("image");
-const upload = multer({
-  storage: storage,
-  fileFilter: (req, file, callback) => {
-    if (file.mimetype == "image/png" || file.mimetype == "image/jpg") {
-      callback(null, true);
-    } else {
-      console.log("only jpg and png supported");
-      callback(null, false);
-    }
-  },
-  limits: {
-    fileSize: 1024 * 1024 * 2,
-  },
-}).single("image");
 
 router.route("/").get(async (req, res) => {
   const allCereals = await Cereals.find();
@@ -49,49 +23,33 @@ router
   .get((req, res) => {
     res.render("upload", { upload: req.body.title });
   })
-  .post(upload, (req, res) => {
-    const saveImg = new Cereals({
-      title: req.body.title,
-      price: req.body.price,
+  .post(uploadCereal, (req, res, next) => {
+    const schema = Joi.object({
+      title: Joi.string().required().min(3).max(50),
+      price: Joi.number().required(),
+      image: Joi.binary().encoding("base64"),
+    });
+
+    const { error } = schema.validate(req.body);
+
+    if (error) return res.status(400).send(error?.details[0]?.message);
+
+    const cerealPost = new Cereals({
+      title: String(req.body.title),
+      price: Number(req.body.price),
       image: {
-        data: fs.readFileSync("/images/cereal", req.file.filename),
+        // data: fs.readFileSync("/images/cereal", req.file.filename),
+        data: req.file.filename,
         contentType: "image/png",
       },
     });
-    res.send(saveImg);
+    cerealPost
+      .save()
+      .then(() => res.status(200).send("successfully uploaded"))
+      .catch((err) => console.log(err));
+
+    // res.status(200).;
   });
-// .post((req, res, next) => {
-//   upload(req, res, (err) => {
-//     if (err) {
-//       return console.log(err);
-//     } else {
-//       const schema = Joi.object({
-//         title: Joi.string().required().min(3).max(50),
-//         price: Joi.number().required(),
-//         image: Joi.binary().encoding("base64"),
-//       });
-
-//       const { error } = schema.validate(req.body);
-
-//       if (error) return res.status(400).send(error?.details[0]?.message);
-
-//       const cerealPost = new Cereals({
-//         title: String(req.body.title),
-//         price: Number(req.body.price),
-//         image: {
-//           data: fs.readFileSync("/images/cereal", req.file.filename),
-//           // data: req.file.filename,
-//           contentType: "image/png",
-//         },
-//       });
-//       cerealPost.save().catch((err) => console.log(err));
-//     }
-//     next();
-//   });
-
-//   console.log(req.body);
-//   res.status(200).redirect("/cereals/upload");
-// });
 
 router
   .route("/:id")

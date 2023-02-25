@@ -41,7 +41,7 @@ function App() {
       <ShoppingCart />
 
       {/* <Darkmode /> */}
-      {/* {width < 500 ? <FooterMobile /> : <FooterDesktop />} */}
+      {width < 500 ? <FooterMobile /> : <FooterDesktop />}
     </main>
   );
 

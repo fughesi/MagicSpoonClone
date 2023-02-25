@@ -6,19 +6,18 @@ const storage = multer.diskStorage({
     cb(null, `${path}images/cereal`);
   },
   filename: (req, file, cb) => {
-    const ext = file?.originalname.split(".")[1];
-    cb(null, `${Date.now().toString()}.${ext.toString()}`);
+    const ext = file?.originalname.split(".").at(-1);
+    cb(null, `${req.body?.title.toString()}.${Date.now().toString().substr(6)}.${ext.toString()}`);
   },
 });
 
-// const upload = multer({ storage: storage }).single("image");
-const upload = multer({
+export const uploadCereal = multer({
   storage: storage,
   fileFilter: (req, file, callback) => {
-    if (file.mimetype == "image/png" || file.mimetype == "image/jpg") {
+    if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
       callback(null, true);
     } else {
-      console.log("only jpg and png supported");
+      console.log("only jpg/jpeg and png supported");
       callback(null, false);
     }
   },
@@ -26,5 +25,3 @@ const upload = multer({
     fileSize: 1024 * 1024 * 2,
   },
 }).single("image");
-
-export default storage;

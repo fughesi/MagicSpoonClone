@@ -20,8 +20,6 @@ export const Homepage = () => {
 
   const dispatch = useDispatch();
 
-  // const { data: cereal } = useGetAllCerealsQuery();
-
   const targetRef = useRef(null);
 
   useEffect(() => {
@@ -109,11 +107,6 @@ export const Homepage = () => {
         <PhotoGrid />
       </section>
       <section className="homepageSection9" aria-label="home page hero section">
-        {/* <h3>
-          Happiness <span className="outlinedText">100% Guaranteed</span>
-        </h3>
-        <CallToAction />
-        <Link to="/">SEE TERMS OF USE.</Link> */}
         <CTAsection />
       </section>
     </main>
