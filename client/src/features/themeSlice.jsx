@@ -4,6 +4,7 @@ const initialState = {
   windowWidth: 0,
   darkMode: JSON.parse(localStorage.getItem("darkMode")) || false,
   cartReveal: false,
+  loginReveal: false,
   navbarEngaged: false,
   blur: false,
 };
@@ -37,9 +38,12 @@ export const themeSlice = createSlice({
     cartReveal: (state, { payload }) => {
       state.cartReveal = !state.cartReveal;
     },
+    loginReveal: (state, { payload }) => {
+      state.loginReveal = !state.loginReveal;
+    },
   },
 });
 
-export const { getWindowWidth, setDarkMode, blur, navbar, cartReveal } = themeSlice.actions;
+export const { getWindowWidth, setDarkMode, blur, navbar, cartReveal, loginReveal } = themeSlice.actions;
 
 export default themeSlice.reducer;

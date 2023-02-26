@@ -116,8 +116,12 @@
   place-self: center;
 }
 
+.cartSignup {
+  display: flex;
+}
+
 .cartSignup p {
-  padding: 0 1rem;
+  padding-left: 1rem;
 
   text-align: end;
   font-weight: 700;

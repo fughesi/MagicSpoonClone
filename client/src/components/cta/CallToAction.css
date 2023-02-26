@@ -43,4 +43,9 @@
   height: 42.4px;
   max-width: 28.75rem;
   aspect-ratio: 10.85/1;
+  text-shadow: none;
+}
+
+.loginBtn {
+  font-size: var(--font2);
 }

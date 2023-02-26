@@ -4,22 +4,33 @@ import Cart from "../models/cartModel.js";
 
 const router = express.Router();
 
-router
-  .route("/")
-  .get(async (req, res) => {
-    const allCartItems = await Cart.find();
+router.route("/").get(async (req, res) => {
+  const allCartItems = await Cart.find();
 
-    try {
-      res.send(allCartItems);
-    } catch (error) {
-      console.log(error);
-      res.status(500).send(`Unable to get cart items: ${error}`);
-    }
+  try {
+    res.send(allCartItems);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(`Unable to get cart items: ${error}`);
+  }
+});
+
+router
+  .route("/upload")
+  .get((req, res) => {
+    res.render("cartInventory", { upload: req.body.title });
   })
   .post(async (req, res) => {
     const schema = Joi.object({
       title: Joi.string().required().min(3),
+      description: Joi.string(),
       quantity: Joi.number().required(),
+      price: Joi.number().required(),
+      discountPercentage: Joi.number(),
+      rating: Joi.number(),
+      stock: Joi.number(),
+      brand: Joi.string().required(),
+      category: Joi.string().required(),
     });
 
     const { error } = schema.validate(req.body);
@@ -35,6 +46,13 @@ router
     const addToCart = new Cart({
       title: req.body.title,
       quantity: req.body.quantity,
+      description: req.body.description,
+      price: req.body.price,
+      discountPercentage: req.body.discountPercentage,
+      rating: req.body.rating,
+      stock: req.body.stock,
+      brand: req.body.brand,
+      category: req.body.category,
     });
 
     addToCart

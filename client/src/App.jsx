@@ -5,15 +5,16 @@ import { useDispatch, useSelector } from "react-redux";
 
 import "./App.css";
 
+import Darkmode from "./components/darkmode/Darkmode";
 import { Homepage } from "./pages/homepage/Homepage";
 import OurStory from "./pages/ourstorypage/OurStory";
 import NavbarDesktop from "./components/navbar/NavbarDesktop";
 import NavbarMobile from "./components/navbar/NavbarMobile";
 import UsVersusThem from "./pages/usvsthempage/UsVersusThem";
-import Darkmode from "./components/darkmode/Darkmode";
 import FooterMobile from "./components/footer/FooterMobile";
 import FooterDesktop from "./components/footer/FooterDesktop";
-import ShoppingCart from "./pages/cartpage/ShoppingCart";
+import ShoppingCart from "./components/shoppingCart/ShoppingCart";
+import Login from "./components/login/Login";
 
 function App() {
   const [width, setWidth] = useState(window.innerWidth);
@@ -21,6 +22,9 @@ function App() {
   const dispatch = useDispatch();
 
   const stopScroll = useSelector((state) => state.theme.navbarEngaged);
+  const stopScroll2 = useSelector((state) => state.theme.loginReveal);
+  const stopScroll3 = useSelector((state) => state.theme.cartReveal);
+  const noscroll = [stopScroll, stopScroll2, stopScroll3].some(Boolean);
 
   const windowWidth = () => setWidth(window.innerWidth);
   window.addEventListener("resize", windowWidth);
@@ -31,7 +35,7 @@ function App() {
   }, [width]);
 
   let content = (
-    <main className={`App ${stopScroll ? "stopScroll" : ""}`}>
+    <main className={`App ${noscroll ? "stopScroll" : ""}`}>
       {width < 500 ? <NavbarMobile /> : <NavbarDesktop />}
       <Routes>
         <Route index element={<Homepage />} />
@@ -39,6 +43,7 @@ function App() {
         <Route path="/our-story" element={<OurStory />} />
       </Routes>
       <ShoppingCart />
+      <Login />
 
       {/* <Darkmode /> */}
       {width < 500 ? <FooterMobile /> : <FooterDesktop />}

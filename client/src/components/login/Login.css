@@ -1,0 +1,38 @@
+.loginContainer {
+  position: fixed;
+  inset: 0 0 0 0;
+
+  transform: translateY(110vh);
+  transition: transform 1000ms ease;
+
+  display: grid;
+  grid-row-gap: 1rem;
+  grid-template-rows: 3.75rem repeat(2, 50vh);
+
+  background-color: #fff;
+  z-index: 201;
+
+  overflow-x: scroll;
+}
+
+.loginSection1 {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+
+  place-self: center;
+}
+
+.loginContainer h1 {
+  margin-left: 0.5rem;
+}
+
+.loginContainer p {
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+.loginReveal {
+  transform: translateY(0);
+}

@@ -2,11 +2,9 @@ import "./Homepage.css";
 import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import CallToAction from "../../components/cta/CallToAction";
-import { Link } from "react-router-dom";
 import { img1, img2, img3, img4, img5, img6, img7 } from "../../assets/img/floatingCereal/__exports";
 import PhotoGrid from "../../components/photoGrid/PhotoGrid";
 import cerealBoxBG from "../../assets/img/cereal-boxes.png";
-import FooterMobile from "../../components/footer/FooterMobile";
 import TestimonialSlider from "../../components/testimonials/TestimonialSlider";
 import SpinningLogo from "../../assets/svg/SpinningLogo";
 import Carousel from "../../components/carousel/Carousel";
@@ -17,8 +15,6 @@ export const Homepage = () => {
   const [observer, setObserver] = useState("");
 
   const blur = useSelector((state) => state.theme.blur);
-
-  const dispatch = useDispatch();
 
   const targetRef = useRef(null);
 
@@ -44,6 +40,10 @@ export const Homepage = () => {
   useEffect(() => {
     window.addEventListener("scroll", () => setOffsetY(window.pageYOffset));
     return window.removeEventListener("scroll", () => setOffsetY(window.pageYOffset));
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => window.scrollTo(0, 0), 100);
   }, []);
 
   const content = (

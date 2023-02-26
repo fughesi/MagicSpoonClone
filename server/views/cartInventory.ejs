@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart Inventory</title>
+
+    <style>
+      form {
+        display: grid;
+        height: 75vh;
+        place-content: center;
+        justify-items: end;
+      }
+
+      input[type="submit"] {
+        background-color: red;
+        font-size: bold;
+        letter-spacing: 0.1rem;
+        color: rgb(236, 240, 243);
+        font-size: 1.75rem;
+        border: none;
+        padding: 0.5em;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>CART INVENTORY POST</h1>
+    <p>⋆ = required</p>
+    <form action="/cart" method="POST">
+      <label for="title">
+        ⋆ TITLE:
+        <input for="title" name="title" type="text" required minlength="3" placeholder="min 3 chars" />
+      </label>
+      <br />
+      <label for="description">
+        DESCRIPTION:
+        <textarea name="description" placeholder="text"></textarea>
+      </label>
+      <br />
+      <label for="quantity">
+        ⋆ QUANTITY:
+        <input name="quantity" type="number" required placeholder="num" />
+      </label>
+      <br />
+      <label for="price">
+        ⋆ PRICE:
+        <input name="price" type="number" required placeholder="num" />
+      </label>
+      <br />
+      <label for="discountPercentage">
+        DISCOUT PERCENTAGE:
+        <input name="discountPercentage" type="number" placeholder="num" />
+      </label>
+      <br />
+      <label for="rating">
+        RATING:
+        <input name="rating" type="number" placeholder="num" />
+      </label>
+      <br />
+      <label for="stock">
+        STOCK:
+        <input name="stock" type="number" placeholder="num" />
+      </label>
+      <br />
+      <label for="brand">
+        ⋆ BRAND:
+        <input name="brand" type="text" required placeholder="text" />
+      </label>
+      <br />
+      <label for="category">
+        ⋆ CATEGORY:
+        <input name="category" type="text" required placeholder="text" />
+      </label>
+      <br />
+
+      <input type="submit" value="submit" />
+
+      <br />
+    </form>
+  </body>
+</html>

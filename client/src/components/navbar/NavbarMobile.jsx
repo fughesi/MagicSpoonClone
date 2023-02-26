@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import MagicSpoonLogo from "../../assets/svg/MagicSpoonLogo";
 import SpinningLogo from "../../assets/svg/SpinningLogo";
 import { blur, navbar } from "../../features/themeSlice";
-import { cartReveal } from "../../features/themeSlice";
+import { cartReveal, loginReveal } from "../../features/themeSlice";
 import {
   addItemToCart,
   decrementItemQuantity,
@@ -54,6 +54,7 @@ const NavbarMobile = () => {
       </section>
 
       <section className="cartSignup" aria-label="shopping cart element and signup link">
+        <p onClick={() => dispatch(loginReveal())}>LOGIN</p>
         <p onClick={() => dispatch(cartReveal())}>CART</p>
       </section>
     </nav>

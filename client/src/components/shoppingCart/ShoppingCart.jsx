@@ -1,19 +1,19 @@
 import "./ShoppingCart.css";
 import { cartReveal } from "../../features/themeSlice";
 import { useDispatch, useSelector } from "react-redux";
-import CallToAction from "../../components/cta/CallToAction";
+import CallToAction from "../cta/CallToAction";
 import { decrementItemQuantity, incrementItemQuantity, deleteItemFromCart } from "../../features/cartSlice";
 
 export default function ShoppingCart() {
   const cartItems = useSelector((state) => state.cart.items);
   const cartQuantity = useSelector((state) => state.cart.totalCartQuantity);
   const cartSubtotal = useSelector((state) => state.cart.totalCartAmount);
-  const reveal = useSelector((state) => state.theme.cartReveal);
+  const revealed = useSelector((state) => state.theme.cartReveal);
   const dispatch = useDispatch();
 
   const content = (
     <main
-      className={`shoppingCartContainer ${reveal ? "shoppingCartReveal" : ""}  ${
+      className={`shoppingCartContainer ${revealed ? "shoppingCartReveal" : ""}  ${
         cartItems.length ? "itemsInCart" : ""
       }`}
     >
@@ -57,7 +57,7 @@ export default function ShoppingCart() {
         ) : (
           ""
         )}
-        <CallToAction name={"Shop Now"} style={"buttonStyle2"} />
+        <CallToAction name={"Shop Now"} style={"buttonStyle2"} navigate={"/"} />
       </div>
     </main>
   );
