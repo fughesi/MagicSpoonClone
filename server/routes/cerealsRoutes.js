@@ -23,7 +23,7 @@ router
   .get((req, res) => {
     res.render("upload", { upload: req.body.title });
   })
-  .post(uploadCereal, (req, res, next) => {
+  .post(uploadCereal.single("image"), (req, res, next) => {
     const schema = Joi.object({
       title: Joi.string().required().min(3).max(50),
       price: Joi.number().required(),
