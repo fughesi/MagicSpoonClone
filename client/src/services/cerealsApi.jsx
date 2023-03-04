@@ -9,7 +9,10 @@ export const cerealsApi = createApi({
       query: () => "cereals",
       providesTags: ["Cereals"],
     }),
+    postCereals: builder.mutation({
+      query: () => ({ url: "cereals/upload", method: "POST" }),
+    }),
   }),
 });
 
-export const { useGetAllCerealsQuery } = cerealsApi;
+export const { useGetAllCerealsQuery, usePostCerealsMutation } = cerealsApi;

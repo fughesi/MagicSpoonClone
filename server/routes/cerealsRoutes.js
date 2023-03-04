@@ -28,6 +28,9 @@ router
       title: Joi.string().required().min(3).max(50),
       price: Joi.number().required(),
       image: Joi.binary().encoding("base64"),
+      // title: Joi.string().min(3).max(50),
+      // price: Joi.number(),
+      // image: Joi.string(),
     });
 
     const { error } = schema.validate(req.body);
@@ -37,18 +40,19 @@ router
     const cerealPost = new Cereals({
       title: String(req.body.title),
       price: Number(req.body.price),
-      image: {
-        // data: fs.readFileSync("/images/cereal", req.file.filename),
-        data: req.file.filename,
-        contentType: "image/png",
-      },
+      image: String(req.body.image),
+      // image: {
+      //   data: req.file.filename,
+      //   contentType: "image/png",
+      // },
     });
+
+    // console.log(req.body);
+
     cerealPost
       .save()
       .then(() => res.status(200).send("successfully uploaded"))
       .catch((err) => console.log(err));
-
-    // res.status(200).;
   });
 
 router

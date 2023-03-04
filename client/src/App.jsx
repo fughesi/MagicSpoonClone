@@ -16,6 +16,8 @@ import FooterDesktop from "./components/footer/FooterDesktop";
 import ShoppingCart from "./components/shoppingCart/ShoppingCart";
 import Login from "./components/login/Login";
 
+// import Testingbullshitdeletethis from "./testingbullshitdeletethis";
+
 function App() {
   const [width, setWidth] = useState(window.innerWidth);
 
@@ -47,6 +49,8 @@ function App() {
 
       {/* <Darkmode /> */}
       {width < 500 ? <FooterMobile /> : <FooterDesktop />}
+
+      {/* <Testingbullshitdeletethis /> */}
     </main>
   );
 

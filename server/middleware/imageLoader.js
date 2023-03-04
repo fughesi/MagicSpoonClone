@@ -24,6 +24,4 @@ export const uploadCereal = multer({
   limits: {
     fileSize: 1024 * 1024 * 2,
   },
-});
-
-// append "uploadCereal" with either .single("image") or .array("images", <count>)
+}); // append "uploadCereal" with either .single("image") or .array("images", <count>)
