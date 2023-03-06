@@ -14,6 +14,7 @@ import UsVersusThem from "./pages/usvsthempage/UsVersusThem";
 import FooterMobile from "./components/footer/FooterMobile";
 import FooterDesktop from "./components/footer/FooterDesktop";
 import ShoppingCart from "./components/shoppingCart/ShoppingCart";
+import ProductPage from "./pages/productpage/ProductPage";
 import Login from "./components/login/Login";
 
 import Testingbullshitdeletethis from "./testingbullshitdeletethis";
@@ -43,6 +44,9 @@ function App() {
         <Route index element={<Homepage />} />
         <Route path="/us-vs-them" element={<UsVersusThem />} />
         <Route path="/our-story" element={<OurStory />} />
+        <Route path="/bundles" element={<ProductPage type={"bundles"} style={"bundles"} />} />
+        <Route path="/cereal" element={<ProductPage type={"cereal"} style={"cereal"} />} />
+        <Route path="/bars" element={<ProductPage type={"bars"} style={"bars"} />} />
       </Routes>
       <ShoppingCart />
       <Login />

@@ -112,6 +112,10 @@ body::-webkit-scrollbar {
   background-color: rgba(144, 237, 144, 0.8);
 }
 
+abbr {
+  text-decoration: none;
+}
+
 button {
   outline-color: transparent;
   border: none;
@@ -122,7 +126,8 @@ li {
   list-style: none;
 }
 
-a {
+a,
+a:visited {
   text-decoration: none;
   color: inherit;
 }

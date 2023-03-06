@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { usePostCerealsMutation } from "./services/cerealsApi";
 
 export default function testingbullshitdeletethis() {

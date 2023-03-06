@@ -35,13 +35,13 @@ const NavbarMobile = () => {
             <Link to="/our-story">OUR STORY</Link>
           </li>
           <li>
-            <Link to="/us-vs-them">BUNDLES</Link>
+            <Link to="/bundles">BUNDLES</Link>
           </li>
           <li>
-            <Link to="/us-vs-them">CEREAL</Link>
+            <Link to="/cereal">CEREAL</Link>
           </li>
           <li>
-            <Link to="/us-vs-them">BARS</Link>
+            <Link to="/bars">BARS</Link>
           </li>
           <SpinningLogo className="logoSpinMenu" />
         </ul>
