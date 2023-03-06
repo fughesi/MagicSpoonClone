@@ -54,6 +54,9 @@
   --font6: clamp(1.94rem, calc(1.77rem + 0.87vw), 2.44rem);
   --font7: clamp(2.33rem, calc(2.08rem + 1.25vw), 3.05rem);
   --font8: clamp(2.8rem, calc(2.45rem + 1.77vw), 3.82rem);
+  --font9: clamp(4.03rem, calc(3.36rem + 3.36vw), 5.96rem);
+  --font10: clamp(4.84rem, calc(3.93rem + 4.54vw), 7.45rem);
+  --font11: clamp(5.81rem, calc(4.58rem + 6.1vw), 9.31rem);
 
   /* WEIGHTS */
   --reg: 300;
