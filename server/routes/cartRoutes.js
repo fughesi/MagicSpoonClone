@@ -1,6 +1,7 @@
 import express from "express";
 import Joi from "joi";
 import Cart from "../models/cartModel.js";
+import getToken from "../middleware/verifyToken.js";
 
 const router = express.Router();
 

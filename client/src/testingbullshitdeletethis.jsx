@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { uploadCereal } from "../../server/middleware/imageLoader";
 import { usePostCerealsMutation } from "./services/cerealsApi";
 
 export default function testingbullshitdeletethis() {
@@ -8,19 +7,15 @@ export default function testingbullshitdeletethis() {
     price: "",
     image: "",
   });
-
   const [postCereals] = usePostCerealsMutation();
-
   const based = async (e) => {
     const file = e.target.files[0];
     const base64 = await convert(file);
-
     setImg((i) => ({
       ...i,
       image: base64,
     }));
   };
-
   const convert = (file) => {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
@@ -33,27 +28,23 @@ export default function testingbullshitdeletethis() {
       };
     });
   };
-
   const addshit = (e) => {
     const { name, value } = e.target;
-
     setImg((i) => ({
       ...i,
       [name]: value,
     }));
   };
-
   const handleSubmit = async (e) => {
     console.log(img);
     // await postCereals(img);
     // uploadCereal(img);
   };
-
   return (
     <>
       <form
-        // action="http://localhost:5150/cereals/upload"
-        // encType="multipart/form-data"
+        action="http://localhost:5150/cereals/upload"
+        encType="multipart/form-data"
         method="POST"
         onSubmit={(e) => (e.preventDefault(), handleSubmit(e))}
       >

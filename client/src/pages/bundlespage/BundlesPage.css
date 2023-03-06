@@ -1,0 +1,5 @@
+.bundlesPageContainer {
+  display: grid;
+
+  background-color: var(--color2);
+}
