@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   img1,
   img2,
@@ -12,30 +12,19 @@ import {
   barzz,
   bgImg,
 } from "../../assets/img/productCarousel/__exports";
+import { nutrition } from "../../assets/img/cerealNutrition/__exports";
+import CallToAction from "../../components/cta/CallToAction";
 import "./ProductPage.css";
 
 export default function ProductPage({ type, style }) {
   const productPhotoArray = [img1, img2, img3, img4, img5, img6, img7, img8];
 
-  const [observer, setObserver] = useState("");
-  const rotateTarget = useRef();
+  const [rotatePic, setRotatePic] = useState(0);
 
   useEffect(() => {
-    const currentTarget = rotateTarget.current;
-
-    const rotateIO = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) setObserver("rotationalObserver");
-        });
-      },
-      { root: null, margin: "0px", threshold: 0.3 }
-    );
-
-    if (currentTarget) rotateIO.observe(currentTarget);
-
-    return rotateIO.unobserve(currentTarget);
-  }, [rotateTarget]);
+    window.addEventListener("scroll", () => setRotatePic(window.pageYOffset));
+    return window.removeEventListener("scroll", () => setRotatePic(window.pageYOffset));
+  }, []);
 
   const content = (
     <main className="productPageContainer">
@@ -65,7 +54,7 @@ export default function ProductPage({ type, style }) {
               CHOOSE FLAVORS <br />
             </label>
             <select name="productSelect" id="productSelect" type="select">
-              <option value="" selected>
+              <option value="" defaultValue>
                 CEREAL BARS AND COMBO BUNDLES &nbsp;&nbsp;&nbsp; ➢
               </option>
               <optgroup label="best-sellers">
@@ -102,7 +91,7 @@ export default function ProductPage({ type, style }) {
 
       <section className="productPageSection3">
         <div className="rotatingProductBackground">
-          <img src={barzz} alt="rotating bar" className={observer} ref={rotateTarget} />
+          <img src={barzz} alt="rotating bar" style={{ rotate: `${rotatePic * -0.09 + 55}deg` }} />
         </div>
 
         <div className="productInformationGrid">
@@ -152,8 +141,19 @@ export default function ProductPage({ type, style }) {
       </section>
       <section className="productPageSection4">
         <h3 className="usVSthem">US VS. THEM</h3>
-
         <p>How does our cereal stack up to the "classics"?</p>
+        <img src={nutrition} alt="nutrition chart" />
+        <div className="nutritionButton">
+          <CallToAction name={"NUTRITIONAL PANEL"} />
+        </div>
+      </section>
+      <section className="productPageSection5">
+        <h3 className="whatSpoonersSaying">WHAT SPOONERS ARE SAYING</h3>
+        <div className="ratingReview">
+          <p>4.8</p>
+          <p>⭐️⭐️⭐️⭐️⭐️</p>
+          <p>Based on 39248 reviews</p>
+        </div>
       </section>
     </main>
   );

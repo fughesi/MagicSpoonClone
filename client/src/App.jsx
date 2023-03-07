@@ -15,6 +15,7 @@ import FooterMobile from "./components/footer/FooterMobile";
 import FooterDesktop from "./components/footer/FooterDesktop";
 import ShoppingCart from "./components/shoppingCart/ShoppingCart";
 import ProductPage from "./pages/productpage/ProductPage";
+import Modal from "./components/modal/Modal";
 import Login from "./components/login/Login";
 
 import Testingbullshitdeletethis from "./testingbullshitdeletethis";
@@ -51,10 +52,11 @@ function App() {
       <ShoppingCart />
       <Login />
 
-      {/* <Darkmode /> */}
       {width < 500 ? <FooterMobile /> : <FooterDesktop />}
 
-      <Testingbullshitdeletethis />
+      {/* <Darkmode /> */}
+      {/* <Testingbullshitdeletethis /> */}
+      <Modal />
     </main>
   );
 

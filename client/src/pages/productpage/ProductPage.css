@@ -149,12 +149,11 @@ img[alt="rotating bar"] {
   width: 150px;
   transform: translate(40%, -40%);
   filter: drop-shadow(10px 8px 9px #0009);
-  rotate: 45deg;
 }
 
-.rotationalObserver {
+/* .rotationalObserver {
   rotate: 90deg;
-}
+} */
 
 .productInformationGrid {
   display: grid;
@@ -186,12 +185,87 @@ img[alt="rotating bar"] {
 }
 
 .productPageSection4 {
+  display: grid;
+  place-items: center;
+  grid-template-rows: 4.3rem 10rem min-content 10rem;
+
   background-color: var(--color3);
 }
 
 .usVSthem {
+  margin: 0;
+  padding: 0;
+
+  text-align: center;
+
   color: transparent;
   font-size: var(--font10);
-  -webkit-text-stroke: 1.65px var(--color1);
+  -webkit-text-stroke: 0.04em var(--color1);
+}
+
+.productPageSection4 p {
+  width: 50%;
+  margin-top: 0;
+  align-self: center;
+
   text-align: center;
+  line-height: 2.2rem;
+  color: var(--color1);
+  font-size: var(--font5);
+}
+
+img[alt="nutrition chart"] {
+  width: 85%;
+}
+
+.nutritionButton {
+  transform: translateY(-1.5rem);
+}
+
+.productPageSection5 {
+  display: grid;
+  place-items: center;
+
+  height: 666px;
+
+  /* background-color: #0f0; */
+  background-image: var(--gradient3);
+  /* background-blend-mode: difference; */
+}
+
+.whatSpoonersSaying {
+  width: 72.5%;
+  text-align: center;
+
+  line-height: 3rem;
+  color: transparent;
+  font-size: var(--font8);
+  letter-spacing: 0.25rem;
+  -webkit-text-stroke: 0.04em var(--color1);
+}
+
+.ratingReview {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+}
+.ratingReview p:nth-child(1) {
+  margin: 0;
+
+  font-size: var(--font6);
+  color: var(--color1);
+  font-weight: 700;
+}
+
+.ratingReview p:nth-child(2) {
+  margin: 0;
+  font-size: larger;
+}
+
+.ratingReview p:nth-child(3) {
+  margin: 0;
+  font-size: var(--font0);
+  letter-spacing: 0.1em;
+  color: var(--color1);
+  font-weight: 700;
 }

@@ -39,7 +39,7 @@
 
   --gradient1: linear-gradient(0deg, #0093e9 0%, #f0f8ff 100%);
   --gradient2: linear-gradient(180deg, #d034a2, #5222e3);
-  --gradient3: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
+  --gradient3: linear-gradient(0deg, #85ffbd 0%, #fffb7d 100%);
   --gradient4: linear-gradient(180deg, #3eecac 0%, #ee74e1 100%);
 
   --outline: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;
