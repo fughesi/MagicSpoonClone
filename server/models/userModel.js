@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
   firstName: { type: String },
   lastName: { type: String },
   role: { type: String },
-  status: { type: Boolean },
+  active: { type: Boolean },
   language: { type: String },
   email: { type: String },
   phoneNumber: { type: Number },

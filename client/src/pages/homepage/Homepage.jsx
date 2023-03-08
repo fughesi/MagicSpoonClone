@@ -1,22 +1,29 @@
-import "./Homepage.css";
 import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import CallToAction from "../../components/cta/CallToAction";
-import { img1, img2, img3, img4, img5, img6, img7 } from "../../assets/img/floatingCereal/__exports";
-import PhotoGrid from "../../components/photoGrid/PhotoGrid";
-import cerealBoxBG from "../../assets/img/cereal-boxes.png";
-import TestimonialSlider from "../../components/testimonials/TestimonialSlider";
-import SpinningLogo from "../../assets/svg/SpinningLogo";
-import Carousel from "../../components/carousel/Carousel";
-import CTAsection from "../../components/cta-section/CTAsection";
+import { useGetAllProductsQuery } from "../../services/productsApi";
 
-export const Homepage = () => {
+//images
+import { img1, img2, img3, img4, img5, img6, img7 } from "../../assets/img/floatingCereal/__exports";
+import cerealBoxBG from "../../assets/img/cereal-boxes.png";
+import SpinningLogo from "../../assets/svg/SpinningLogo";
+
+//components
+import PhotoGrid from "../../components/photoGrid/PhotoGrid";
+import TestimonialSlider from "../../components/testimonials/TestimonialSlider";
+import Carousel from "../../components/carousel/Carousel";
+import CallToAction from "../../components/cta/CallToAction";
+import CTAsection from "../../components/cta-section/CTAsection";
+import "./Homepage.css";
+
+export default function Homepage() {
   const [offsetY, setOffsetY] = useState(0);
   const [observer, setObserver] = useState("");
 
   const blur = useSelector((state) => state.theme.blur);
 
   const targetRef = useRef(null);
+
+  const { data: prods } = useGetAllProductsQuery();
 
   useEffect(() => {
     const currentTarget = targetRef.current;
@@ -109,8 +116,22 @@ export const Homepage = () => {
       <section className="homepageSection9" aria-label="home page hero section">
         <CTAsection />
       </section>
+      <section className="homepageSection10" aria-label="home page hero section">
+        {JSON.stringify(prods)}
+        {prods.map((i) => {
+          return (
+            <>
+              <p>{i.category}</p>
+              <p>{i.title}</p>
+              <p>{i.price}</p>
+              <img src={`http:localhost:5150/images/cereal/1675756651067.png`} alt="wef" />
+              {/* <img src={`http://localhost:5150/images/${i.thumbnail}`} alt="wef" /> */}
+            </>
+          );
+        })}
+      </section>
     </main>
   );
 
   return content;
-};
+}

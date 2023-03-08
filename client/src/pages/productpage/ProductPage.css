@@ -24,11 +24,14 @@ img[alt="Cereal boxes and bars"] {
 }
 
 img[alt="product in circle"] {
-  border-radius: 50%;
-  border: 2px solid black;
-  object-fit: cover;
   width: 10%;
   margin: 1rem 0;
+  object-fit: cover;
+
+  border-radius: 50%;
+  border: 2px solid black;
+  cursor: pointer;
+  user-select: none;
 }
 
 .productCartDiv {
@@ -268,4 +271,43 @@ img[alt="nutrition chart"] {
   letter-spacing: 0.1em;
   color: var(--color1);
   font-weight: 700;
+}
+
+.productPageSection6 {
+  display: grid;
+  place-content: center;
+  grid-template-columns: 90vw;
+
+  background-color: var(--color4);
+}
+
+.FAQtitle {
+  color: transparent;
+  font-size: var(--font8);
+  -webkit-text-stroke: 0.025em #fff;
+  line-height: 2.9rem;
+}
+
+.productPageSection6 details {
+  color: #fff;
+
+  padding: 1rem;
+
+  font-size: var(--font4);
+  border-bottom: 1px solid #fff;
+}
+
+.productPageSection6 details:last-child {
+  border: none;
+}
+
+.productPageSection6 summary {
+  display: block;
+  /* -webkit-appearance: none; */
+  /* -moz-appearance: none; */
+  /* appearance: none; */
+
+  outline-color: transparent;
+  cursor: pointer;
+  user-select: text;
 }

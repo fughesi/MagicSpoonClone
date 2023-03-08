@@ -1,0 +1,92 @@
+.FAQpageContainer {
+  padding: 8rem 0;
+
+  display: grid;
+  place-content: center;
+  grid-template-columns: 90vw;
+
+  background-color: var(--color4);
+}
+
+.inPageLink {
+  scroll-behavior: smooth;
+  padding: 0.8rem 1.5rem;
+  margin: 0.5rem auto;
+
+  text-align: center;
+  color: var(--color1) !important;
+  font-size: var(--font3);
+  border-radius: 50px;
+  background-color: #fff;
+  cursor: pointer;
+  user-select: none;
+}
+
+.inPageLink:hover {
+  text-decoration: underline;
+  background-image: var(--gradient5);
+}
+
+.FAQpageContainer * {
+  color: #fff;
+}
+
+.FAQpageContainer *::selection {
+  background-color: #fff;
+  color: var(--color4);
+}
+
+.FAQtagline {
+  text-align: center;
+  font-size: var(--font7);
+  letter-spacing: 0.1rem;
+}
+
+.FAQpageContainer h2 {
+  margin-top: 3.5rem;
+}
+
+.FAQpageContainer details {
+  padding: 1rem;
+  font-size: var(--font3);
+}
+
+.FAQpageContainer summary {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #fff;
+}
+
+.FAQpageContainer details[open] {
+  animation: slowReveal 1000ms ease-in;
+}
+
+.FAQpageContainer details[open] p {
+  padding: 1.25rem 1rem;
+  margin-top: 0;
+
+  transition: all 1000ms ease;
+  background-color: #fff;
+  color: var(--color1);
+  font-size: var(--font2);
+  letter-spacing: 0.025rem;
+}
+
+.FAQpageContainer summary {
+  display: block;
+
+  outline-color: transparent;
+  cursor: pointer;
+  user-select: text;
+}
+
+a[target="_blank"] {
+  cursor: pointer;
+  color: var(--color1);
+  text-decoration: underline;
+}
+
+@keyframes slowReveal {
+  100% {
+    height: min-content;
+  }
+}

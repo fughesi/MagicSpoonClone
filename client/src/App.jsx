@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 
 import Darkmode from "./components/darkmode/Darkmode";
-import { Homepage } from "./pages/homepage/Homepage";
+import Homepage from "./pages/homepage/Homepage";
+import FAQ from "./pages/faqpage/FAQpage";
 import OurStory from "./pages/ourstorypage/OurStory";
 import NavbarDesktop from "./components/navbar/NavbarDesktop";
 import NavbarMobile from "./components/navbar/NavbarMobile";
@@ -15,7 +16,6 @@ import FooterMobile from "./components/footer/FooterMobile";
 import FooterDesktop from "./components/footer/FooterDesktop";
 import ShoppingCart from "./components/shoppingCart/ShoppingCart";
 import ProductPage from "./pages/productpage/ProductPage";
-import Modal from "./components/modal/Modal";
 import Login from "./components/login/Login";
 
 import Testingbullshitdeletethis from "./testingbullshitdeletethis";
@@ -48,6 +48,7 @@ function App() {
         <Route path="/bundles" element={<ProductPage type={"bundles"} style={"bundles"} />} />
         <Route path="/cereal" element={<ProductPage type={"cereal"} style={"cereal"} />} />
         <Route path="/bars" element={<ProductPage type={"bars"} style={"bars"} />} />
+        <Route path="/FAQ" element={<FAQ />} />
       </Routes>
       <ShoppingCart />
       <Login />
@@ -56,7 +57,6 @@ function App() {
 
       {/* <Darkmode /> */}
       {/* <Testingbullshitdeletethis /> */}
-      <Modal />
     </main>
   );
 

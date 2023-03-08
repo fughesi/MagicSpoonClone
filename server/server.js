@@ -2,12 +2,13 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
+
 import cerealsRoutes from "./routes/cerealsRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import productRoutes from "./routes/productRoutes.js";
 import testimonialRoutes from "./routes/testimonialsRoutes.js";
-import fs from "fs";
-import os from "os";
+
 import { URL } from "url";
 
 //export const __filename = new URL("..", import.meta.url).pathname; // use periods to go up in file/directory path
@@ -30,6 +31,7 @@ app.use("/testimonials", testimonialRoutes);
 app.use("/cereals", cerealsRoutes);
 app.use("/cart", cartRoutes);
 app.use("/users", userRoutes);
+app.use("/products", productRoutes);
 
 app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
 

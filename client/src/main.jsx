@@ -10,6 +10,7 @@ import cartReducer, { getTotals } from "./features/cartSlice";
 import themeReducer from "./features/themeSlice";
 
 import { testimonialsApi } from "./services/testimonialsApi";
+import { productsApi } from "./services/productsApi";
 import { cerealsApi } from "./services/cerealsApi";
 
 const store = configureStore({
@@ -18,9 +19,10 @@ const store = configureStore({
     cart: cartReducer,
     [testimonialsApi.reducerPath]: testimonialsApi.reducer,
     [cerealsApi.reducerPath]: cerealsApi.reducer,
+    [productsApi.reducerPath]: productsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(testimonialsApi.middleware, cerealsApi.middleware),
+    getDefaultMiddleware().concat(testimonialsApi.middleware, cerealsApi.middleware, productsApi.middleware),
 });
 
 store.dispatch(getTotals());

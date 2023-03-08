@@ -1,7 +1,7 @@
 import "./Modal.css";
 
-export default function Modal() {
-  const content = (
+export default function Modal({ toggleModal }) {
+  const content = toggleModal && (
     <div className="modalContainer">
       <div className="modalWrapper"></div>
 

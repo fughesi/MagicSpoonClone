@@ -28,14 +28,9 @@
 .leftModalButton,
 .rightModalButton {
   position: fixed;
-  inset: auto auto 0;
   top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 203;
-
-  top: 50%;
-  left: 5vw;
   transform: translate(50%, -50%);
+  z-index: 203;
 
   color: #fff;
   font-size: 5rem;
