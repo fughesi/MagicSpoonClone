@@ -65,7 +65,7 @@ const products = [
     category: "books",
   }),
   new Product({
-    thumbnail: "../images/cereal/1675756734248.png",
+    thumbnail: "../images/cereal/1675756691483.png",
     title: "bullshit",
     description: "stuff!!",
     price: 7835,

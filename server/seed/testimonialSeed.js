@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Testimonials from "../models/testimonialModel";
+import Testimonials from "../models/testimonialModel.js";
 
 mongoose
   .set("strictQuery", false)
