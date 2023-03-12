@@ -23,7 +23,7 @@ export default function Homepage() {
 
   const targetRef = useRef(null);
 
-  const { data: prods } = useGetAllProductsQuery();
+  const { data: prods, error } = useGetAllProductsQuery();
 
   useEffect(() => {
     const currentTarget = targetRef.current;
@@ -118,17 +118,18 @@ export default function Homepage() {
       </section>
       <section className="homepageSection10" aria-label="home page hero section">
         {JSON.stringify(prods)}
-        {prods.map((i) => {
-          return (
-            <>
-              <p>{i.category}</p>
-              <p>{i.title}</p>
-              <p>{i.price}</p>
-              <img src={`http:localhost:5150/images/cereal/1675756651067.png`} alt="wef" />
-              {/* <img src={`http://localhost:5150/images/${i.thumbnail}`} alt="wef" /> */}
-            </>
-          );
-        })}
+        {(error && console.log(error)) ||
+          prods?.map((i, index) => {
+            return (
+              <div key={index}>
+                <p>{i.category}</p>
+                <p>{i.title}</p>
+                <p>{i.price}</p>
+                {/* {/* <img src={`http:localhost:5150/images/cereal/1675756651067.png`} alt="wef" /> */}
+                <img src={i.thumbnail} alt="wef" />
+              </div>
+            );
+          })}
       </section>
     </main>
   );

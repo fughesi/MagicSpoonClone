@@ -28,10 +28,10 @@ app.use(cors());
 
 // ROUTES LIST
 app.use("/testimonials", testimonialRoutes);
+app.use("/products", productRoutes);
 app.use("/cereals", cerealsRoutes);
 app.use("/cart", cartRoutes);
 app.use("/users", userRoutes);
-app.use("/products", productRoutes);
 
 app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
 
