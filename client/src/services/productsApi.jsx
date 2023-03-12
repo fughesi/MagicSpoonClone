@@ -7,12 +7,20 @@ export const productsApi = createApi({
   endpoints: (builder) => ({
     getAllProducts: builder.query({
       query: () => "products",
+      method: "GET",
       providesTags: ["Products"],
     }),
-    // postCereals: builder.mutation({
-    //   query: () => ({ url: "cereals/upload", method: "POST" }),
-    // }),
+    getImages: builder.query({
+      query: () => ({ url: "image", method: "GET" }),
+    }),
+    postImagesToDB: builder.mutation({
+      query: (postImage) => ({
+        url: "image/uploads",
+        method: "POST",
+        body: postImage,
+      }),
+    }),
   }),
 });
 
-export const { useGetAllProductsQuery } = productsApi;
+export const { useGetAllProductsQuery, useGetImagesQuery, usePostImagesToDBMutation } = productsApi;

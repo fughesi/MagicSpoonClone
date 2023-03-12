@@ -11,7 +11,7 @@ router.route("/").get(async (req, res) => {
   const allCereals = await Cereals.find();
 
   try {
-    res.status(200).send(allCereals);
+    res.status(200).contentType("image/png").json(allCereals);
   } catch (error) {
     console.log(`failed to fetch cereals, ${error?.message}`);
     res.status(500).send(`failed to fetch cereals, ${error?.message}`);
@@ -28,8 +28,6 @@ router
       title: Joi.string().required().min(3).max(50),
       price: Joi.number().required(),
       image: Joi.binary().encoding("base64"),
-      // title: Joi.string().min(3).max(50),
-      // price: Joi.number(),
       // image: Joi.string(),
     });
 
@@ -47,7 +45,7 @@ router
       },
     });
 
-    // console.log(req.body);
+    console.log(req.body);
 
     cerealPost
       .save()

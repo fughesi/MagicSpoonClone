@@ -8,7 +8,7 @@ router.route("/").get(async (req, res) => {
   const getAllProducts = await Products.find();
 
   try {
-    res.sendFile(getAllProducts.thumbnail);
+    // res.sendFile(getAllProducts.thumbnail);
     // res.json(getAllProducts);
   } catch (error) {
     console.log(`error getting products from database, ${error}`);

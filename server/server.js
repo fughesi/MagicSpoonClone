@@ -8,6 +8,7 @@ import cartRoutes from "./routes/cartRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import testimonialRoutes from "./routes/testimonialsRoutes.js";
+import Post from "./models/postModel.js";
 
 import { URL } from "url";
 
@@ -25,6 +26,31 @@ app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+
+////////////experimental to try uploading base64
+app.get("/image", (req, res) => {
+  // res.send("what up?");
+  try {
+    Post.find().then((data) => {
+      res.json(data);
+    });
+  } catch (error) {
+    res.status(408).json({ message: error.message });
+  }
+});
+app.post("/image/uploads", async (req, res) => {
+  const body = req.body;
+  console.log(body);
+  try {
+    const newImage = await Post.create(body);
+
+    newImage.save();
+    res.status(201).json({ message: "new image uploaded" });
+  } catch (error) {
+    res.status(409).json({ message: error.message });
+  }
+});
+///////////////////
 
 // ROUTES LIST
 app.use("/testimonials", testimonialRoutes);

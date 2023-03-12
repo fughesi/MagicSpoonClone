@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useGetAllProductsQuery } from "../../services/productsApi";
+import { useGetAllProductsQuery, useGetImagesQuery, usePostImagesToDBMutation } from "../../services/productsApi";
 
 //images
 import { img1, img2, img3, img4, img5, img6, img7 } from "../../assets/img/floatingCereal/__exports";
@@ -24,8 +24,12 @@ export default function Homepage() {
 
   const targetRef = useRef(null);
 
-  const { data: prods, error } = useGetAllProductsQuery();
-  const { data: cereal, error: cerealErr } = useGetAllCerealsQuery();
+  // const { data: prods, error } = useGetAllProductsQuery();
+  // const { data: cereal, error: cerealErr } = useGetAllCerealsQuery();
+  // const { postImage, error: picsPostErr } = usePostImageMutation();
+  const [postImagesToDB] = usePostImagesToDBMutation();
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const currentTarget = targetRef.current;
@@ -54,6 +58,38 @@ export default function Homepage() {
   useEffect(() => {
     setTimeout(() => window.scrollTo(0, 0), 100);
   }, []);
+
+  //////////////////////////--------------
+  const [postImage, setPostImage] = useState({ myFile: "" });
+
+  function convertToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    postImagesToDB(postImage);
+  }
+
+  async function handleFileUpload(e) {
+    const file = e.target.files[0];
+    const base64 = await convertToBase64(file);
+    setPostImage({ ...postImage, myFile: base64 });
+  }
+  // console.log(postImage, "post image");
+
+  //////////////////////////------------
 
   const content = (
     <main className={`homePageContainer ${blur ? "blur" : ""}`}>
@@ -119,21 +155,19 @@ export default function Homepage() {
         <CTAsection />
       </section>
       <section className="homepageSection10" aria-label="home page hero section">
-        {JSON.stringify(prods)}
-        {cerealErr ||
-          // {error ||
-          cereal?.map((i) => {
-            return (
-              <>
-                {/* <p>{i.category}</p> */}
-                <p>{i.title}</p>
-                <p>{i.price}</p>
-                {/* <p>{i.price}</p> */}
-                <img src={`data:image/jpg${i.image}`} alt="wef" />
-                {/* <img src={`http://localhost:5150/images/${i.thumbnail}`} alt="wef" /> */}
-              </>
-            );
-          })}
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <p>upload pic here</p>
+
+          <input
+            type="file"
+            label="image"
+            name="image"
+            accept=".jpeg, .jpg, .png"
+            // onChange={setPostImage((i) => ({ ...i, myFile: base64 }))}
+            onChange={(e) => handleFileUpload(e)}
+          />
+          <input type="submit" />
+        </form>
       </section>
     </main>
   );

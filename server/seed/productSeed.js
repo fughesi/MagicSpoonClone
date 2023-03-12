@@ -14,8 +14,8 @@ mongoose
     console.log(`connection to DB failed: ${error?.message}`);
   });
 
-const imgPath = `${new URL("..", import.meta.url).pathname}images/cereal/dgrerg.7334483.jpg`;
-console.log(imgPath);
+// const imgPath = `${new URL("..", import.meta.url).pathname}images/cereal/dgrerg.7334483.jpg`;
+// console.log(imgPath);
 // fs.readFile(imgPath, (err, content) => {
 //   if (err) {
 //     res.writeHead(404, { "Content-type": "text/html" });
@@ -28,8 +28,7 @@ console.log(imgPath);
 
 const products = [
   new Product({
-    thumbnail: imgPath,
-    // thumbnail: "../images/cereal/1675756651067.png",
+    thumbnail: "../images/cereal/1675756651067.png",
     title: "things",
     description: "awesome new product!!",
     price: 785,
