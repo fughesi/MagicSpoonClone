@@ -14,6 +14,7 @@ import Carousel from "../../components/carousel/Carousel";
 import CallToAction from "../../components/cta/CallToAction";
 import CTAsection from "../../components/cta-section/CTAsection";
 import "./Homepage.css";
+import { useGetAllCerealsQuery } from "../../services/cerealsApi";
 
 export default function Homepage() {
   const [offsetY, setOffsetY] = useState(0);
@@ -23,7 +24,8 @@ export default function Homepage() {
 
   const targetRef = useRef(null);
 
-  const { data: prods } = useGetAllProductsQuery();
+  const { data: prods, error } = useGetAllProductsQuery();
+  const { data: cereal, error: cerealErr } = useGetAllCerealsQuery();
 
   useEffect(() => {
     const currentTarget = targetRef.current;
@@ -118,17 +120,20 @@ export default function Homepage() {
       </section>
       <section className="homepageSection10" aria-label="home page hero section">
         {JSON.stringify(prods)}
-        {prods.map((i) => {
-          return (
-            <>
-              <p>{i.category}</p>
-              <p>{i.title}</p>
-              <p>{i.price}</p>
-              <img src={`http:localhost:5150/images/cereal/1675756651067.png`} alt="wef" />
-              {/* <img src={`http://localhost:5150/images/${i.thumbnail}`} alt="wef" /> */}
-            </>
-          );
-        })}
+        {cerealErr ||
+          // {error ||
+          cereal?.map((i) => {
+            return (
+              <>
+                {/* <p>{i.category}</p> */}
+                <p>{i.title}</p>
+                <p>{i.price}</p>
+                {/* <p>{i.price}</p> */}
+                <img src={`data:image/jpg${i.image}`} alt="wef" />
+                {/* <img src={`http://localhost:5150/images/${i.thumbnail}`} alt="wef" /> */}
+              </>
+            );
+          })}
       </section>
     </main>
   );

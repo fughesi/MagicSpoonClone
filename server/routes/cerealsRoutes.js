@@ -40,11 +40,11 @@ router
     const cerealPost = new Cereals({
       title: String(req.body.title),
       price: Number(req.body.price),
-      image: String(req.body.image),
-      // image: {
-      //   data: req.file.filename,
-      //   contentType: "image/png",
-      // },
+      // image: String(req.body.image),
+      image: {
+        data: req.file.filename,
+        contentType: "image/png",
+      },
     });
 
     // console.log(req.body);
