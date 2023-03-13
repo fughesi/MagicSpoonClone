@@ -28,29 +28,32 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 ////////////experimental to try uploading base64
-app.get("/image", (req, res) => {
-  // res.send("what up?");
-  try {
-    Post.find().then((data) => {
-      res.json(data);
-    });
-  } catch (error) {
-    res.status(408).json({ message: error.message });
-  }
-});
-app.post("/image/uploads", async (req, res) => {
-  const body = req.body;
-  console.log(body);
-  try {
-    const newImage = await Post.create(body);
+// app.get("/image", (req, res) => {
+//   try {
+//     Post.find().then((data) => {
+//       res.json(data);
+//     });
+//   } catch (error) {
+//     res.status(408).json({ message: error.message });
+//   }
+// });
+// app.post("/image/uploads", async (req, res) => {
+//   const body = req.body;
+//   console.log(body);
+//   try {
+//     const newImage = await Post.create(body);
 
-    newImage.save();
-    res.status(201).json({ message: "new image uploaded" });
-  } catch (error) {
-    res.status(409).json({ message: error.message });
-  }
-});
+//     newImage.save();
+//     res.status(201).json({ message: "new image uploaded" });
+//   } catch (error) {
+//     res.status(409).json({ message: error.message });
+//   }
+// });
 ///////////////////
+
+app.get("/loginPage", (req, res) => {
+  res.render("login", { title: "LOGIN system" });
+});
 
 // ROUTES LIST
 app.use("/testimonials", testimonialRoutes);

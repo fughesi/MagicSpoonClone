@@ -1,0 +1,50 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.loginContainer {
+  height: 100svh;
+
+  display: grid;
+  place-content: center;
+}
+
+.loginOutlineBox {
+  outline: 1px solid #0002;
+  padding: 2rem;
+}
+
+h1 {
+  margin: 1rem auto;
+  color: blue;
+  font-size: 2rem;
+}
+
+label[for="email"],
+input[type="password"] {
+  display: flex;
+  flex-direction: column;
+
+  opacity: 0.5;
+  font-size: 0.75rem;
+}
+
+input[type="password"] {
+  margin-top: 1rem;
+}
+
+.loginSubmitButton {
+  border: none;
+  padding: 0.5em 1.5em;
+  margin-top: 1rem;
+
+  border-radius: 50px;
+  color: #fff;
+  background-color: rgb(56, 181, 56);
+  text-shadow: 0 1px 0 #0005, 1px 0 0 #0005, -1px 0 0 #0005, 0 -1px 0 #0005;
+}

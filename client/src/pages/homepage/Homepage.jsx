@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useGetAllProductsQuery, useGetImagesQuery, usePostImagesToDBMutation } from "../../services/productsApi";
 
 //images
 import { img1, img2, img3, img4, img5, img6, img7 } from "../../assets/img/floatingCereal/__exports";
@@ -14,7 +13,6 @@ import Carousel from "../../components/carousel/Carousel";
 import CallToAction from "../../components/cta/CallToAction";
 import CTAsection from "../../components/cta-section/CTAsection";
 import "./Homepage.css";
-import { useGetAllCerealsQuery } from "../../services/cerealsApi";
 
 export default function Homepage() {
   const [offsetY, setOffsetY] = useState(0);
@@ -23,13 +21,6 @@ export default function Homepage() {
   const blur = useSelector((state) => state.theme.blur);
 
   const targetRef = useRef(null);
-
-  // const { data: prods, error } = useGetAllProductsQuery();
-  // const { data: cereal, error: cerealErr } = useGetAllCerealsQuery();
-  // const { postImage, error: picsPostErr } = usePostImageMutation();
-  const [postImagesToDB] = usePostImagesToDBMutation();
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     const currentTarget = targetRef.current;
@@ -58,38 +49,6 @@ export default function Homepage() {
   useEffect(() => {
     setTimeout(() => window.scrollTo(0, 0), 100);
   }, []);
-
-  //////////////////////////--------------
-  const [postImage, setPostImage] = useState({ myFile: "" });
-
-  function convertToBase64(file) {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-
-      fileReader.readAsDataURL(file);
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    postImagesToDB(postImage);
-  }
-
-  async function handleFileUpload(e) {
-    const file = e.target.files[0];
-    const base64 = await convertToBase64(file);
-    setPostImage({ ...postImage, myFile: base64 });
-  }
-  // console.log(postImage, "post image");
-
-  //////////////////////////------------
 
   const content = (
     <main className={`homePageContainer ${blur ? "blur" : ""}`}>
@@ -153,21 +112,6 @@ export default function Homepage() {
       </section>
       <section className="homepageSection9" aria-label="home page hero section">
         <CTAsection />
-      </section>
-      <section className="homepageSection10" aria-label="home page hero section">
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <p>upload pic here</p>
-
-          <input
-            type="file"
-            label="image"
-            name="image"
-            accept=".jpeg, .jpg, .png"
-            // onChange={setPostImage((i) => ({ ...i, myFile: base64 }))}
-            onChange={(e) => handleFileUpload(e)}
-          />
-          <input type="submit" />
-        </form>
       </section>
     </main>
   );
