@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 import cerealsRoutes from "./routes/cerealsRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
@@ -51,8 +52,33 @@ app.use(cors());
 // });
 ///////////////////
 
+const users = [];
+
 app.get("/loginPage", (req, res) => {
   res.render("login", { title: "LOGIN system" });
+});
+
+app.get("/registerPage", (req, res) => {
+  res.render("register", { title: "registration" });
+});
+
+app.post("/registerPage", async (req, res) => {
+  const { username, email, password } = req.body;
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    users.push({
+      id: Date.now().toString(),
+      username,
+      email,
+      password: hashedPassword,
+    });
+    res.redirect("/loginPage");
+  } catch (error) {
+    console.log(error);
+    res.redirect("/registrationPage");
+  }
+  res.send(users);
+  console.log(users);
 });
 
 // ROUTES LIST

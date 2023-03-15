@@ -26,15 +26,13 @@ h1 {
 }
 
 label[for="email"],
+label[for="username"],
 input[type="password"] {
   display: flex;
   flex-direction: column;
 
   opacity: 0.5;
   font-size: 0.75rem;
-}
-
-input[type="password"] {
   margin-top: 1rem;
 }
 

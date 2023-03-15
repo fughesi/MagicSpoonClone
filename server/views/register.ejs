@@ -13,18 +13,22 @@
         <h1>Login system</h1>
         <p>log in for existing users</p>
 
-        <form action="">
+        <form action="http://localhost:5150/registerPage" method="POST">
+          <label for="username">
+            <input id="username" type="text" placeholder="username" required name="username" />
+          </label>
+
           <label for="email">
-            <input id="email" type="email" placeholder="email" name="email" />
+            <input id="email" type="email" placeholder="email" required name="email" />
             Register email address
           </label>
 
-          <input type="password" placeholder="password" name="password" />
+          <input type="password" placeholder="password" required name="password" />
 
           <input type="submit" class="loginSubmitButton" value="SUBMIT" />
         </form>
       </div>
-      <a href="/registerPage"></a>
+      <a href="/loginPage"></a>
     </main>
   </body>
 </html>
