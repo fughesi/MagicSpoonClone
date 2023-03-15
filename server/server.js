@@ -1,8 +1,17 @@
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config();
+}
+
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
+import passport from "passport";
+import flash from "express-flash";
+import session from "express-session";
+
+import initializePassport from "./passportConfig.js";
 
 import cerealsRoutes from "./routes/cerealsRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
@@ -11,12 +20,9 @@ import productRoutes from "./routes/productRoutes.js";
 import testimonialRoutes from "./routes/testimonialsRoutes.js";
 import Post from "./models/postModel.js";
 
-import { URL } from "url";
-
-//export const __filename = new URL("..", import.meta.url).pathname; // use periods to go up in file/directory path
-// export const __dirname = new URL(".", import.meta.url).pathname;
-
-dotenv.config();
+initializePassport(passport, (email) => {
+  return users.find((user) => user.email === email);
+});
 
 const app = express();
 const db = process.env.DB;
@@ -26,60 +32,49 @@ app.use(express.static("static"));
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(flash());
 app.use(cors());
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
-////////////experimental to try uploading base64
-// app.get("/image", (req, res) => {
+/////////////////////
+// const users = [];
+
+// app.get("/loginPage", (req, res) => {
+//   console.log(req.headers);
+//   res.render("login", { title: "LOGIN system" });
+// });
+
+// app.get("/registerPage", (req, res) => {
+//   res.render("register", { title: "registration" });
+// });
+
+// app.post("/registerPage", async (req, res) => {
+//   const { username, email, password } = req.body;
 //   try {
-//     Post.find().then((data) => {
-//       res.json(data);
+//     const hashedPassword = await bcrypt.hash(password, 10);
+//     users.push({
+//       id: Date.now().toString(),
+//       username,
+//       email,
+//       password: hashedPassword,
 //     });
+//     res.redirect("/loginPage");
 //   } catch (error) {
-//     res.status(408).json({ message: error.message });
+//     console.log(error);
+//     res.redirect("/registrationPage");
 //   }
+//   res.send(users);
+//   console.log(users);
 // });
-// app.post("/image/uploads", async (req, res) => {
-//   const body = req.body;
-//   console.log(body);
-//   try {
-//     const newImage = await Post.create(body);
-
-//     newImage.save();
-//     res.status(201).json({ message: "new image uploaded" });
-//   } catch (error) {
-//     res.status(409).json({ message: error.message });
-//   }
-// });
-///////////////////
-
-const users = [];
-
-app.get("/loginPage", (req, res) => {
-  res.render("login", { title: "LOGIN system" });
-});
-
-app.get("/registerPage", (req, res) => {
-  res.render("register", { title: "registration" });
-});
-
-app.post("/registerPage", async (req, res) => {
-  const { username, email, password } = req.body;
-  try {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    users.push({
-      id: Date.now().toString(),
-      username,
-      email,
-      password: hashedPassword,
-    });
-    res.redirect("/loginPage");
-  } catch (error) {
-    console.log(error);
-    res.redirect("/registrationPage");
-  }
-  res.send(users);
-  console.log(users);
-});
+/////////////////////
 
 // ROUTES LIST
 app.use("/testimonials", testimonialRoutes);

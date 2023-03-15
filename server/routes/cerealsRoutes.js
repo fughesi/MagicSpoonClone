@@ -1,9 +1,7 @@
 import express from "express";
 import Joi from "joi";
-import fs, { readFileSync } from "fs";
 import Cereals from "../models/cerealModel.js";
 import { uploadCereal } from "../middleware/imageLoader.js";
-const path = new URL("..", import.meta.url).pathname;
 
 const router = express.Router();
 
