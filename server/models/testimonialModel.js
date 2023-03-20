@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
 
 const testimonialsSchema = new mongoose.Schema({
+  user_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "Users",
+  },
   title: { type: String, required: true, minlength: 3, maxlength: 45 },
   statement: { type: String, required: true, minlength: 5 },
   company: { type: String, required: true },

@@ -26,3 +26,35 @@
 // }
 // });
 ///////////////////
+
+/////////////////////
+// const users = [];
+
+// app.get("/loginPage", (req, res) => {
+// console.log(req.headers);
+// res.render("login", { title: "LOGIN system" });
+// });
+
+// app.get("/registerPage", (req, res) => {
+// res.render("register", { title: "registration" });
+// });
+
+// app.post("/registerPage", async (req, res) => {
+// const { username, email, password } = req.body;
+// try {
+// const hashedPassword = await bcrypt.hash(password, 10);
+// users.push({
+// id: Date.now().toString(),
+// username,
+// email,
+// password: hashedPassword,
+// });
+// res.redirect("/loginPage");
+// } catch (error) {
+// console.log(error);
+// res.redirect("/registrationPage");
+// }
+// res.send(users);
+// console.log(users);
+// });
+/////////////////////
