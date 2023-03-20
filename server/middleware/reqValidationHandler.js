@@ -18,11 +18,12 @@ const userValidation = Joi.object({
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
   role: Joi.string(),
-  active: Joi.bool(),
-  language: Joi.array(),
+  active: Joi.boolean(),
+  language: Joi.array().items(Joi.string()),
   email: Joi.string().email().required(),
   phoneNumber: Joi.string(),
-  password: Joi.string().required(),
+  password: Joi.string().required().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
+  confirmPassword: Joi.ref("password"),
 });
 
 const testimonialValidation = Joi.object({

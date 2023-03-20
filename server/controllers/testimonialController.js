@@ -20,7 +20,9 @@ const getAllTestimonials = asyncHandler(async (req, res) => {
 //ROUTE - POST /testimonials
 //ACCESS - private
 const addTestimonial = asyncHandler(async (req, res) => {
-  const { error, title, statement, company, rating } = testimonialValidation.validate(req.body);
+  const { error, title, statement, company, rating } = testimonialValidation.validateAsync(req.body, {
+    abortEarly: false,
+  });
 
   if (error) return res.status(400).send(error?.details[0]?.message);
 
@@ -71,7 +73,7 @@ const updateTestimonial = asyncHandler(async (req, res) => {
     throw new Error("user is not authorized to update this testimonial");
   }
 
-  const updates = testimonialValidation.validate(req.body);
+  const updates = testimonialValidation.validateAsync(req.body, { abortEarly: false });
 
   if (foundTestimonial) {
     try {

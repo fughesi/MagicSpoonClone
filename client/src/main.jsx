@@ -12,17 +12,24 @@ import themeReducer from "./features/themeSlice";
 import { testimonialsApi } from "./services/testimonialsApi";
 import { productsApi } from "./services/productsApi";
 import { cerealsApi } from "./services/cerealsApi";
+import { usersApi } from "./services/usersApi";
 
 const store = configureStore({
   reducer: {
     theme: themeReducer,
     cart: cartReducer,
     [testimonialsApi.reducerPath]: testimonialsApi.reducer,
+    [usersApi.reducerPath]: usersApi.reducer,
     [cerealsApi.reducerPath]: cerealsApi.reducer,
     [productsApi.reducerPath]: productsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(testimonialsApi.middleware, cerealsApi.middleware, productsApi.middleware),
+    getDefaultMiddleware().concat(
+      testimonialsApi.middleware,
+      cerealsApi.middleware,
+      productsApi.middleware,
+      usersApi.middleware
+    ),
 });
 
 store.dispatch(getTotals());

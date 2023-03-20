@@ -21,7 +21,7 @@ const allCartItems = asyncHandler(async (req, res) => {
 //ACCESS - private
 const addItemToCart = asyncHandler(async (req, res) => {
   const { error, title, quantity, description, price, discountPercentage, rating, stock, brand, category } =
-    cartValidation.validateAsync(req.body);
+    cartValidation.validateAsync(req.body, { abortEarly: false });
 
   if (error) return res.status(400).json({ message: error.details[0]?.message });
 

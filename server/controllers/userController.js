@@ -28,11 +28,11 @@ const singleUser = asyncHandler(async (req, res) => {
 });
 
 //DESC - register a new user
-//ROUTE - POST /users/registerPage
+//ROUTE - POST /users/registration
 //ACCESS - public
 const registerUser = asyncHandler(async (req, res) => {
   const { error, title, username, firstName, lastName, role, active, language, email, phoneNumber, password } =
-    userValidation.validateAsync(req.body);
+    await userValidation.validateAsync(req.body, { abortEarly: false });
 
   if (error) return res.status(400).json({ message: error.details[0]?.message });
 
@@ -70,7 +70,7 @@ const registerUser = asyncHandler(async (req, res) => {
 //ROUTE - POST /users/login
 //ACCESS - public
 const userLogin = asyncHandler(async (req, res) => {
-  const { email, password } = await userValidation.validateAsync(req.body);
+  const { email, password } = await userValidation.validateAsync(req.body, { abortEarly: false });
 
   const loggedInUser = await Users.findOne({ email });
 

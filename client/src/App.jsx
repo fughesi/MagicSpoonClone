@@ -18,6 +18,8 @@ import ShoppingCart from "./components/shoppingCart/ShoppingCart";
 import ProductPage from "./pages/productpage/ProductPage";
 import Login from "./components/login/Login";
 
+import Register from "./components/register/Register";
+
 function App() {
   const [width, setWidth] = useState(window.innerWidth);
 
@@ -54,6 +56,7 @@ function App() {
       {width < 500 ? <FooterMobile /> : <FooterDesktop />}
 
       {/* <Darkmode /> */}
+      <Register />
     </main>
   );
 
