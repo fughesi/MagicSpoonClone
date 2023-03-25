@@ -95,6 +95,10 @@
   margin-bottom: 2.5rem;
 }
 
+.activatedLink {
+  border-bottom: 5px solid red;
+}
+
 .logoSpinMenu {
   display: inline;
   width: 6rem;

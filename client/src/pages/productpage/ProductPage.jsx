@@ -30,9 +30,13 @@ import "./ProductPage.css";
 export default function ProductPage({ type, style }) {
   const productPhotoArray = [img1, img2, img3, img4, img5, img6, img7, img8];
 
+  const [productModal, setProductModal] = useState(false);
+
   const dispatch = useDispatch();
 
-  const toggleModal = false;
+  const toggleModal = () => {
+    setProductModal((i) => !i);
+  };
 
   const [rotatePic, setRotatePic] = useState(0);
 
@@ -43,14 +47,15 @@ export default function ProductPage({ type, style }) {
 
   const content = (
     <main className="productPageContainer">
-      <Modal toggleModal={toggleModal} />
+      <Modal productModal={productModal} handleClick={toggleModal} />
+      {/* <Modal toggleModal={toggleModal} /> */}
       <section className="productPageSection1">
         <div className="heroImageProducts">
           <img src={imageMain} alt="Cereal boxes and bars" />
         </div>
         <div className="productCircles">
           {productPhotoArray.map((i, index) => {
-            return <img src={i} alt="product in circle" key={index} onClick={() => console.log("clicked")} />;
+            return <img src={i} alt="product in circle" key={index} onClick={toggleModal} />;
           })}
         </div>
       </section>

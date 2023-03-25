@@ -1,4 +1,4 @@
-import React from "react";
+import { Outlet } from "react-router-dom";
 
 export default function TOS() {
   return (
@@ -10,6 +10,7 @@ export default function TOS() {
       <h1>this is the TOS thing</h1>
       <h1>this is the TOS thing</h1>
       <h1>this is the TOS thing</h1>
+      <Outlet />
     </>
   );
 }

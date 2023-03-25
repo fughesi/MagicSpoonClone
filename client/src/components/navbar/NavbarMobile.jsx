@@ -10,7 +10,7 @@ import {
   deleteItemFromCart,
   clearCart,
 } from "../../features/cartSlice";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
 
 const NavbarMobile = () => {
@@ -29,19 +29,30 @@ const NavbarMobile = () => {
 
         <ul className={`mobileNavMenu ${toggle ? "" : "hide"}`}>
           <li>
-            <Link to="/us-vs-them">US VS. THEM</Link>
+            <NavLink to="/us-vs-them" className={({ isActive }) => (isActive ? "activatedLink" : "")}>
+              US VS. THEM
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/our-story" className={({ isActive }) => (isActive ? "activatedLink" : "")}>
+              OUR STORY
+            </NavLink>
           </li>
           <li>
-            <Link to="/our-story">OUR STORY</Link>
+            <NavLink to="/bundles" className={({ isActive }) => (isActive ? "activatedLink" : "")}>
+              BUNDLES
+            </NavLink>
           </li>
           <li>
-            <Link to="/bundles">BUNDLES</Link>
+            <NavLink to="/cereal" className={({ isActive }) => (isActive ? "activatedLink" : "")}>
+              CEREAL
+            </NavLink>
           </li>
           <li>
-            <Link to="/cereal">CEREAL</Link>
-          </li>
-          <li>
-            <Link to="/bars">BARS</Link>
+            <NavLink to="/bars" className={({ isActive }) => (isActive ? "activatedLink" : "")}>
+              BARS
+            </NavLink>
           </li>
           <SpinningLogo className="logoSpinMenu" />
         </ul>
