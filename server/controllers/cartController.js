@@ -26,7 +26,6 @@ const addItemToCart = asyncHandler(async (req, res) => {
   if (error) return res.status(400).json({ message: error.details[0]?.message });
 
   const findItemInCart = await Cart.findOne({ _id: req.params.id });
-  //   const findItemInCart = await Cart.findOne({ _id: req.body.id });
 
   if (findItemInCart) {
     findItemInCart.updateOne({ quantity: (quantity += 1) });

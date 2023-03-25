@@ -3,13 +3,13 @@ import "./Subscribe.css";
 
 const Subscribe = forwardRef(({ text, style }, ref) => {
   const content = (
-    <form action="" className="subscribeForm" onSubmit={(e) => e.preventDefault()}>
+    <form className="subscribeForm" onSubmit={(e) => e.preventDefault()}>
       <label htmlFor="emailSubscription">
         <input
           type="email"
-          id="emailSubscription"
+          name="emailSubscription"
           placeholder="Your email"
-          className={`${style + "input"}`}
+          className={`${style + "input"} emailSubscription`}
           ref={ref}
         />
       </label>
@@ -21,32 +21,3 @@ const Subscribe = forwardRef(({ text, style }, ref) => {
 });
 
 export default Subscribe;
-
-// import { useRef, useEffect } from "react";
-// import "./Subscribe.css";
-
-// export default function Subscribe({ text, style }) {
-//   const inputFocus = useRef();
-
-//   useEffect(() => {
-//     inputFocus.current?.focus();
-//   }, []);
-
-//   // console.log(inputFocus.current.focus());
-//   const content = (
-//     <form action="" className="subscribeForm" onSubmit={(e) => e.preventDefault()}>
-//       <label htmlFor="emailSubscription">
-//         <input
-//           type="email"
-//           id="emailSubscription"
-//           placeholder="Your email"
-//           className={`${style + "input"}`}
-//           ref={inputFocus}
-//         />
-//       </label>
-//       <input type="submit" value={text || "SUBSCRIBE"} className={`${style}  "emailSubmit"`} />
-//     </form>
-//   );
-
-//   return content;
-// }

@@ -17,8 +17,10 @@ export default function ShoppingCart() {
         cartItems.length ? "itemsInCart" : ""
       }`}
     >
-      <p onClick={() => dispatch(cartReveal())}> &lt; CONTINUE SHOPPING</p>
-      <h1>YOUR CART</h1>
+      <div className="cartNav">
+        <p onClick={() => dispatch(cartReveal())}> &lt; CONTINUE SHOPPING</p>
+        <h1>YOUR CART</h1>
+      </div>
 
       <div className="cartDisplay">
         {cartItems.length ? (
@@ -52,11 +54,13 @@ export default function ShoppingCart() {
       <div className="shopNowButton">
         {cartItems.length ? (
           <div>
-            <p>SUBTOTAL ({`${cartQuantity} ${cartQuantity > 1 ? "ITEMS" : "ITEM"}`})</p> <p>${cartSubtotal}</p>
+            <p>SUBTOTAL ({`${cartQuantity} ${cartQuantity > 1 ? "ITEMS" : "ITEM"}`})</p>
+            <p>${cartSubtotal}</p>
           </div>
         ) : (
           ""
         )}
+
         <CallToAction name={"Shop Now"} style={"buttonStyle2"} navigate={"/"} />
       </div>
     </main>

@@ -5,3 +5,18 @@
 
   width: 75%;
 }
+
+.registrationForm input {
+  padding: 1rem;
+  margin: 0.5rem;
+}
+
+.registrationForm input[type="submit"] {
+  cursor: pointer;
+}
+
+.registrationForm input[type="submit"]:hover {
+  color: #000;
+  border-color: #fff;
+  background-color: #fff;
+}

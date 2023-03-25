@@ -5,7 +5,7 @@
   justify-content: space-between;
 }
 
-#emailSubscription,
+.emailSubscription,
 .emailSubmit,
 input[type="submit"] {
   width: 18rem;
@@ -17,7 +17,7 @@ input[type="submit"] {
   margin: 0.5rem;
 }
 
-#emailSubscription::placeholder,
+.emailSubscription::placeholder,
 input[type="submit"] {
   display: flex;
   align-items: center;

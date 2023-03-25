@@ -3,7 +3,7 @@ import { useRegisterUsersMutation } from "../../services/usersApi";
 import "./Register.css";
 
 export default function Register() {
-  const [registerUsers, { isLoading }] = useRegisterUsersMutation();
+  const [registerUsers, { isLoading, isSuccess }] = useRegisterUsersMutation();
 
   const [loginData, setLoginData] = useState({
     title: "",
@@ -31,20 +31,36 @@ export default function Register() {
     }));
   };
 
-  console.log(loginData);
   const submitRegistration = async () => {
     if (!isLoading) {
       try {
-        await registerUsers(loginData).unwrap();
+        await registerUsers(loginData)
+          .unwrap()
+          .then(() => console.log("great success!"));
       } catch (error) {
         console.log("failed to save the registration");
       }
+    }
+
+    if (isSuccess) {
+      setLoginData({
+        title: "",
+        username: "",
+        firstName: "",
+        lastName: "",
+        role: "",
+        active: true,
+        language: [],
+        email: "",
+        phoneNumber: "",
+        password: "",
+      });
     }
   };
 
   return (
     <div>
-      <form className="registrationForm" onSubmit={(e) => (e.preventDefault(), submitRegistration)}>
+      <form className="registrationForm" onSubmit={(e) => (e.preventDefault(), submitRegistration())}>
         <input
           type="text"
           name="title"
@@ -94,6 +110,13 @@ export default function Register() {
           name="email"
           placeholder="email"
           value={loginData.email}
+          onChange={(e) => updateFormData(e)}
+        />
+        <input
+          type="text"
+          name="phoneNumber"
+          placeholder="phone number"
+          value={loginData.phoneNumber}
           onChange={(e) => updateFormData(e)}
         />
         <input

@@ -20,10 +20,10 @@ export default function FooterMobile() {
       <Subscribe />
       <MagicSpoonLogo className="MagicSpoonLogo" />
       <div className="legalText">
-        <Link to="/">Terms of Use</Link> · <Link to="/">Privacy Policy</Link> · <Link to="/">Accessibility Policy</Link>{" "}
-        · <Link to="/">FAQ</Link> · <Link to="/">Become an Affiliate</Link> ·<Link to="/">Reviews</Link> ·{" "}
-        <Link to="/">Jobs</Link> · <Link to="/">Track Orders</Link> ·<Link to="/">Store Locator</Link> ·{" "}
-        <Link to="/">Terms of Service</Link> · <Link to="/">Refund Policy</Link>
+        <Link to="/">Terms of Use</Link> · <Link to="/privacy-policy">Privacy Policy</Link> ·{" "}
+        <Link to="/">Accessibility Policy</Link> · <Link to="/">FAQ</Link> · <Link to="/">Become an Affiliate</Link> ·
+        <Link to="/">Reviews</Link> · <Link to="/">Jobs</Link> · <Link to="/">Track Orders</Link> ·
+        <Link to="/">Store Locator</Link> · <Link to="/">Terms of Service</Link> · <Link to="/">Refund Policy</Link>
         <p className="copyrightText">&copy; 2023 Magic Spoon</p>
       </div>
     </div>

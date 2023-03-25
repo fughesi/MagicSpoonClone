@@ -5,32 +5,40 @@
 
   transform: translateY(110vh);
   transition: transform 1000ms ease;
+  width: 100vw;
 
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-auto-rows: min-content;
+  grid-template-columns: 100%;
+  grid-template-rows: 4rem auto 8rem;
   grid-template-areas:
-    "a b"
-    "c c"
-    "d d ";
+    "a"
+    "b"
+    "c";
 
   background-color: var(--white);
 }
 
-.shoppingCartContainer p {
+.cartNav {
   grid-area: a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-  padding-left: 1rem;
-  place-content: center;
-  place-items: end;
+  padding: 0 1rem;
+
+  color: var(--color1);
+}
+
+.cartNav p {
+  font-size: var(--font2);
+  letter-spacing: 0.05rem;
+  font-weight: 500;
   cursor: pointer;
 }
-.shoppingCartContainer h1 {
-  grid-area: b;
-  margin: 0;
 
-  place-self: end;
-  padding: 0 1rem;
+.cartNav h1 {
+  font-size: var(--font6);
+  cursor: pointer;
 }
 
 .cartDisplay {
@@ -41,28 +49,40 @@
   font-size: var(--font6);
   text-align: center;
 }
-
-.cartDisplay p {
-  font-size: var(--font2);
-}
-
 .shopNowButton {
-  grid-area: d;
+  grid-area: c;
   display: flex;
   justify-content: center;
-  margin: 0 0 2rem 0;
+  flex-direction: column;
+  align-content: center;
+  padding: 0.5rem;
+}
+
+.shopNowButton div:nth-child(1) {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+.shopNowButton div:nth-child(1) p {
+  color: var(--color1);
+  font-weight: 700;
+}
+.shopNowButton button {
+  align-self: center;
 }
 
 .shoppingCartReveal {
   transform: translateY(0);
 }
+.cartDisplay {
+  grid-area: b;
+  transform: translateY(0);
+  align-items: end;
+}
 
-.itemsInCart {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-auto-rows: min-content 1fr min-content;
-  grid-template-areas:
-    "a b"
-    "c c"
-    "d d ";
+.cartDisplay p,
+.cartDisplay h3 {
+  color: var(--color1);
+  font-size: 1rem;
 }

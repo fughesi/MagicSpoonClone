@@ -18,6 +18,19 @@ import ShoppingCart from "./components/shoppingCart/ShoppingCart";
 import ProductPage from "./pages/productpage/ProductPage";
 import Login from "./components/login/Login";
 
+import Links from "./pages/__links/links";
+// import FAQ from "./pages/__links/FAQ.jsx";
+import TOS from "./pages/__links/TOS.jsx";
+import Jobs from "./pages/__links/Jobs.jsx";
+import Reviews from "./pages/__links/Reviews.jsx";
+import TermsOfUse from "./pages/__links/TermsOfUse.jsx";
+import TrackOrders from "./pages/__links/TrackOrders.jsx";
+import RefundPolicy from "./pages/__links/RefundPolicy.jsx";
+import StoreLocator from "./pages/__links/StoreLocator.jsx";
+import Accessibility from "./pages/__links/Accessibility.jsx";
+import PrivacyPolicy from "./pages/__links/PrivacyPolicy.jsx";
+import BecomeAnAffiliate from "./pages/__links/BecomeAnAffiliate.jsx";
+
 import Register from "./components/register/Register";
 
 function App() {
@@ -49,14 +62,31 @@ function App() {
         <Route path="/cereal" element={<ProductPage type={"cereal"} style={"cereal"} />} />
         <Route path="/bars" element={<ProductPage type={"bars"} style={"bars"} />} />
         <Route path="/FAQ" element={<FAQ />} />
+        {/* <Route path="/links" element={<Links />} /> */}
       </Routes>
+      <Routes>
+        <Route path="/links" element={<h1>Hello</h1>}>
+          <Route path="FAQ" element={FAQ} />
+          <Route path="TOS" element={TOS} />
+          <Route path="Jobs" element={Jobs} />
+          <Route path="Reviews" element={Reviews} />
+          <Route path="TermsOfUse" element={TermsOfUse} />
+          <Route path="TrackOrders" element={TrackOrders} />
+          <Route path="RefundPolicy" element={RefundPolicy} />
+          <Route path="StoreLocator" element={StoreLocator} />
+          <Route path="Accessibility" element={Accessibility} />
+          <Route path="PrivacyPolicy" element={PrivacyPolicy} />
+          <Route path="BecomeAnAffiliate" element={BecomeAnAffiliate} />
+        </Route>
+      </Routes>
+
       <ShoppingCart />
       <Login />
 
-      {width < 500 ? <FooterMobile /> : <FooterDesktop />}
+      {/* {width < 500 ? <FooterMobile /> : <FooterDesktop />} */}
 
       {/* <Darkmode /> */}
-      <Register />
+      {/* <Register /> */}
     </main>
   );
 

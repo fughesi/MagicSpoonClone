@@ -58,3 +58,15 @@
 // console.log(users);
 // });
 /////////////////////
+
+// const imgPath = `${new URL("..", import.meta.url).pathname}images/cereal/dgrerg.7334483.jpg`;
+// console.log(imgPath);
+// fs.readFile(imgPath, (err, content) => {
+// if (err) {
+// res.writeHead(404, { "Content-type": "text/html" });
+// res.end("<h1>No such image in server</h1>");
+// } else {
+// res.writeHead(200, { "Content-type": "image/apng" });
+// res.end(content);
+// }
+// });

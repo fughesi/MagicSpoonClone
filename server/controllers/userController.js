@@ -89,8 +89,8 @@ const userLogin = asyncHandler(async (req, res) => {
 
     res.status(200).json({ accessToken });
   } else {
-    throw new Error("Incorrect email or password");
     res.status(401).json({ message: "invalid credentials" });
+    throw new Error("Incorrect email or password");
   }
 });
 

@@ -10,7 +10,7 @@ export const usersApi = createApi({
       providesTags: ["Users"],
     }),
     registerUsers: builder.mutation({
-      query: (payload) => ({ url: "users/registration", method: "POST", body: payload }),
+      query: (loginData) => ({ url: "users/registration", method: "POST", body: loginData }),
       invalidatesTags: ["Users"],
     }),
   }),
