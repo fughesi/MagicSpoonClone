@@ -1,7 +1,12 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./FAQpage.css";
 
 export default function FAQ() {
+  useEffect(() => {
+    setTimeout(() => window.scrollTo(0, 0), 100);
+  }, []);
+
   const content = (
     <main className="FAQpageContainer">
       <h1 className="FAQtagline">WE GOT ANSWERS</h1>

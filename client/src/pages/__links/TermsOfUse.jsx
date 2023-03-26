@@ -656,7 +656,7 @@ export default function TermsOfUse() {
         </li>
       </ul>
 
-      <p>
+      <div>
         Program Dispute Resolution: In the event that there is a dispute, claim, or controversy between you and Magic
         Spoon, or between you and Stodge, LLC d/b/a Postscript or any other third-party service provider acting on Our
         behalf to transmit the mobile messages within the scope of the Program, arising out of or relating to federal or
@@ -721,13 +721,13 @@ export default function TermsOfUse() {
         comments or requests to:
         <address>Magic Spoon Inc. 117 Hudson St, Fl 2 New York, NY, 10013</address>
         <p>
-          Email: <a href="mailto:">hello@magicspoon.com</a>
+          Email: <a href="mailto:hello@magicspoon.com<">hello@magicspoon.com</a>
         </p>
-        <pre>
+        <p>
           Copyright &copy; © 2021. Magic Spoon Inc. All Rights Reserved. Effective as of: April 1, 2019 Last updated:
           February 23, 2021
-        </pre>
-      </p>
+        </p>
+      </div>
     </div>
   );
 

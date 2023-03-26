@@ -16,7 +16,7 @@ export default function Modal({ productModal, handleClick }) {
     return () => window.removeEventListener("resize", set);
   }, []);
 
-  console.log(bbox);
+  // console.log(bbox);
 
   const content = productModal && (
     <div className="modalContainer" onClick={handleClick}>

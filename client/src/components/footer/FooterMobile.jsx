@@ -18,10 +18,13 @@ export default function FooterMobile() {
       </div>
       <h4>Don't miss the magic:</h4>
       <Subscribe />
-      <MagicSpoonLogo className="MagicSpoonLogo" />
+      <Link to="/">
+        {" "}
+        <MagicSpoonLogo className="MagicSpoonLogo" />
+      </Link>
       <div className="legalText">
         <Link to="/links/TermsOfUse">Terms of Use</Link> · <Link to="/links/Privacy">Privacy Policy</Link> ·{" "}
-        <Link to="/links/Accessibility">Accessibility Policy</Link> · <Link to="/links/FAQ">FAQ</Link> ·{" "}
+        <Link to="/links/Accessibility">Accessibility Policy</Link> · <Link to="/FAQ">FAQ</Link> ·{" "}
         <Link to="/links/BecomeAnAffiliate">Become an Affiliate</Link> ·<Link to="/links/Reviews">Reviews</Link> ·{" "}
         <Link to="/links/Jobs">Jobs</Link> · <Link to="/links/TrackOrders">Track Orders</Link> ·
         <Link to="/links/StoreLocator">Store Locator</Link> · <Link to="/links/TOS">Terms of Service</Link> ·{" "}

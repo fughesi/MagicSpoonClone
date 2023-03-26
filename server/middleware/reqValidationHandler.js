@@ -33,4 +33,18 @@ const testimonialValidation = Joi.object({
   rating: Joi.number(),
 });
 
-export { cartValidation, userValidation, testimonialValidation };
+const productValidation = Joi.object({
+  sku: Joi.string().required(),
+  title: Joi.string().required().min(3),
+  description: Joi.string(),
+  quantity: Joi.number().required(),
+  price: Joi.number().required(),
+  discountPercentage: Joi.number(),
+  rating: Joi.number(),
+  brand: Joi.string().required(),
+  category: Joi.string().required(),
+  ingredients: Joi.array(),
+  stats: Joi.object(),
+});
+
+export { cartValidation, userValidation, testimonialValidation, productValidation };

@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getWindowWidth } from "./features/themeSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,7 +19,6 @@ import ProductPage from "./pages/productpage/ProductPage";
 import Login from "./components/login/Login";
 
 import Links from "./pages/__links/_links";
-// import FAQ from "./pages/__links/FAQ.jsx";
 import TOS from "./pages/__links/TOS.jsx";
 import Jobs from "./pages/__links/Jobs.jsx";
 import Privacy from "./pages/__links/Privacy.jsx";
@@ -76,6 +75,8 @@ function App() {
           <Route path="Accessibility" element={<Accessibility />} />
           <Route path="BecomeAnAffiliate" element={<BecomeAnAffiliate />} />
         </Route>
+
+        <Route path="/*" redirect="/" />
       </Routes>
 
       <ShoppingCart />

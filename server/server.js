@@ -15,6 +15,7 @@ import connectDB from "./config/dbConnection.js";
 import cerealsRoutes from "./routes/cerealsRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import productRoutes from "./routes/productRoutes.js";
 import testimonialRoutes from "./routes/testimonialsRoutes.js";
 
 initializePassport(passport, (email) => {
@@ -43,6 +44,7 @@ app.use(passport.session());
 
 // ROUTES LIST
 app.use("/testimonials", testimonialRoutes);
+app.use("/products", productRoutes);
 app.use("/cereals", cerealsRoutes);
 app.use("/cart", cartRoutes);
 app.use("/users", userRoutes);

@@ -1,7 +1,12 @@
+import { useEffect } from "react";
 import CTAsection from "../../components/cta-section/CTAsection";
 import "./OurStory.css";
 
 export default function OurStory() {
+  useEffect(() => {
+    setTimeout(() => window.scrollTo(0, 0), 100);
+  }, []);
+
   const content = (
     <main className="OurStoryContainer">
       <section className="ourStorySection1">

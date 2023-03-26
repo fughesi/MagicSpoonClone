@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { nutrition } from "../../assets/img/cerealNutrition/__exports";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { useGetAllProductsQuery } from "../../services/productsApi";
 import { useDispatch, useSelector } from "react-redux";
 import CallToAction from "../../components/cta/CallToAction";
 import Modal from "../../components/modal/Modal";
+import "./ProductPage.css";
 import {
   addItemToCart,
   decrementItemQuantity,
@@ -25,20 +27,36 @@ import {
   barzz,
   bgImg,
 } from "../../assets/img/productCarousel/__exports";
-import "./ProductPage.css";
 
 export default function ProductPage({ type, style }) {
+  const {
+    data: cereal,
+    error: cerealError,
+    isSuccess,
+    refetch,
+  } = useGetAllProductsQuery({ refetchOnMountOrArgChange: true });
+
   const productPhotoArray = [img1, img2, img3, img4, img5, img6, img7, img8];
 
   const [productModal, setProductModal] = useState(false);
 
-  const dispatch = useDispatch();
+  const [selectedCereal, setSelectedCereal] = useState("");
+
+  const [rotatePic, setRotatePic] = useState(0);
+
+  const productIndex = cereal?.findIndex((i) => i.title === selectedCereal) || 0;
+
+  let price;
+
+  if (cereal) price = cereal[productIndex]?.price;
 
   const toggleModal = () => {
     setProductModal((i) => !i);
   };
 
-  const [rotatePic, setRotatePic] = useState(0);
+  useEffect(() => {
+    setTimeout(() => window.scrollTo(0, 0), 100);
+  }, []);
 
   useEffect(() => {
     window.addEventListener("scroll", () => setRotatePic(window.pageYOffset));
@@ -48,7 +66,7 @@ export default function ProductPage({ type, style }) {
   const content = (
     <main className="productPageContainer">
       <Modal productModal={productModal} handleClick={toggleModal} />
-      {/* <Modal toggleModal={toggleModal} /> */}
+
       <section className="productPageSection1">
         <div className="heroImageProducts">
           <img src={imageMain} alt="Cereal boxes and bars" />
@@ -62,43 +80,60 @@ export default function ProductPage({ type, style }) {
 
       <section className="productPageSection2">
         <div className="productCartDiv">
-          <h3>CEREAL & BARS COMBO BUNDLE</h3>
+          {isSuccess && <h3>{cereal[productIndex]?.title || "CEREAL & BARS COMBO BUNDLE"}</h3>}
           <h4>4 CEREAL BOXES + 8 CEREAL BARS</h4>
           <pre>⭐️⭐️⭐️⭐️⭐️ 39261 Reviews</pre>
           <p>
-            Get the best of both worlds—10g of protein in your pocket, and the nostalgic flavors of your childhood
-            mornings back in your bowl. Take our cereal bars wherever you go with two classic flavors, Cookies & Cream
-            and Cocoa Peanut Butter, and enjoy our cereal in four bestselling flavors.
+            {(isSuccess && cereal[productIndex]?.description) ||
+              `Get the best of both worlds—10g of protein in your pocket, and the
+            nostalgic flavors of your childhood mornings back in your bowl. Take our cereal bars wherever you go with
+            two classic flavors, Cookies & Cream and Cocoa Peanut Butter, and enjoy our cereal in four bestselling
+            flavors.`}
           </p>
+
           <div className="productSelectionDiv">
             <label htmlFor="productSelect">
               CHOOSE FLAVORS <br />
             </label>
-            <select name="productSelect" id="productSelect" type="select">
+            <select
+              name="productSelect"
+              id="productSelect"
+              type="select"
+              value={selectedCereal}
+              onChange={(e) => setSelectedCereal(e.target.value)}
+            >
               <option value="" defaultValue>
                 CEREAL BARS AND COMBO BUNDLES &nbsp;&nbsp;&nbsp; ➢
               </option>
-              <optgroup label="best-sellers">
-                <option value="berry">BERRY</option>
-                <option value="fruity">FRUITY</option>
-                <option value="pebbles">PEBBLES</option>
-              </optgroup>
-              <optgroup label="nastiest-tasting">
-                <option value="grapefruit">GRAPEFRUIT</option>
-                <option value="banana">BANANA</option>
-              </optgroup>
+
+              {isSuccess &&
+                cereal?.map((prod, index) => {
+                  return (
+                    <option key={prod?._id} index={index} value={prod?.title}>
+                      {prod?.title.toUpperCase()}
+                    </option>
+                  );
+                })}
             </select>
+
             <br />
-            <p>
-              <kbd className="priceCut">$59</kbd>&nbsp; $54
-            </p>
+            {(price && (
+              <p>
+                <kbd className="priceCut">${(price * 1.1 * 5).toFixed(0)}</kbd>
+                &nbsp; ${(price * 5).toFixed(0)}
+              </p>
+            )) || (
+              <>
+                <p style={{ height: "39px" }}></p>
+              </>
+            )}
 
             <div className="addQuantityCart">
               <div>
                 <p>QUANTITY</p>
                 <p>
-                  <span onClick={() => console.log("clicked")}> &lt; </span>
-                  {"0"} <span onClick={() => console.log("clicked")}> &gt;</span>
+                  <span onClick={() => console.log(cereal[productIndex]?.title)}>&lt;</span>
+                  {"0"} <span onClick={() => console.log(cereal[productIndex]?.ingredients[0]?.name)}> &gt;</span>
                 </p>
               </div>
               <div>
@@ -106,10 +141,11 @@ export default function ProductPage({ type, style }) {
               </div>
             </div>
           </div>
-          <p id="tryRiskFree">Try risk-free, 100% happiness guaranteed. See terms of use.</p>
+          <p id="tryRiskFree">
+            Try risk-free, 100% happiness guaranteed. See <NavLink to="/links/TermsOfUse">terms of use</NavLink>.
+          </p>
         </div>
       </section>
-
       <section className="productPageSection3">
         <div className="rotatingProductBackground">
           <img src={barzz} alt="rotating bar" style={{ rotate: `${rotatePic * -0.09 + 55}deg` }} />
@@ -224,7 +260,7 @@ export default function ProductPage({ type, style }) {
           than just sugar, corn, and wheat, but it’s all part of our commitment to bring you the best!
         </details>
 
-        <Link to="/FAQ">VIEW MORE FAQ'S &gt;</Link>
+        <NavLink to="/FAQ">VIEW MORE FAQ'S &gt;</NavLink>
       </section>
     </main>
   );
