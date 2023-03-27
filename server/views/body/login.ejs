@@ -1,0 +1,20 @@
+<main class="loginContainer">
+  <div class="loginOutlineBox">
+    <% if (messages.error) { %> <%= messages.error %> <%}%>
+
+    <h1>Login system</h1>
+    <p>log in for existing users</p>
+
+    <form action="">
+      <label for="email">
+        <input id="email" type="email" placeholder="email" name="email" />
+        Register email address
+      </label>
+
+      <input type="password" placeholder="password" name="password" />
+
+      <input type="submit" class="loginSubmitButton" value="SUBMIT" />
+    </form>
+  </div>
+  <a href="/registerPage"></a>
+</main>

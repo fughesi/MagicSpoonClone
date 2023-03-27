@@ -5,13 +5,7 @@
 body {
   margin: 0;
   padding: 0;
-}
-
-.loginContainer {
-  height: 100svh;
-
-  display: grid;
-  place-content: center;
+  font-family: sans-serif;
 }
 
 .loginOutlineBox {
@@ -45,4 +39,47 @@ input[type="password"] {
   color: #fff;
   background-color: rgb(56, 181, 56);
   text-shadow: 0 1px 0 #0005, 1px 0 0 #0005, -1px 0 0 #0005, 0 -1px 0 #0005;
+}
+
+/* --- */
+
+/* form {
+  display: grid;
+  height: 75vh;
+  place-content: center;
+  justify-items: end;
+} */
+
+input[type="submit"] {
+  background-color: red;
+  font-size: bold;
+  letter-spacing: 0.1rem;
+  color: rgb(236, 240, 243);
+  font-size: 1.75rem;
+  border: none;
+  padding: 0.5em;
+  cursor: pointer;
+}
+
+/* 
+.container {
+  display: grid;
+  height: 100vh;
+  place-content: center; 
+}
+*/
+h1 {
+  font-size: 2.5rem;
+  text-shadow: 0 0 4px rgb(255, 255, 255), 1px 1px 5px #0005, 0 0 15px rgb(0, 153, 255);
+  color: red;
+}
+a {
+  font-weight: bold;
+  cursor: pointer;
+  color: black;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-evenly;
 }

@@ -23,7 +23,8 @@
     "nodemon": "^2.0.20"
   },
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "ejs": "supervisor -e 'js|ejs|node|coffee' server.js"
   },
   "keywords": [],
   "author": "fughesi",

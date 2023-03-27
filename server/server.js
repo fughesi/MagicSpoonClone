@@ -15,6 +15,7 @@ import connectDB from "./config/dbConnection.js";
 import cerealsRoutes from "./routes/cerealsRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import serverRoutes from "./routes/serverRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import testimonialRoutes from "./routes/testimonialsRoutes.js";
 
@@ -46,7 +47,11 @@ app.use(passport.session());
 app.use("/testimonials", testimonialRoutes);
 app.use("/products", productRoutes);
 app.use("/cereals", cerealsRoutes);
-app.use("/cart", cartRoutes);
 app.use("/users", userRoutes);
+app.use("/cart", cartRoutes);
+app.use("/", serverRoutes); // .ejs files
+app.use((req, res) => {
+  res.status(404).render("content", { title: "404" });
+});
 
 app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
