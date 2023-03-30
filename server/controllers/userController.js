@@ -1,8 +1,9 @@
-import asyncHandler from "express-async-handler";
-import Users from "../models/userModel.js";
-import { userValidation } from "../middleware/reqValidationHandler.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import Users from "../models/userModel.js";
+import asyncHandler from "express-async-handler";
+import { userValidation, loginValidation } from "../middleware/validationHandler.js";
+import genAuthToken from "../middleware/getToken.js";
 
 //DESC - find all users
 //ROUTE - GET /users
@@ -21,10 +22,13 @@ const getAllUsers = asyncHandler(async (req, res) => {
 //ROUTE - GET /users/current/:id
 //ACCESS - private
 const singleUser = asyncHandler(async (req, res) => {
-  res.send("what up");
-  // const foundUser = await Users.findOne({})
+  const foundUser = await Users.findOne({ _id: req.params.id });
 
-  //     res.status(200).json({ message: "this is awesome", id: req.params.id });
+  if (!foundUser) {
+    res.status(404).json({ message: "no user with that email found in database" });
+  }
+
+  res.status(200).json({ message: "user found!", user: foundUser });
 });
 
 //DESC - register a new user
@@ -45,7 +49,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  const user = await Users.create({
+  const user = new Users({
     title,
     username,
     firstName,
@@ -58,21 +62,30 @@ const registerUser = asyncHandler(async (req, res) => {
     password: hashedPassword,
   });
 
-  if (user) {
-    res.status(201).json({ _id: user.id, email: user.email });
-    console.log(`User ${user.username} created successfully!`);
-  } else {
-    res.status(500).json({ message: "unable to create user due to server error", error }).redirect("/registrationPage");
-  }
+  const token = genAuthToken(user);
+
+  user.save((error) => {
+    if (error) {
+      res
+        .status(500)
+        .json({ message: "unable to create user due to server error", error })
+        .redirect("/registrationPage");
+    } else {
+      res.status(201).json({ _id: user.id, email: user.email, token: token });
+      console.log(`User ${user.username} created successfully!`);
+    }
+  });
 });
 
 //DESC -  user login page
 //ROUTE - POST /users/login
 //ACCESS - public
 const userLogin = asyncHandler(async (req, res) => {
-  const { email, password } = await userValidation.validateAsync(req.body, { abortEarly: false });
+  const { error, email, password } = await loginValidation.validateAsync(req.body, { abortEarly: false });
 
-  const loggedInUser = await Users.findOne({ email });
+  if (error) res.status(400).send(error.details[0].message); // not working
+
+  const loggedInUser = await Users.findOne({ email: email });
 
   if (loggedInUser && (await bcrypt.compare(password, loggedInUser.password))) {
     const accessToken = jwt.sign(

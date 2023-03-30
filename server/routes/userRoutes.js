@@ -3,6 +3,7 @@ import { getAllUsers, registerUser, userLogin, singleUser } from "../controllers
 
 const router = express.Router();
 
+//users
 router.get("/", getAllUsers);
 router.get("/current/:id", singleUser);
 router.post("/login", userLogin);

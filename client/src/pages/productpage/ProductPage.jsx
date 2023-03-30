@@ -50,6 +50,8 @@ export default function ProductPage({ type, style }) {
 
   if (cereal) price = cereal[productIndex]?.price;
 
+  const dispatch = useDispatch();
+
   const toggleModal = () => {
     setProductModal((i) => !i);
   };
@@ -137,7 +139,7 @@ export default function ProductPage({ type, style }) {
                 </p>
               </div>
               <div>
-                <p onClick={() => console.log("clicked")}>ADD TO CART</p>
+                <p onClick={() => dispatch(addItemToCart(cereal[productIndex]))}>ADD TO CART</p>
               </div>
             </div>
           </div>

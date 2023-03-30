@@ -9,6 +9,7 @@ import {
 
 const router = express.Router();
 
+//testimonials
 router.route("/").get(getAllTestimonials).post(addTestimonial);
 router.route("/current/:id").get(getSingleTestimonial).put(updateTestimonial).delete(deleteTestimonial);
 

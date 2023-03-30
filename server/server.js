@@ -12,7 +12,6 @@ import session from "express-session";
 import initializePassport from "./passportConfig.js";
 import connectDB from "./config/dbConnection.js";
 
-import cerealsRoutes from "./routes/cerealsRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import serverRoutes from "./routes/serverRoutes.js";
@@ -46,7 +45,6 @@ app.use(passport.session());
 // ROUTES LIST
 app.use("/testimonials", testimonialRoutes);
 app.use("/products", productRoutes);
-app.use("/cereals", cerealsRoutes);
 app.use("/users", userRoutes);
 app.use("/cart", cartRoutes);
 app.use("/", serverRoutes); // .ejs files

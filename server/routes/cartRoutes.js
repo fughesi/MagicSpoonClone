@@ -3,7 +3,7 @@ import { allCartItems, addItemToCart } from "../controllers/cartController.js";
 
 const router = express.Router();
 
-router.route("/").get(allCartItems);
-router.route("/upload").post(addItemToCart);
+router.route("/").get(allCartItems).post(addItemToCart);
+router.route("/upload");
 
 export default router;

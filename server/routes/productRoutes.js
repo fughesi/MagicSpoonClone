@@ -3,6 +3,7 @@ import { getAllProducts } from "../controllers/productController.js";
 
 const router = express.Router();
 
+//products
 router.get("/", getAllProducts);
 // router.get("/current/:id", singleUser);
 // router.post("/login", userLogin);

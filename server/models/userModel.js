@@ -8,9 +8,9 @@ const userSchema = new mongoose.Schema({
   role: { type: String },
   active: { type: Boolean },
   language: { type: Array },
-  email: { type: String, required: true },
+  email: { type: String, unique: true, required: true },
   phoneNumber: { type: String },
-  password: { type: String, required: true },
+  password: { type: String, minlength: 3, maxlength: 1024, required: true },
 });
 
 const Users = mongoose.model("Users", userSchema);

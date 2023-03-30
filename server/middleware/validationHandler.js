@@ -22,7 +22,7 @@ const userValidation = Joi.object({
   language: Joi.array().items(Joi.string()),
   email: Joi.string().email().required(),
   phoneNumber: Joi.string(),
-  password: Joi.string().required().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
+  password: Joi.string().required().min(3).max(1024).pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
   confirmPassword: Joi.ref("password"),
 });
 
@@ -31,6 +31,11 @@ const testimonialValidation = Joi.object({
   statement: Joi.string().required().min(5),
   company: Joi.string().required(),
   rating: Joi.number(),
+});
+
+const loginValidation = Joi.object({
+  email: Joi.string().required().email().min(5),
+  password: Joi.string().required().min(3).max(1024).pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
 });
 
 const productValidation = Joi.object({
@@ -47,4 +52,4 @@ const productValidation = Joi.object({
   stats: Joi.object(),
 });
 
-export { cartValidation, userValidation, testimonialValidation, productValidation };
+export { cartValidation, userValidation, testimonialValidation, productValidation, loginValidation };

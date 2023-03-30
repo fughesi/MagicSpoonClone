@@ -1,6 +1,6 @@
 import asyncHandler from "express-async-handler";
 import Testimonials from "../models/testimonialModel.js";
-import { testimonialValidation } from "../middleware/reqValidationHandler.js";
+import { testimonialValidation } from "../middleware/validationHandler.js";
 
 //DESC - find all testimonials
 //ROUTE - GET /testimonials
