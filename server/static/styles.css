@@ -8,17 +8,60 @@ body {
   font-family: sans-serif;
 }
 
-.loginOutlineBox {
-  outline: 1px solid #0002;
-  padding: 2rem;
+.mainContainer {
+  padding: 1rem;
+
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+
+  grid-template-columns: 1fr;
+  grid-template-rows: 10% 80% 10%;
 }
 
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: baseline;
+}
+
+li {
+  text-decoration: none;
+  padding: 1rem;
+  text-underline-position: above;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  border-bottom: 3px solid red;
+}
+
+li::marker {
+  display: none;
+  color: #fff;
+}
+
+a {
+  color: unset;
+  cursor: pointer;
+}
+
+/* 
 h1 {
   margin: 1rem auto;
   color: blue;
   font-size: 2rem;
-}
-
+} */
+/* 
 label[for="email"],
 label[for="username"],
 input[type="password"] {
@@ -28,7 +71,7 @@ input[type="password"] {
   opacity: 0.5;
   font-size: 0.75rem;
   margin-top: 1rem;
-}
+} */
 
 .loginSubmitButton {
   border: none;
@@ -41,14 +84,12 @@ input[type="password"] {
   text-shadow: 0 1px 0 #0005, 1px 0 0 #0005, -1px 0 0 #0005, 0 -1px 0 #0005;
 }
 
-/* --- */
-
-/* form {
+form {
   display: grid;
-  height: 75vh;
+  height: 75%;
   place-content: center;
   justify-items: end;
-} */
+}
 
 input[type="submit"] {
   background-color: red;
@@ -61,25 +102,21 @@ input[type="submit"] {
   cursor: pointer;
 }
 
-/* 
-.container {
-  display: grid;
-  height: 100vh;
-  place-content: center; 
-}
-*/
 h1 {
   font-size: 2.5rem;
-  text-shadow: 0 0 4px rgb(255, 255, 255), 1px 1px 5px #0005, 0 0 15px rgb(0, 153, 255);
+  text-shadow: 0 0 4px rgb(255, 255, 255), 1px 1px 5px #0005, 0 0 15px rgba(255, 81, 0, 0.6);
   color: red;
 }
-a {
-  font-weight: bold;
-  cursor: pointer;
-  color: black;
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
 }
 
-.flex {
-  display: flex;
-  justify-content: space-evenly;
+footer span {
+  color: red;
+  font-weight: 700;
 }

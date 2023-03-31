@@ -4,6 +4,7 @@ import Users from "../models/userModel.js";
 import asyncHandler from "express-async-handler";
 import { userValidation, loginValidation } from "../middleware/validationHandler.js";
 import genAuthToken from "../middleware/getToken.js";
+import USER_ROLES from "../config/userRoles.js";
 
 //DESC - find all users
 //ROUTE - GET /users
@@ -35,16 +36,16 @@ const singleUser = asyncHandler(async (req, res) => {
 //ROUTE - POST /users/registration
 //ACCESS - public
 const registerUser = asyncHandler(async (req, res) => {
-  const { error, title, username, firstName, lastName, role, active, language, email, phoneNumber, password } =
+  const { error, title, username, firstName, lastName, language, email, phoneNumber, password } =
     await userValidation.validateAsync(req.body, { abortEarly: false });
 
-  if (error) return res.status(400).json({ message: error.details[0]?.message });
+  if (error) return res.status(400).json({ message: error.details[0]?.message }).end; // not working
 
   const userAvailable = await Users.findOne({ email });
 
   if (userAvailable) {
     res.status(400);
-    throw new Error("User already registered");
+    throw new Error("User already registered or email already in use");
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -54,22 +55,21 @@ const registerUser = asyncHandler(async (req, res) => {
     username,
     firstName,
     lastName,
-    role,
-    active,
     language,
     email,
     phoneNumber,
     password: hashedPassword,
+    role: USER_ROLES.User,
+    isActive: true,
+    shoppingCart: [],
+    savedForLater: [],
   });
 
   const token = genAuthToken(user);
 
   user.save((error) => {
     if (error) {
-      res
-        .status(500)
-        .json({ message: "unable to create user due to server error", error })
-        .redirect("/registrationPage");
+      res.status(500).json({ message: "unable to create user due to server error", error }).redirect("/registration");
     } else {
       res.status(201).json({ _id: user.id, email: user.email, token: token });
       console.log(`User ${user.username} created successfully!`);
@@ -92,12 +92,13 @@ const userLogin = asyncHandler(async (req, res) => {
       {
         user: {
           username: loggedInUser.username,
+          role: USER_ROLES.Admin,
           email: loggedInUser.email,
           id: loggedInUser.id,
         },
       },
       process.env.JWT,
-      { expiresIn: "15m" }
+      { expiresIn: "1d" }
     );
 
     res.status(200).json({ accessToken });

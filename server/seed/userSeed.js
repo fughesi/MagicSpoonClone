@@ -14,6 +14,7 @@ mongoose
 
 const users = [
   new Users({
+    username: "navySEAL",
     title: "Mr.",
     firstName: "jocko",
     lastName: "Wilnik",
@@ -23,8 +24,11 @@ const users = [
     email: "sealteam6@yahoo.com",
     phoneNumber: 9015551212,
     password: "123",
+    shoppingCart: [],
+    savedForLater: [],
   }),
   new Users({
+    username: "sprouts",
     title: "Mr.",
     firstName: "jeff",
     lastName: "brussels",
@@ -34,28 +38,36 @@ const users = [
     email: "mojo@pm.com",
     phoneNumber: 8885551212,
     password: "123",
+    shoppingCart: [],
+    savedForLater: [],
   }),
   new Users({
+    username: "datBitch",
     title: "Mrs.",
     firstName: "barbara",
     lastName: "flanahan",
-    role: "officla karen",
+    role: "offical karen",
     active: true,
     language: ["english"],
     email: "speakstomanager@gmail.com",
     phoneNumber: 9015557474,
     password: "123",
+    shoppingCart: [],
+    savedForLater: [],
   }),
   new Users({
+    username: "elHombre",
     title: "Mr.",
     firstName: "juan",
     lastName: "hernandez",
     role: "bossman",
     active: true,
     language: ["english", "spanish"],
-    email: "sealteam6@yahoo.com",
+    email: "disGuy@yahoo.com",
     phoneNumber: 9015551212,
     password: "123",
+    shoppingCart: [],
+    savedForLater: [],
   }),
 ];
 

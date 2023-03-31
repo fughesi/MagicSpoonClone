@@ -1,20 +1,59 @@
 <div class="loginOutlineBox">
-  <h1>Login system</h1>
-  <p>log in for existing users</p>
+  <h1>Register a new user</h1>
+  *-required
 
-  <form action="http://localhost:5150/registerPage" method="POST">
+  <form action="http://localhost:5150/users/registration" method="POST">
     <label for="username">
-      <input id="username" type="text" placeholder="username" required name="username" />
+      * <input id="username" type="text" placeholder="username" required name="username" />
     </label>
+    <br />
+    <label for="title">
+      <input id="title" type="text" placeholder="title" required name="title" />
+    </label>
+
+    <br />
+    <label for="firstName">
+      *
+      <input id="firstName" type="text" placeholder="firstName" required name="firstName" />
+    </label>
+    <br />
+
+    <label for="lastName">
+      *
+      <input id="lastName" type="text" placeholder="lastName" required name="lastName" />
+    </label>
+    <br />
+
+    <!-- array -->
+    <label for="language">
+      <input id="language" type="text" placeholder="language" required name="language" />
+    </label>
+    <br />
 
     <label for="email">
+      *
       <input id="email" type="email" placeholder="email" required name="email" />
-      Register email address fag
     </label>
+    <br />
 
-    <input type="password" placeholder="password" required name="password" />
+    <label for="phoneNumber">
+      <input id="phoneNumber" type="number" placeholder="phoneNumber" required name="phoneNumber" />
+    </label>
+    <br />
 
+    <label for="password">
+      *
+      <input id="password" type="password" placeholder="password" required name="password" />
+    </label>
+    <br />
+
+    <label for="confirmPassword">
+      *
+      <input id="confirmPassword" type="password" placeholder="confirmPassword" required name="confirmPassword" />
+    </label>
+    <br />
+
+    <br />
     <input type="submit" class="loginSubmitButton" value="SUBMIT" />
   </form>
 </div>
-<a href="/loginPage"></a>
