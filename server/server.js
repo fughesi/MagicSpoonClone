@@ -9,8 +9,9 @@ import passport from "passport";
 import flash from "express-flash";
 import session from "express-session";
 
-import initializePassport from "./passportConfig.js";
 import connectDB from "./config/dbConnection.js";
+import initializePassport from "./passportConfig.js";
+import errorHandler from "./middleware/errorMiddleware.js";
 
 import cartRoutes from "./routes/cartRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
@@ -51,5 +52,6 @@ app.use("/", serverRoutes); // .ejs files
 app.use((req, res) => {
   res.status(404).render("content", { title: "404" });
 });
+app.use(errorHandler);
 
 app.listen(port, () => console.log(`Server running on http://localhost:${port}`));

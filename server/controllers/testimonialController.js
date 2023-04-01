@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 import Testimonials from "../models/testimonialModel.js";
-import { testimonialValidation } from "../middleware/validationHandler.js";
+import validation from "../middleware/validateInput.js";
+import { testimonialValidation } from "../validations/validationHandler.js";
 
 //DESC - find all testimonials
 //ROUTE - GET /testimonials
@@ -8,11 +9,11 @@ import { testimonialValidation } from "../middleware/validationHandler.js";
 const getAllTestimonials = asyncHandler(async (req, res) => {
   const allTestimonials = await Testimonials.find();
 
-  try {
+  if (allTestimonials) {
     res.status(200).json(allTestimonials);
-  } catch (error) {
-    res.status(500).send(`Fetch request failed with error message ${error?.message}`);
-    console.log(error?.message);
+  } else {
+    res.status(404);
+    throw new Error("Fetch request failed with error message");
   }
 });
 
@@ -20,40 +21,36 @@ const getAllTestimonials = asyncHandler(async (req, res) => {
 //ROUTE - POST /testimonials
 //ACCESS - private
 const addTestimonial = asyncHandler(async (req, res) => {
-  const { error, title, statement, company, rating } = testimonialValidation.validateAsync(req.body, {
-    abortEarly: false,
-  });
+  const { title, statement, company, rating } = req.body; //need to attach user to testimonial
 
-  if (error) return res.status(400).send(error?.details[0]?.message);
-
-  const testimonialPost = new Testimonials({
+  const testimonial = new Testimonials({
     title,
     statement,
     company,
     rating,
   });
 
-  try {
-    testimonialPost = await testimonialPost.save();
-
-    res.status(201).json({ message: "testimonial added successfully" });
-  } catch (error) {
-    console.log(`Error while saving testimonial post: ${error}`);
-    res.status(500).send(error?.message);
-  }
+  testimonial.save((error) => {
+    if (error) {
+      res.status(400);
+      throw new Error("unable to save testimonial at this time");
+    } else {
+      res.status(201).json({ message: "testimonial added successfully" });
+    }
+  });
 });
 
 //DESC - get a specific testimonial
-//ROUTE - GET /current/:id
+//ROUTE - GET  /current/:id
 //ACCESS - private
 const getSingleTestimonial = asyncHandler(async (req, res) => {
   const singleTestimonial = await Testimonials.findOne({ _id: req.params.id });
 
-  try {
+  if (singleTestimonial) {
     res.status(200).json(singleTestimonial);
-  } catch (error) {
-    res.status(500).json({ message: `Fetch request failed with error message ${error?.message}` });
-    console.log(error?.message);
+  } else {
+    res.status(404);
+    throw new Error("Fetch request failed");
   }
 });
 
@@ -73,18 +70,16 @@ const updateTestimonial = asyncHandler(async (req, res) => {
     throw new Error("user is not authorized to update this testimonial");
   }
 
-  const updates = testimonialValidation.validateAsync(req.body, { abortEarly: false });
+  const updates = req.body;
 
   if (foundTestimonial) {
-    try {
-      await Testimonials.updateOne({ _id: foundTestimonial.id }, { $set: updates });
-      console.log(`Testimonial titled "${foundTestimonial?.title}" was successfully updated`);
-      res.status(200).json(updates);
-    } catch (error) {
-      res.status(500).send(`Unable to update testimonial; error message: ${error}`);
-    }
+    await Testimonials.updateOne({ _id: foundTestimonial.id }, { $set: updates });
+
+    console.log(`Testimonial titled "${foundTestimonial?.title}" was successfully updated`);
+    res.status(200).json(updates);
   } else {
-    res.status(404).send("Testimonial not found");
+    res.status(500);
+    throw new Error("Unable to update testimonial at this time");
   }
 });
 
@@ -104,12 +99,13 @@ const deleteTestimonial = asyncHandler(async (req, res) => {
     throw new Error("user is not authorized to delete this testimonial");
   }
 
-  try {
-    await Testimonials.deleteOne(itemToDelete);
+  const deleteSuccess = await Testimonials.deleteOne(itemToDelete);
 
+  if (deleteSuccess) {
     res.status(200).json({ message: `Testimonial titled "${itemToDelete?.title}" was successfully deleted` });
-  } catch (error) {
-    res.status(500).json({ message: `Unable to delete testimonial; error message: ${error}` });
+  } else {
+    res.status(500);
+    throw new Error("Unable to delete testimonial: server error");
   }
 });
 

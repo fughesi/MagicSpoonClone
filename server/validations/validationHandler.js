@@ -41,7 +41,7 @@ const productValidation = Joi.object({
   sku: Joi.string().required(),
   title: Joi.string().required().min(3),
   description: Joi.string(),
-  quantity: Joi.number().required(),
+  stock: Joi.number().required(),
   price: Joi.number().required(),
   discountPercentage: Joi.number(),
   rating: Joi.number(),

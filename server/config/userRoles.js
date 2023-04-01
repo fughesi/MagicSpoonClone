@@ -1,8 +1,7 @@
 const USER_ROLES = {
-  Admin: "829",
-  Editor: "809",
-  User: "901",
-  Inactive: "0",
+  Admin: "A829",
+  Manager: "M809",
+  User: "U901",
 };
 
 export default USER_ROLES;

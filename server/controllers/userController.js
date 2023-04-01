@@ -1,10 +1,9 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import Users from "../models/userModel.js";
-import asyncHandler from "express-async-handler";
-import { userValidation, loginValidation } from "../middleware/validationHandler.js";
-import genAuthToken from "../middleware/getToken.js";
 import USER_ROLES from "../config/userRoles.js";
+import asyncHandler from "express-async-handler";
+import genAuthToken from "../middleware/getToken.js";
 
 //DESC - find all users
 //ROUTE - GET /users
@@ -13,7 +12,8 @@ const getAllUsers = asyncHandler(async (req, res) => {
   const findAllUsers = await Users.find();
 
   if (!findAllUsers) {
-    res.status(404).json({ message: "no users found" });
+    res.status(404);
+    throw new Error("no users found");
   }
 
   res.status(200).json(findAllUsers);
@@ -26,7 +26,8 @@ const singleUser = asyncHandler(async (req, res) => {
   const foundUser = await Users.findOne({ _id: req.params.id });
 
   if (!foundUser) {
-    res.status(404).json({ message: "no user with that email found in database" });
+    res.status(404);
+    throw new Error("no user with that email found in database");
   }
 
   res.status(200).json({ message: "user found!", user: foundUser });
@@ -36,14 +37,11 @@ const singleUser = asyncHandler(async (req, res) => {
 //ROUTE - POST /users/registration
 //ACCESS - public
 const registerUser = asyncHandler(async (req, res) => {
-  const { error, title, username, firstName, lastName, language, email, phoneNumber, password } =
-    await userValidation.validateAsync(req.body, { abortEarly: false });
+  const { title, username, firstName, lastName, language, email, phoneNumber, password } = await req.body;
 
-  if (error) return res.status(400).json({ message: error.details[0]?.message }).end; // not working
+  const userUnavailable = await Users.findOne({ email });
 
-  const userAvailable = await Users.findOne({ email });
-
-  if (userAvailable) {
+  if (userUnavailable) {
     res.status(400);
     throw new Error("User already registered or email already in use");
   }
@@ -69,7 +67,9 @@ const registerUser = asyncHandler(async (req, res) => {
 
   user.save((error) => {
     if (error) {
-      res.status(500).json({ message: "unable to create user due to server error", error }).redirect("/registration");
+      res.status(400);
+      throw new Error("unable to create user at this time");
+      // json({ message: "unable to create user at this time", error });
     } else {
       res.status(201).json({ _id: user.id, email: user.email, token: token });
       console.log(`User ${user.username} created successfully!`);
@@ -81,18 +81,16 @@ const registerUser = asyncHandler(async (req, res) => {
 //ROUTE - POST /users/login
 //ACCESS - public
 const userLogin = asyncHandler(async (req, res) => {
-  const { error, email, password } = await loginValidation.validateAsync(req.body, { abortEarly: false });
+  const { email, password } = req.body;
 
-  if (error) res.status(400).send(error.details[0].message); // not working
-
-  const loggedInUser = await Users.findOne({ email: email });
+  const loggedInUser = await Users.findOne({ email });
 
   if (loggedInUser && (await bcrypt.compare(password, loggedInUser.password))) {
     const accessToken = jwt.sign(
       {
         user: {
           username: loggedInUser.username,
-          role: USER_ROLES.Admin,
+          role: USER_ROLES.User, // hard-coded, need to make dynamic
           email: loggedInUser.email,
           id: loggedInUser.id,
         },

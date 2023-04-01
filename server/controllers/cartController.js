@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 import Cart from "../models/cartModel.js";
-import { cartValidation } from "../middleware/validationHandler.js";
+import Users from "../models/userModel.js";
+import { cartValidation } from "../validations/validationHandler.js";
 
 //DESC - get all items in cart
 //ROUTE - GET /cart
@@ -16,51 +17,37 @@ const allCartItems = asyncHandler(async (req, res) => {
   }
 });
 
-//DESC - add item(s) to cart
-//ROUTE - POST /cart
+//DESC - add item(s) to cart or increment quantity
+//ROUTE - POST /user/:id
 //ACCESS - private
 const addItemToCart = asyncHandler(async (req, res) => {
-  const { error, title, quantity, description, price, discountPercentage, rating, stock, brand, category } =
-    cartValidation.validateAsync(req.body, { abortEarly: false });
+  const { error } = cartValidation.validate(req.body, { abortEarly: false });
 
   if (error) return res.status(400).json({ message: error.details[0]?.message });
 
-  const findItemInCart = await Cart.findOne({ _id: req.params.id });
+  // const { _id: userId} = req.params;
+  // const { _id: prodId} = req.body;
 
-  if (findItemInCart) {
-    findItemInCart.updateOne({ quantity: (quantity += 1) });
-    res.status(200).json({ message: `${title} quantity successfully updated` });
+  const findShopper = await Users.findOne({ _id: userId });
+
+  const findProduct = await Products.findOne({ _id: prodId });
+
+  if (!findShopper) res.status(400).json({ message: "please log in to add items to cart" });
+
+  try {
+    if (findShopper) {
+      const indexedItem = findShopper.shoppingCart.findIndex((i) => i._id === findProduct._id);
+      if (findShopper.shoppingCart[indexedItem]) {
+        await findShopper.updateOne({ shoppingCart: (quantity += 1) });
+        res.status(200).json({ message: `${title} quantity successfully updated` });
+      } else {
+        await findShopper.updateOne(shoppingCart.push(findProduct));
+        res.status(200).json({ message: `${title}  successfully added to cart` });
+      }
+    }
+  } catch (err) {
+    console.log("error adding item to cart", error), res.status(500).json({ message: "unable to save item to cart!" });
   }
-  // else {
-  //   Cart.save({ ...req.body, quantity: 1 })
-  //     .then()
-  //     .catch((err) => {
-  //       console.log("error saving cart item", err);
-  //       res.status(500).json({ message: "unable to save item to cart!" });
-  //     });
-  // }
-
-  const addToCart = new Cart({
-    title,
-    quantity,
-    description,
-    price,
-    discountPercentage,
-    rating,
-    stock,
-    brand,
-    category,
-  });
-
-  addToCart
-    .save()
-    .then(() => "item added to cart")
-    .catch(
-      (error) => console.log("error adding item to cart", error),
-      res.status(500).json({ message: "unable to save item to cart!" })
-    );
-
-  res.status(201).json({ message: `${title} successfully added to cart!` });
 });
 
 //DESC - get all items in cart
@@ -77,10 +64,10 @@ const singleCartItem = asyncHandler(async (req, res) => {
   }
 });
 
-//DESC - get all items in cart
-//ROUTE - GET /cart
-//ACCESS - public
-const decrementItemFromCart = asyncHandler(async (req, res) => {
+//DESC - decrement item in cart
+//ROUTE - PUT /user/:id
+//ACCESS - private
+const decrementItemInCart = asyncHandler(async (req, res) => {
   const cartItems = await Cart.find();
 
   try {
@@ -91,7 +78,7 @@ const decrementItemFromCart = asyncHandler(async (req, res) => {
   }
 });
 
-export { allCartItems, addItemToCart, singleCartItem, decrementItemFromCart };
+export { allCartItems, addItemToCart, singleCartItem, decrementItemInCart };
 
 //     decrementItemFromCart: (state, { payload }) => {
 //       const indexedItem = state.items?.findIndex((i) => i.id === payload.id);
@@ -108,21 +95,6 @@ export { allCartItems, addItemToCart, singleCartItem, decrementItemFromCart };
 //         state.items = deletedItems;
 //       }
 
-//       localStorage.removeItem("cartItems");
-
-//       localStorage.setItem("cartItems", JSON.stringify(state.items));
-//     },
-//     incrementItemQuantity: (state, { payload }) => {
-//       const indexedItem = state.items.findIndex((i) => i.id === payload.id);
-
-//       if (state.items[indexedItem]) {
-//         state.items[indexedItem].quantity += 1;
-//       }
-
-//       localStorage.removeItem("cartItems");
-
-//       localStorage.setItem("cartItems", JSON.stringify(state.items));
-//     },
 //     deleteItemFromCart: (state, { payload }) => {
 //       const deletedItems = state.items?.filter((i) => {
 //         return i.id !== payload.id;
@@ -130,14 +102,11 @@ export { allCartItems, addItemToCart, singleCartItem, decrementItemFromCart };
 
 //       state.items = deletedItems;
 
-//       localStorage.removeItem("cartItems");
-
-//       localStorage.setItem("cartItems", JSON.stringify(state.items));
+//
 //     },
 //     clearCart: (state, { payload }) => {
 //       state.items = [];
 
-//       localStorage.removeItem("cartItems");
 //     },
 //     getTotals: (state, { payload }) => {
 //       const { totalSum, cartQuantity } = state.items?.reduce(

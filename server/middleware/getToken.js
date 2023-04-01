@@ -8,7 +8,7 @@ const genAuthToken = (user) => {
     {
       _id: user._id,
       username: user.username,
-      role: USER_ROLES.Admin,
+      role: USER_ROLES.User,
       email: user.email,
     },
     secretKey
