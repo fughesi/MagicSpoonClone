@@ -44,10 +44,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // ROUTES LIST
-app.use("/testimonials", testimonialRoutes);
-app.use("/products", productRoutes);
-app.use("/users", userRoutes);
-app.use("/cart", cartRoutes);
+app.use("/api/testimonials", testimonialRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/cart", cartRoutes);
 app.use("/", serverRoutes); // .ejs files
 app.use((req, res) => {
   res.status(404).render("content", { title: "404" });

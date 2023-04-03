@@ -1,6 +1,6 @@
 import asyncHandler from "express-async-handler";
 import Cart from "../models/cartModel.js";
-import Users from "../models/userModel.js";
+import { Users } from "../models/userModel.js";
 import { cartValidation } from "../validations/validationHandler.js";
 
 //DESC - get all items in cart

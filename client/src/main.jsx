@@ -1,13 +1,14 @@
+import App from "./App";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import App from "./App";
 
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 
-import cartReducer, { getTotals } from "./features/cartSlice";
+import authReducer from "./features/authSlice";
 import themeReducer from "./features/themeSlice";
+import cartReducer, { getTotals } from "./features/cartSlice";
 
 import { testimonialsApi } from "./services/testimonialsApi";
 import { productsApi } from "./services/productsApi";
@@ -16,8 +17,9 @@ import { usersApi } from "./services/usersApi";
 
 const store = configureStore({
   reducer: {
-    theme: themeReducer,
     cart: cartReducer,
+    auth: authReducer,
+    theme: themeReducer,
     [testimonialsApi.reducerPath]: testimonialsApi.reducer,
     [usersApi.reducerPath]: usersApi.reducer,
     [cerealsApi.reducerPath]: cerealsApi.reducer,

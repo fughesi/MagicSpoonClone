@@ -1,9 +1,9 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import Users from "../models/userModel.js";
+import { Users } from "../models/userModel.js";
 import USER_ROLES from "../config/userRoles.js";
 import asyncHandler from "express-async-handler";
-import genAuthToken from "../middleware/getToken.js";
+import genAuthToken from "../middleware/genAuthToken.js";
 
 //DESC - find all users
 //ROUTE - GET /users
@@ -34,16 +34,28 @@ const singleUser = asyncHandler(async (req, res) => {
 });
 
 //DESC - register a new user
-//ROUTE - POST /users/registration
+//ROUTE - POST api/users/registration
 //ACCESS - public
 const registerUser = asyncHandler(async (req, res) => {
-  const { title, username, firstName, lastName, language, email, phoneNumber, password } = await req.body;
+  const {
+    title,
+    username,
+    firstName,
+    lastName,
+    age,
+    language,
+    email,
+    homeAddress,
+    shippingAddress,
+    phoneNumber,
+    password,
+  } = req.body;
 
   const userUnavailable = await Users.findOne({ email });
 
   if (userUnavailable) {
     res.status(400);
-    throw new Error("User already registered or email already in use");
+    throw new Error("User already registered or email already in use, please login to continue");
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -53,12 +65,16 @@ const registerUser = asyncHandler(async (req, res) => {
     username,
     firstName,
     lastName,
+    age,
     language,
     email,
     phoneNumber,
+    homeAddress,
+    shippingAddress,
     password: hashedPassword,
     role: USER_ROLES.User,
     isActive: true,
+    shoppingCart: [],
     shoppingCart: [],
     savedForLater: [],
   });
@@ -69,7 +85,6 @@ const registerUser = asyncHandler(async (req, res) => {
     if (error) {
       res.status(400);
       throw new Error("unable to create user at this time");
-      // json({ message: "unable to create user at this time", error });
     } else {
       res.status(201).json({ _id: user.id, email: user.email, token: token });
       console.log(`User ${user.username} created successfully!`);
@@ -78,7 +93,7 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 
 //DESC -  user login page
-//ROUTE - POST /users/login
+//ROUTE - POST /api/users/login
 //ACCESS - public
 const userLogin = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
