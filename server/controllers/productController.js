@@ -1,8 +1,10 @@
 import Products from "../models/productModel.js";
 import asyncHandler from "express-async-handler";
 
+//============================================================
+
 //DESC - find all products
-//ROUTE - GET /products
+//ROUTE - GET /api/products
 //ACCESS - public
 const getAllProducts = asyncHandler(async (req, res) => {
   const allProducts = await Products.find();
@@ -15,8 +17,10 @@ const getAllProducts = asyncHandler(async (req, res) => {
   }
 });
 
+//============================================================
+
 //DESC - add new product
-//ROUTE - POST /products
+//ROUTE - POST /api/products
 //ACCESS - private
 const addProduct = asyncHandler(async (req, res) => {
   const { sku, title, description, stock, price, discountPercentage, rating, brand, category, ingredients, stats } =

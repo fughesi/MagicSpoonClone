@@ -3,8 +3,10 @@ import Testimonials from "../models/testimonialModel.js";
 import validation from "../middleware/validateInput.js";
 import { testimonialValidation } from "../validations/validationHandler.js";
 
+//============================================================
+
 //DESC - find all testimonials
-//ROUTE - GET /testimonials
+//ROUTE - GET /api/testimonials
 //ACCESS - public
 const getAllTestimonials = asyncHandler(async (req, res) => {
   const allTestimonials = await Testimonials.find();
@@ -17,8 +19,10 @@ const getAllTestimonials = asyncHandler(async (req, res) => {
   }
 });
 
+//============================================================
+
 //DESC - post a new testimonial
-//ROUTE - POST /testimonials
+//ROUTE - POST /api/testimonials
 //ACCESS - private
 const addTestimonial = asyncHandler(async (req, res) => {
   const { title, statement, company, rating } = req.body; //need to attach user to testimonial
@@ -40,8 +44,10 @@ const addTestimonial = asyncHandler(async (req, res) => {
   });
 });
 
+//============================================================
+
 //DESC - get a specific testimonial
-//ROUTE - GET  /current/:id
+//ROUTE - GET  /api/current/:id
 //ACCESS - private
 const getSingleTestimonial = asyncHandler(async (req, res) => {
   const singleTestimonial = await Testimonials.findOne({ _id: req.params.id });
@@ -54,8 +60,10 @@ const getSingleTestimonial = asyncHandler(async (req, res) => {
   }
 });
 
+//============================================================
+
 //DESC - get a specific testimonial
-//ROUTE - PUT /current/:id
+//ROUTE - PUT /api/current/:id
 //ACCESS - private
 const updateTestimonial = asyncHandler(async (req, res) => {
   const foundTestimonial = await Testimonials.findById(req.params.id);
@@ -83,8 +91,10 @@ const updateTestimonial = asyncHandler(async (req, res) => {
   }
 });
 
+//============================================================
+
 //DESC - delete a testimonial
-//ROUTE - DELETE /current/:id
+//ROUTE - DELETE /api/current/:id
 //ACCESS - private
 const deleteTestimonial = asyncHandler(async (req, res) => {
   const itemToDelete = await Testimonials.findById(req.params.id);

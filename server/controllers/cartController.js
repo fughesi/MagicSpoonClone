@@ -1,10 +1,11 @@
 import asyncHandler from "express-async-handler";
 import Cart from "../models/cartModel.js";
 import { Users } from "../models/userModel.js";
-import { cartValidation } from "../validations/validationHandler.js";
+
+//============================================================
 
 //DESC - get all items in cart
-//ROUTE - GET /cart
+//ROUTE - GET api/cart
 //ACCESS - public
 const allCartItems = asyncHandler(async (req, res) => {
   const cartItems = await Cart.find();
@@ -17,41 +18,37 @@ const allCartItems = asyncHandler(async (req, res) => {
   }
 });
 
+//============================================================
+
 //DESC - add item(s) to cart or increment quantity
-//ROUTE - POST /user/:id
+//ROUTE - POST /api/cart/:id
 //ACCESS - private
-const addItemToCart = asyncHandler(async (req, res) => {
-  const { error } = cartValidation.validate(req.body, { abortEarly: false });
-
-  if (error) return res.status(400).json({ message: error.details[0]?.message });
-
-  // const { _id: userId} = req.params;
-  // const { _id: prodId} = req.body;
+const addCartItems = asyncHandler(async (req, res) => {
+  const userId = req.params.id;
 
   const findShopper = await Users.findOne({ _id: userId });
 
-  const findProduct = await Products.findOne({ _id: prodId });
-
-  if (!findShopper) res.status(400).json({ message: "please log in to add items to cart" });
+  if (!findShopper) res.status(400).json({ message: "Must be logged in to add to cart" });
 
   try {
-    if (findShopper) {
-      const indexedItem = findShopper.shoppingCart.findIndex((i) => i._id === findProduct._id);
-      if (findShopper.shoppingCart[indexedItem]) {
-        await findShopper.updateOne({ shoppingCart: (quantity += 1) });
-        res.status(200).json({ message: `${title} quantity successfully updated` });
-      } else {
-        await findShopper.updateOne(shoppingCart.push(findProduct));
-        res.status(200).json({ message: `${title}  successfully added to cart` });
-      }
-    }
-  } catch (err) {
-    console.log("error adding item to cart", error), res.status(500).json({ message: "unable to save item to cart!" });
+    const addToCart = await Users.updateOne(
+      { _id: userId },
+      // { $inc: { shoppingCart: { quantity: 10 } } }
+      { $push: { shoppingCart: { $each: [{ id: "64200335c6bfea9f15e3395c", quantity: 100 }] } } }
+    );
+    res.status(200).json(addToCart);
+  } catch (error) {
+    console.log(error);
+    // res.send("error");
+    res.status(400);
+    throw new Error("whack");
   }
 });
 
+//============================================================
+
 //DESC - get all items in cart
-//ROUTE - GET /cart
+//ROUTE - GET /api/cart
 //ACCESS - public
 const singleCartItem = asyncHandler(async (req, res) => {
   const cartItems = await Cart.find();
@@ -64,8 +61,10 @@ const singleCartItem = asyncHandler(async (req, res) => {
   }
 });
 
+//============================================================
+
 //DESC - decrement item in cart
-//ROUTE - PUT /user/:id
+//ROUTE - PUT /api/cart/:id
 //ACCESS - private
 const decrementItemInCart = asyncHandler(async (req, res) => {
   const cartItems = await Cart.find();
@@ -78,54 +77,4 @@ const decrementItemInCart = asyncHandler(async (req, res) => {
   }
 });
 
-export { allCartItems, addItemToCart, singleCartItem, decrementItemInCart };
-
-//     decrementItemFromCart: (state, { payload }) => {
-//       const indexedItem = state.items?.findIndex((i) => i.id === payload.id);
-
-//       const indexed = state.items[indexedItem];
-
-//       if (indexed?.quantity > 1) {
-//         indexed.quantity -= 1;
-//       } else {
-//         const deletedItems = state.items?.filter((i) => {
-//           return i.id !== payload.id;
-//         });
-
-//         state.items = deletedItems;
-//       }
-
-//     deleteItemFromCart: (state, { payload }) => {
-//       const deletedItems = state.items?.filter((i) => {
-//         return i.id !== payload.id;
-//       });
-
-//       state.items = deletedItems;
-
-//
-//     },
-//     clearCart: (state, { payload }) => {
-//       state.items = [];
-
-//     },
-//     getTotals: (state, { payload }) => {
-//       const { totalSum, cartQuantity } = state.items?.reduce(
-//         (total, current) => {
-//           const { price, quantity } = current;
-//           let multiply = price * quantity;
-
-//           total.totalSum += multiply;
-//           total.cartQuantity += quantity;
-//           return total;
-//         },
-//         {
-//           totalSum: 0,
-//           cartQuantity: 0,
-//         }
-//       );
-
-//       state.totalCartAmount = totalSum;
-//       state.totalCartQuantity = cartQuantity;
-//     },
-//   },
-// });
+export { addCartItems, singleCartItem, decrementItemInCart, allCartItems };
