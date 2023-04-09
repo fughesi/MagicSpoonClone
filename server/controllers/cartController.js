@@ -3,19 +3,29 @@ import Cart from "../models/cartModel.js";
 import { Users } from "../models/userModel.js";
 import { cartValidation } from "../validations/validationHandler.js";
 
+//=====================================================
 //DESC - get all items in cart
-//ROUTE - GET /cart
+//ROUTE - PATCH /cart
 //ACCESS - public
 const allCartItems = asyncHandler(async (req, res) => {
-  const cartItems = await Cart.find();
+  const shopper = await Users.find({ email: req.body.email });
+
+  if (shopper.shoppingCart?.length) {
+    const indexedItem = shopper.shoppingCart.findIndex((i) => i.id === req.id);
+
+    if (state.items[indexedItem]) {
+      state.items[indexedItem].quantity += 1;
+    }
+  }
 
   try {
-    res.status(200).json(cartItems);
+    res.status(200).json(shopper);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: `Unable to get cart items: ${error}` });
   }
 });
+//=====================================================
 
 //DESC - add item(s) to cart or increment quantity
 //ROUTE - POST /user/:id

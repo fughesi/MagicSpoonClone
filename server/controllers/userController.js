@@ -19,6 +19,8 @@ const getAllUsers = asyncHandler(async (req, res) => {
   res.status(200).json(findAllUsers);
 });
 
+//=====================================================
+
 //DESC - get a single user
 //ROUTE - GET /users/current/:id
 //ACCESS - private
@@ -32,6 +34,8 @@ const singleUser = asyncHandler(async (req, res) => {
 
   res.status(200).json({ message: "user found!", user: foundUser });
 });
+
+//=====================================================
 
 //DESC - register a new user
 //ROUTE - POST api/users/registration
@@ -75,7 +79,6 @@ const registerUser = asyncHandler(async (req, res) => {
     role: USER_ROLES.User,
     isActive: true,
     shoppingCart: [],
-    shoppingCart: [],
     savedForLater: [],
   });
 
@@ -83,6 +86,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   user.save((error) => {
     if (error) {
+      console.log(error);
       res.status(400);
       throw new Error("unable to create user at this time");
     } else {
@@ -91,6 +95,8 @@ const registerUser = asyncHandler(async (req, res) => {
     }
   });
 });
+
+//=====================================================
 
 //DESC -  user login page
 //ROUTE - POST /api/users/login

@@ -55,23 +55,11 @@ a {
   cursor: pointer;
 }
 
-/* 
-h1 {
-  margin: 1rem auto;
-  color: blue;
-  font-size: 2rem;
-} */
-/* 
-label[for="email"],
-label[for="username"],
-input[type="password"] {
-  display: flex;
-  flex-direction: column;
-
-  opacity: 0.5;
-  font-size: 0.75rem;
-  margin-top: 1rem;
-} */
+.regForm {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+}
 
 .loginSubmitButton {
   border: none;

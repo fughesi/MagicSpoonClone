@@ -31,6 +31,7 @@ import Accessibility from "./pages/__links/Accessibility.jsx";
 import BecomeAnAffiliate from "./pages/__links/BecomeAnAffiliate.jsx";
 
 import Register from "./components/register/Register";
+import TestingDELETEthis from "./pages/testingDELETEthis";
 
 function App() {
   const [width, setWidth] = useState(window.innerWidth);
@@ -86,6 +87,7 @@ function App() {
 
       {/* <Darkmode /> */}
       {/* <Register /> */}
+      <TestingDELETEthis />
     </main>
   );
 

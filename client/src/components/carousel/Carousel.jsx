@@ -1,11 +1,7 @@
 import "./Carousel.css";
-import { useGetAllCerealsQuery } from "../../services/cerealsApi";
 import { cerealCarouselJSON } from "../../assets/img/cerealCarousel/__exports";
-import FileBase64 from "react-file-base64";
 
 export default function Carousel() {
-  const { data: cereal } = useGetAllCerealsQuery();
-
   const content = (
     <div className="carouselContainer">
       {cerealCarouselJSON.map((i, index) => {

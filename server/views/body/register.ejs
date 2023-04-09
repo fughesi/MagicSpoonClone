@@ -2,55 +2,114 @@
   <h1>Register a new user</h1>
   *-required
 
-  <form action="http://localhost:5150/users/registration" method="POST">
-    <label for="username">
-      * <input id="username" type="text" placeholder="username" required name="username" />
-    </label>
-    <br />
-    <label for="title">
-      <input id="title" type="text" placeholder="title" required name="title" />
-    </label>
+  <form action="http://localhost:5150/users/registration" method="POST" class="regForm">
+    <div>
+      <label for="username">
+        * <input id="username" type="text" placeholder="username" required name="username" />
+      </label>
+      <br />
+      <label for="title">
+        <input id="title" type="text" placeholder="title" required name="title" />
+      </label>
 
-    <br />
-    <label for="firstName">
-      *
-      <input id="firstName" type="text" placeholder="firstName" required name="firstName" />
-    </label>
-    <br />
+      <br />
+      <label for="firstName">
+        *
+        <input id="firstName" type="text" placeholder="firstName" required name="firstName" />
+      </label>
+      <br />
 
-    <label for="lastName">
-      *
-      <input id="lastName" type="text" placeholder="lastName" required name="lastName" />
-    </label>
-    <br />
+      <label for="lastName">
+        *
+        <input id="lastName" type="text" placeholder="lastName" required name="lastName" />
+      </label>
+      <br />
+    </div>
 
-    <!-- array -->
-    <label for="language">
-      <input id="language" type="text" placeholder="language" required name="language" />
-    </label>
-    <br />
+    <div>
+      <!-- array -->
+      <label for="language">
+        <input id="language" type="text" placeholder="language" required name="language" />
+      </label>
+      <br />
 
-    <label for="email">
-      *
-      <input id="email" type="email" placeholder="email" required name="email" />
-    </label>
-    <br />
+      <label for="email">
+        *
+        <input id="email" type="email" placeholder="email" required name="email" />
+      </label>
+      <br />
 
-    <label for="phoneNumber">
-      <input id="phoneNumber" type="number" placeholder="phoneNumber" required name="phoneNumber" />
-    </label>
-    <br />
+      <label for="age">
+        <input id="age" type="number" placeholder="age" required name="age" />
+      </label>
+      <br />
 
-    <label for="password">
-      *
-      <input id="password" type="password" placeholder="password" required name="password" />
-    </label>
-    <br />
+      <label for="phoneNumber">
+        <input id="phoneNumber" type="number" placeholder="phoneNumber" required name="phoneNumber" />
+      </label>
+      <br />
+      <label for="password">
+        *
+        <input id="password" type="password" placeholder="password" required name="password" />
+      </label>
+      <br />
 
-    <label for="confirmPassword">
-      *
-      <input id="confirmPassword" type="password" placeholder="confirmPassword" required name="confirmPassword" />
-    </label>
+      <label for="confirmPassword">
+        *
+        <input id="confirmPassword" type="password" placeholder="confirmPassword" required name="confirmPassword" />
+      </label>
+      <br />
+    </div>
+
+    <div>
+      <p>homeAddress</p>
+
+      <label for="number">
+        <input id="number" type="text" placeholder="number" required name="number" />
+      </label>
+      <br />
+      <label for="street">
+        <input id="street" type="text" placeholder="street" required name="street" />
+      </label>
+      <br />
+      <label for="city">
+        <input id="city" type="text" placeholder="city" required name="city" />
+      </label>
+      <br />
+      <label for="state">
+        <input id="state" type="text" min="2" max="2" placeholder="state" required name="state" />
+      </label>
+      <br />
+      <label for="zipCode">
+        <input id="zipCode" type="text" min="5" max="5" placeholder="zipCode" required name="zipCode" />
+      </label>
+      <br />
+    </div>
+    <div>
+      <p>shippingAddress</p>
+
+      <label for="number">
+        <input id="number" type="text" placeholder="number" required name="number" />
+      </label>
+      <br />
+      <label for="street">
+        <input id="street" type="text" placeholder="street" required name="street" />
+      </label>
+      <br />
+      <label for="city">
+        <input id="city" type="text" placeholder="city" required name="city" />
+      </label>
+      <br />
+      <label for="state">
+        <input id="state" type="text" min="2" max="2" placeholder="state" required name="state" />
+      </label>
+      <br />
+      <label for="zipCode">
+        <input id="zipCode" type="text" min="5" max="5" placeholder="zipCode" required name="zipCode" />
+      </label>
+      <br />
+    </div>
+
     <br />
 
     <br />
