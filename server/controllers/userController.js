@@ -5,6 +5,8 @@ import USER_ROLES from "../config/userRoles.js";
 import asyncHandler from "express-async-handler";
 import genAuthToken from "../middleware/genAuthToken.js";
 
+//============================================================
+
 //DESC - find all users
 //ROUTE - GET /users
 //ACCESS - public
@@ -19,7 +21,7 @@ const getAllUsers = asyncHandler(async (req, res) => {
   res.status(200).json(findAllUsers);
 });
 
-//=====================================================
+//============================================================
 
 //DESC - get a single user
 //ROUTE - GET /users/current/:id
@@ -35,7 +37,7 @@ const singleUser = asyncHandler(async (req, res) => {
   res.status(200).json({ message: "user found!", user: foundUser });
 });
 
-//=====================================================
+//============================================================
 
 //DESC - register a new user
 //ROUTE - POST api/users/registration
@@ -96,7 +98,7 @@ const registerUser = asyncHandler(async (req, res) => {
   });
 });
 
-//=====================================================
+//============================================================
 
 //DESC -  user login page
 //ROUTE - POST /api/users/login

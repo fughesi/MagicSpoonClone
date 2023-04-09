@@ -5,7 +5,7 @@ import { userValidation, loginValidation } from "../validations/validationHandle
 
 const router = express.Router();
 
-//users
+//api/users
 router.get("/", getAllUsers);
 router.get("/current/:id", singleUser);
 router.post("/login", validation(loginValidation), userLogin);
