@@ -1,5 +1,6 @@
 import Joi from "joi";
 
+// ======== CART ==============
 const cartValidation = Joi.object({
   title: Joi.string().required().min(3),
   description: Joi.string(),
@@ -12,7 +13,9 @@ const cartValidation = Joi.object({
   category: Joi.string().required(),
 });
 
+// ======== USER ==============
 const userValidation = Joi.object({
+  id: Joi.string(),
   title: Joi.string(),
   username: Joi.string().required(),
   firstName: Joi.string().required(),
@@ -40,19 +43,24 @@ const userValidation = Joi.object({
   confirmPassword: Joi.ref("password"),
 });
 
+// ======== TESTIMONIAL ==============
 const testimonialValidation = Joi.object({
+  id: Joi.string(),
   title: Joi.string().required().min(3).max(45),
   statement: Joi.string().required().min(5),
   company: Joi.string().required(),
   rating: Joi.number(),
 });
 
+// ======== LOGIN ==============
 const loginValidation = Joi.object({
   email: Joi.string().required().email().min(5),
   password: Joi.string().required().min(3).max(1024).pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
 });
 
+// ======== PRODUCT ==============
 const productValidation = Joi.object({
+  id: Joi.string(),
   sku: Joi.string().required(),
   title: Joi.string().required().min(3),
   description: Joi.string(),

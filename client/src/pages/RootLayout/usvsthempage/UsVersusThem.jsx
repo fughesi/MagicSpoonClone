@@ -1,7 +1,6 @@
 import "./UsVersusThem.css";
-import CTAsection from "../../components/cta-section/CTAsection";
-import FooterMobile from "../../components/footer/FooterMobile";
-import { img3 } from "../../assets/img/floatingCereal/__exports";
+import CTAsection from "../../../components/cta-section/CTAsection";
+import { img3 } from "../../../assets/img/floatingCereal/__exports";
 
 export default function UsVersusThem() {
   const content = (
@@ -24,9 +23,7 @@ export default function UsVersusThem() {
         </div>
       </section>
       <section className="UsVersusThemSection3"></section>
-      <section className="UsVersusThemSection4">
-        <CTAsection />
-      </section>
+      <section className="UsVersusThemSection4">{<CTAsection />}</section>
     </main>
   );
 

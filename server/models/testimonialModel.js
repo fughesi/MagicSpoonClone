@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
+import { nanoid } from "nanoid";
 
 const testimonialsSchema = new mongoose.Schema({
+  // id: nanoid(),
   user_id: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,

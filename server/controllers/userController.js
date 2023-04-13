@@ -1,6 +1,7 @@
+import { nanoid } from "nanoid";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { Users } from "../models/userModel.js";
+import Users from "../models/userModel.js";
 import USER_ROLES from "../config/userRoles.js";
 import asyncHandler from "express-async-handler";
 import genAuthToken from "../middleware/genAuthToken.js";
@@ -8,7 +9,7 @@ import genAuthToken from "../middleware/genAuthToken.js";
 //============================================================
 
 //DESC - find all users
-//ROUTE - GET /users
+//ROUTE - GET /api/users
 //ACCESS - public
 const getAllUsers = asyncHandler(async (req, res) => {
   const findAllUsers = await Users.find();
@@ -24,9 +25,10 @@ const getAllUsers = asyncHandler(async (req, res) => {
 //============================================================
 
 //DESC - get a single user
-//ROUTE - GET /users/current/:id
+//ROUTE - GET /api/users/current/:id
 //ACCESS - private
 const singleUser = asyncHandler(async (req, res) => {
+  // const foundUser = await Users.findOne({ id: req.params.id });
   const foundUser = await Users.findOne({ _id: req.params.id });
 
   if (!foundUser) {
@@ -67,6 +69,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, 10);
 
   const user = new Users({
+    id: nanoid(),
     title,
     username,
     firstName,

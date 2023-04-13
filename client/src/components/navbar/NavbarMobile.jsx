@@ -26,37 +26,57 @@ const NavbarMobile = () => {
         onClick={() => (dispatch(blur()), dispatch(navbar()))}
       >
         <div className={`hamburgerElement ${toggle ? "menuOpen" : ""}`}></div>
-
-        <ul className={`mobileNavMenu ${toggle ? "" : "hide"}`}>
-          <li>
-            <NavLink to="/us-vs-them" className={({ isActive }) => (isActive ? "activatedLink" : "")}>
-              US VS. THEM
-            </NavLink>
-          </li>
-
-          <li>
-            <NavLink to="/our-story" className={({ isActive }) => (isActive ? "activatedLink" : "")}>
-              OUR STORY
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/bundles" className={({ isActive }) => (isActive ? "activatedLink" : "")}>
-              BUNDLES
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/cereal" className={({ isActive }) => (isActive ? "activatedLink" : "")}>
-              CEREAL
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/bars" className={({ isActive }) => (isActive ? "activatedLink" : "")}>
-              BARS
-            </NavLink>
-          </li>
-          <SpinningLogo className="logoSpinMenu" />
-        </ul>
       </section>
+
+      <ul className={`mobileNavMenu ${toggle ? "" : "hide"}`}>
+        <li>
+          <NavLink
+            to="/us-vs-them"
+            className={({ isActive }) => (isActive ? "activatedLink" : "")}
+            onClick={() => (dispatch(blur()), dispatch(navbar()))}
+          >
+            US VS. THEM
+          </NavLink>
+        </li>
+
+        <li>
+          <NavLink
+            to="/our-story"
+            className={({ isActive }) => (isActive ? "activatedLink" : "")}
+            onClick={() => (dispatch(blur()), dispatch(navbar()))}
+          >
+            OUR STORY
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/bundles"
+            className={({ isActive }) => (isActive ? "activatedLink" : "")}
+            onClick={() => (dispatch(blur()), dispatch(navbar()))}
+          >
+            BUNDLES
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/cereal"
+            className={({ isActive }) => (isActive ? "activatedLink" : "")}
+            onClick={() => (dispatch(blur()), dispatch(navbar()))}
+          >
+            CEREAL
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/bars"
+            className={({ isActive }) => (isActive ? "activatedLink" : "")}
+            onClick={() => (dispatch(blur()), dispatch(navbar()))}
+          >
+            BARS
+          </NavLink>
+        </li>
+        <SpinningLogo className="logoSpinMenu" />
+      </ul>
 
       <section className="titleLogoLink" aria-label="home page link with logo as button">
         <Link to="/">

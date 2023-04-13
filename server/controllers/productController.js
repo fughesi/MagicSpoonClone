@@ -1,5 +1,6 @@
 import Products from "../models/productModel.js";
 import asyncHandler from "express-async-handler";
+import { nanoid } from "nanoid";
 
 //============================================================
 
@@ -34,6 +35,7 @@ const addProduct = asyncHandler(async (req, res) => {
   }
 
   const product = new Products({
+    id: nanoid(),
     sku,
     title,
     description,

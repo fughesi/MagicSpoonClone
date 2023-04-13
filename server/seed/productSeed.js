@@ -1,3 +1,4 @@
+import { nanoid } from "nanoid";
 import mongoose from "mongoose";
 import Product from "../models/productModel.js";
 
@@ -14,6 +15,7 @@ mongoose
 
 const products = [
   new Product({
+    id: nanoid(),
     sku: "543bs4et",
     title: "Fruity",
     description:
@@ -84,6 +86,7 @@ const products = [
     },
   }),
   new Product({
+    id: nanoid(),
     sku: "93jd7632",
     title: "Cocoa",
     description:
@@ -143,6 +146,7 @@ const products = [
     },
   }),
   new Product({
+    id: nanoid(),
     sku: "5wef225e",
     title: "Peanut Butter",
     description:
@@ -209,6 +213,7 @@ const products = [
     },
   }),
   new Product({
+    id: nanoid(),
     sku: "35gf24et",
     title: "Frosted",
     description:
@@ -263,6 +268,7 @@ const products = [
     },
   }),
   new Product({
+    id: nanoid(),
     sku: "f312dew7",
     title: "Maple Waffle",
     description:
@@ -321,6 +327,7 @@ const products = [
     },
   }),
   new Product({
+    id: nanoid(),
     sku: "65r5f5e1",
     title: "Cinnamon Roll",
     description:
@@ -380,6 +387,7 @@ const products = [
     },
   }),
   new Product({
+    id: nanoid(),
     sku: "0r5v25dr",
     title: "Blueberry Muffin",
     description:

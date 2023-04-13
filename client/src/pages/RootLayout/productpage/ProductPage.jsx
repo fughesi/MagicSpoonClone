@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { nutrition } from "../../assets/img/cerealNutrition/__exports";
+import { nutrition } from "../../../assets/img/cerealNutrition/__exports";
 import { NavLink } from "react-router-dom";
-import { useGetAllProductsQuery } from "../../services/productsApi";
+import { useGetAllProductsQuery } from "../../../services/productsApi";
 import { useDispatch, useSelector } from "react-redux";
-import CallToAction from "../../components/cta/CallToAction";
-import Modal from "../../components/modal/Modal";
+import CallToAction from "../../../components/cta/CallToAction";
+import Modal from "../../../components/modal/Modal";
 import "./ProductPage.css";
 import {
   addItemToCart,
@@ -13,7 +13,7 @@ import {
   deleteItemFromCart,
   clearCart,
   getTotals,
-} from "../../features/cartSlice";
+} from "../../../features/cartSlice";
 import {
   img1,
   img2,
@@ -26,15 +26,10 @@ import {
   imageMain,
   barzz,
   bgImg,
-} from "../../assets/img/productCarousel/__exports";
+} from "../../../assets/img/productCarousel/__exports";
 
 export default function ProductPage({ type, style }) {
-  const {
-    data: cereal,
-    error: cerealError,
-    isSuccess,
-    refetch,
-  } = useGetAllProductsQuery({ refetchOnMountOrArgChange: true });
+  const { data: cereal, error: cerealError, isSuccess } = useGetAllProductsQuery({ refetchOnMountOrArgChange: true });
 
   const productPhotoArray = [img1, img2, img3, img4, img5, img6, img7, img8];
 

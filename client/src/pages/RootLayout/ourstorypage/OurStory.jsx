@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import CTAsection from "../../components/cta-section/CTAsection";
+import CTAsection from "../../../components/cta-section/CTAsection";
 import "./OurStory.css";
 
 export default function OurStory() {

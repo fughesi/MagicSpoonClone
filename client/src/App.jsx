@@ -1,69 +1,46 @@
-import { Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { getWindowWidth } from "./features/themeSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from "react-router-dom";
+
+import { useGetAllProductsQuery } from "./services/productsApi";
 
 import "./App.css";
+import IndexLayout from "./pages/IndexLayout/_IndexLayout";
+import RootLayout from "./pages/RootLayout/_RootLayout";
+import Homepage from "./pages/RootLayout/Homepage";
+import FAQ from "./pages/RootLayout/faqpage/FAQpage";
+import OurStory from "./pages/RootLayout/ourstorypage/OurStory";
+import UsVersusThem from "./pages/RootLayout/usvsthempage/UsVersusThem";
+import ProductPage from "./pages/RootLayout/productpage/ProductPage";
 
-import Darkmode from "./components/darkmode/Darkmode";
-import Homepage from "./pages/homepage/Homepage";
-import FAQ from "./pages/faqpage/FAQpage";
-import OurStory from "./pages/ourstorypage/OurStory";
-import NavbarDesktop from "./components/navbar/NavbarDesktop";
-import NavbarMobile from "./components/navbar/NavbarMobile";
-import UsVersusThem from "./pages/usvsthempage/UsVersusThem";
-import FooterMobile from "./components/footer/FooterMobile";
-import FooterDesktop from "./components/footer/FooterDesktop";
-import ShoppingCart from "./components/shoppingCart/ShoppingCart";
-import ProductPage from "./pages/productpage/ProductPage";
-import Login from "./components/login/Login";
-
-import Links from "./pages/__links/_links";
-import TOS from "./pages/__links/TOS.jsx";
-import Jobs from "./pages/__links/Jobs.jsx";
-import Privacy from "./pages/__links/Privacy.jsx";
-import Reviews from "./pages/__links/Reviews.jsx";
-import TermsOfUse from "./pages/__links/TermsOfUse.jsx";
-import TrackOrders from "./pages/__links/TrackOrders.jsx";
-import RefundPolicy from "./pages/__links/RefundPolicy.jsx";
-import StoreLocator from "./pages/__links/StoreLocator.jsx";
-import Accessibility from "./pages/__links/Accessibility.jsx";
-import BecomeAnAffiliate from "./pages/__links/BecomeAnAffiliate.jsx";
-
-import Register from "./components/register/Register";
-import TestingDELETEthis from "./pages/testingDELETEthis";
+import LinksLayout from "./pages/LinksLayout/_LinksLayout";
+import TOS from "./pages/LinksLayout/TOS.jsx";
+import Jobs from "./pages/LinksLayout/Jobs.jsx";
+import Privacy from "./pages/LinksLayout/Privacy.jsx";
+import Reviews from "./pages/LinksLayout/Reviews.jsx";
+import TermsOfUse from "./pages/LinksLayout/TermsOfUse.jsx";
+import TrackOrders from "./pages/LinksLayout/TrackOrders.jsx";
+import RefundPolicy from "./pages/LinksLayout/RefundPolicy.jsx";
+import StoreLocator from "./pages/LinksLayout/StoreLocator.jsx";
+import Accessibility from "./pages/LinksLayout/Accessibility.jsx";
+import BecomeAnAffiliate from "./pages/LinksLayout/BecomeAnAffiliate.jsx";
 
 function App() {
-  const [width, setWidth] = useState(window.innerWidth);
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<IndexLayout />}>
+        <Route path="/" element={<RootLayout />}>
+          <Route index element={<Homepage />} />
+          <Route path="us-vs-them" element={<UsVersusThem />} />
+          <Route path="our-story" element={<OurStory />} />
+          <Route
+            path="bundles"
+            element={<ProductPage type={"bundles"} style={"bundles"} loader={useGetAllProductsQuery()} />}
+          />
+          <Route path="cereal" element={<ProductPage type={"cereal"} style={"cereal"} />} />
+          <Route path="bars" element={<ProductPage type={"bars"} style={"bars"} />} />
+          <Route path="FAQ" element={<FAQ />} />
+        </Route>
 
-  const dispatch = useDispatch();
-
-  const stopScroll = useSelector((state) => state.theme.navbarEngaged);
-  const stopScroll2 = useSelector((state) => state.theme.loginReveal);
-  const stopScroll3 = useSelector((state) => state.theme.cartReveal);
-  const noscroll = [stopScroll, stopScroll2, stopScroll3].some(Boolean);
-
-  const windowWidth = () => setWidth(window.innerWidth);
-  window.addEventListener("resize", windowWidth);
-
-  useEffect(() => {
-    dispatch(getWindowWidth(width));
-    return window.removeEventListener("resize", windowWidth);
-  }, [width]);
-
-  let content = (
-    <main className={`App ${noscroll ? "stopScroll" : ""}`}>
-      {width < 500 ? <NavbarMobile /> : <NavbarDesktop />}
-      <Routes>
-        <Route index element={<Homepage />} />
-        <Route path="/us-vs-them" element={<UsVersusThem />} />
-        <Route path="/our-story" element={<OurStory />} />
-        <Route path="/bundles" element={<ProductPage type={"bundles"} style={"bundles"} />} />
-        <Route path="/cereal" element={<ProductPage type={"cereal"} style={"cereal"} />} />
-        <Route path="/bars" element={<ProductPage type={"bars"} style={"bars"} />} />
-        <Route path="/FAQ" element={<FAQ />} />
-
-        <Route path="links" element={<Links />}>
+        <Route path="links" element={<LinksLayout />}>
           <Route path="FAQ" element={<FAQ />} />
           <Route path="TOS" element={<TOS />} />
           <Route path="Jobs" element={<Jobs />} />
@@ -78,18 +55,11 @@ function App() {
         </Route>
 
         <Route path="/*" redirect="/" />
-      </Routes>
-
-      <ShoppingCart />
-      <Login />
-
-      {width < 500 ? <FooterMobile /> : <FooterDesktop />}
-
-      {/* <Darkmode /> */}
-      {/* <Register /> */}
-      <TestingDELETEthis />
-    </main>
+      </Route>
+    )
   );
+
+  const content = <RouterProvider router={router} />;
 
   return content;
 }

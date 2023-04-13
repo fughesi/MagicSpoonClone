@@ -1,7 +1,6 @@
+import { nanoid } from "nanoid";
 import asyncHandler from "express-async-handler";
 import Testimonials from "../models/testimonialModel.js";
-import validation from "../middleware/validateInput.js";
-import { testimonialValidation } from "../validations/validationHandler.js";
 
 //============================================================
 
@@ -28,6 +27,7 @@ const addTestimonial = asyncHandler(async (req, res) => {
   const { title, statement, company, rating } = req.body; //need to attach user to testimonial
 
   const testimonial = new Testimonials({
+    id: nanoid(),
     title,
     statement,
     company,

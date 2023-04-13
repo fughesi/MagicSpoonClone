@@ -1,3 +1,4 @@
+import { nanoid } from "nanoid";
 import mongoose from "mongoose";
 import Testimonials from "../models/testimonialModel.js";
 
@@ -14,30 +15,40 @@ mongoose
 
 const testimonial = [
   new Testimonials({
+    id: nanoid(),
+    user_id: "643860de4aaa953ca573a4d0",
     title: "the best shit ever",
     statement: "this product is the most amazing stuff I ever put in my mouth",
     company: "chinese shit company",
     rating: 3.6,
   }),
   new Testimonials({
+    id: nanoid(),
+    user_id: "643860de4aaa953ca573a4d0",
     title: "the best shit ever",
     statement: "this product is the most amazing stuff I ever put in my mouth",
     company: "chinese shit company",
     rating: 3.6,
   }),
   new Testimonials({
+    id: nanoid(),
+    user_id: "643860de4aaa953ca573a4d0",
     title: "the best shit ever",
     statement: "this product is the most amazing stuff I ever put in my mouth",
     company: "chinese shit company",
     rating: 3.6,
   }),
   new Testimonials({
+    id: nanoid(),
+    user_id: "643860de4aaa953ca573a4d0",
     title: "the best shit ever",
     statement: "this product is the most amazing stuff I ever put in my mouth",
     company: "chinese shit company",
     rating: 3.6,
   }),
   new Testimonials({
+    id: nanoid(),
+    user_id: "643860de4aaa953ca573a4d0",
     title: "the best shit ever",
     statement: "this product is the most amazing stuff I ever put in my mouth",
     company: "chinese shit company",

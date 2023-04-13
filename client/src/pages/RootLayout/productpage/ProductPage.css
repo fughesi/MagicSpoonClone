@@ -3,7 +3,10 @@
   grid-template-columns: 1fr;
   grid-auto-rows: auto;
 
+  opacity: 0;
   background-color: var(--color2);
+
+  animation: fadeProductsPage 2750ms ease forwards;
 }
 
 .heroImageProducts {
@@ -140,7 +143,7 @@ label[for="productSelect"] {
   display: grid;
   place-content: center;
 
-  background-image: url("../../assets/img//productCarousel/bgImg.webp");
+  background-image: url("../../../assets/img//productCarousel/bgImg.webp");
   background-repeat: no-repeat;
   background-size: cover;
   background-color: green;
@@ -310,4 +313,10 @@ img[alt="nutrition chart"] {
   outline-color: transparent;
   cursor: pointer;
   user-select: text;
+}
+
+@keyframes fadeProductsPage {
+  100% {
+    opacity: 1;
+  }
 }

@@ -12,7 +12,6 @@ import TestimonialSlider from "../../components/testimonials/TestimonialSlider";
 import Carousel from "../../components/carousel/Carousel";
 import CallToAction from "../../components/cta/CallToAction";
 import CTAsection from "../../components/cta-section/CTAsection";
-import "./Homepage.css";
 
 export default function Homepage() {
   const [offsetY, setOffsetY] = useState(0);
