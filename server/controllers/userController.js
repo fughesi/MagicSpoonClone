@@ -28,7 +28,6 @@ const getAllUsers = asyncHandler(async (req, res) => {
 //ROUTE - GET /api/users/current/:id
 //ACCESS - private
 const singleUser = asyncHandler(async (req, res) => {
-  // const foundUser = await Users.findOne({ id: req.params.id });
   const foundUser = await Users.findOne({ _id: req.params.id });
 
   if (!foundUser) {

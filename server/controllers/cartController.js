@@ -1,7 +1,6 @@
 import asyncHandler from "express-async-handler";
 import Cart from "../models/cartModel.js";
 import Users from "../models/userModel.js";
-import mongoose from "mongoose";
 
 //============================================================
 
@@ -16,14 +15,16 @@ const addCartItems = asyncHandler(async (req, res) => {
 
   try {
     const addToCart = await Users.updateOne(
-      { _id: userId.toString() },
-      { $inc: { "shoppingCart.$[element].quantity": 106 } },
-      { arrayFilters: [{ "element._id": cartProduct.toString() }] },
+      { id: userId.toString() },
+      { $inc: { "shoppingCart.$[element].quantity": 1066 } }, // mongoDB
+      { arrayFilters: [{ "element.id": cartProduct.toString() }] }, // mongoDB
       (error) => {
         if (error) console.log(error);
-      },
-      { upsert: true }
+      }
+      // { upsert: true }
     ).clone();
+
+    // addToCart.markModified("shoppingCart"); //only works with mongoose
 
     console.log("worked like a charm");
     res.status(200).send(addToCart);
