@@ -11,23 +11,37 @@ const addCartItems = asyncHandler(async (req, res) => {
   const userId = req.params.id;
   const { cartProduct } = req.body;
 
-  console.log(cartProduct, typeof userId);
-
   try {
-    const addToCart = await Users.updateOne(
-      { id: userId.toString() },
+    // const addToCart = await Users.updateOne(
+    const addToCart = await Users.findByIdAndUpdate(
+      // const addToCart = await Users.findOne(
+      { _id: userId.toString() },
       { $inc: { "shoppingCart.$[element].quantity": 1066 } }, // mongoDB
-      { arrayFilters: [{ "element.id": cartProduct.toString() }] }, // mongoDB
-      (error) => {
-        if (error) console.log(error);
-      }
+      { arrayFilters: [{ "element.id": cartProduct.toString() }] } // mongoDB
+      // (error) => {
+      //   if (error) console.log(error);
+      // }
       // { upsert: true }
-    ).clone();
+    )
+      .clone()
+      .exec();
 
-    // addToCart.markModified("shoppingCart"); //only works with mongoose
+    // const indexedItem = addToCart.shoppingCart.findIndex((i) => i.id === `ObjectId(${cartProduct})`);
+    addToCart.shoppingCart[0].quantity += 112;
 
-    console.log("worked like a charm");
-    res.status(200).send(addToCart);
+    // if (indexedItem >= 0) {
+    //   // state.items[indexedItem].quantity += 1;
+    //   addToCart.shoppingCart[indexedItem].quantity += 12;
+    // } else {
+    //   // const updatedItems = { ...payload, quantity: 1 };
+    //   // addToCart.shoppingCart.push(updatedItems);
+    //   console.log("didn't work", addToCart.shoppingCart[0]), indexedItem);
+    // }
+
+    // console.log((addToCart.shoppingCart[0].quantity += 1));
+    const result = await addToCart.save();
+
+    res.status(200).send(result);
   } catch (error) {
     console.log(error);
     res.status(400);
