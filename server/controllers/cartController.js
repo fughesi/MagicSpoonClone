@@ -12,12 +12,11 @@ const addCartItems = asyncHandler(async (req, res) => {
   const { cartProduct } = req.body;
 
   try {
-    // const addToCart = await Users.updateOne(
-    const addToCart = await Users.findByIdAndUpdate(
-      // const addToCart = await Users.findOne(
-      { _id: userId.toString() },
-      { $inc: { "shoppingCart.$[element].quantity": 1066 } }, // mongoDB
-      { arrayFilters: [{ "element.id": cartProduct.toString() }] } // mongoDB
+    // const addToCart = await Users.findByIdAndUpdate(
+    const addToCart = await Users.findOne(
+      { _id: userId.toString() }
+      // { $inc: { "shoppingCart.$[element].quantity": 1066 } }, // mongoDB
+      // { arrayFilters: [{ "element.id": cartProduct }] } // mongoDB
       // (error) => {
       //   if (error) console.log(error);
       // }
@@ -26,19 +25,15 @@ const addCartItems = asyncHandler(async (req, res) => {
       .clone()
       .exec();
 
-    // const indexedItem = addToCart.shoppingCart.findIndex((i) => i.id === `ObjectId(${cartProduct})`);
-    addToCart.shoppingCart[0].quantity += 112;
+    const indexedItem = addToCart.shoppingCart.findIndex((i) => i.id == cartProduct);
 
-    // if (indexedItem >= 0) {
-    //   // state.items[indexedItem].quantity += 1;
-    //   addToCart.shoppingCart[indexedItem].quantity += 12;
-    // } else {
-    //   // const updatedItems = { ...payload, quantity: 1 };
-    //   // addToCart.shoppingCart.push(updatedItems);
-    //   console.log("didn't work", addToCart.shoppingCart[0]), indexedItem);
-    // }
+    if (indexedItem >= 0) {
+      addToCart.shoppingCart[indexedItem].quantity += 1;
+    } else {
+      // addToCart.shoppingCart.push(updatedItems);  /// ----------------need to push to cart when no index
+      console.log("didn't work", addToCart.shoppingCart[0], indexedItem);
+    }
 
-    // console.log((addToCart.shoppingCart[0].quantity += 1));
     const result = await addToCart.save();
 
     res.status(200).send(result);
