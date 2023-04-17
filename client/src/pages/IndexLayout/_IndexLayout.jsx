@@ -52,7 +52,7 @@ export default function RootLayout() {
 
       {/* <Darkmode /> */}
       {/* <Register /> */}
-      <TestingDELETEthis />
+      {/* <TestingDELETEthis /> */}
     </main>
   );
 }

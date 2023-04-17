@@ -9,7 +9,7 @@ import genAuthToken from "../middleware/genAuthToken.js";
 //============================================================
 
 //DESC - find all users
-//ROUTE - GET /api/users
+//ROUTE - GET api/users
 //ACCESS - public
 const getAllUsers = asyncHandler(async (req, res) => {
   const findAllUsers = await Users.find();
@@ -88,16 +88,25 @@ const registerUser = asyncHandler(async (req, res) => {
 
   const token = genAuthToken(user);
 
-  user.save((error) => {
-    if (error) {
-      console.log(error);
-      res.status(400);
-      throw new Error("unable to create user at this time");
-    } else {
-      res.status(201).json({ _id: user.id, email: user.email, token: token });
-      console.log(`User ${user.username} created successfully!`);
-    }
-  });
+  // user.save((error) => {
+  //   if (error) {
+  //     console.log(error);
+  //     res.status(400);
+  //     throw new Error("unable to create user at this time");
+  //   } else {
+  //     res.status(201).json({ _id: user.id, email: user.email, token: token });
+  //     console.log(`User ${user.username} created successfully!`);
+  //   }
+  // });
+
+  const result = await user.save();
+
+  if (result) {
+    res.status(201).json(result);
+  } else {
+    res.status(500);
+    throw new Error("User could not be created at this time");
+  }
 });
 
 //============================================================

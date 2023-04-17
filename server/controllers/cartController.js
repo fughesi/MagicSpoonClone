@@ -5,39 +5,96 @@ import Users from "../models/userModel.js";
 //============================================================
 
 //DESC - add item(s) to cart or increment quantity
-//ROUTE - POST /api/cart/:id
+//ROUTE - PATCH /api/cart/increase/:id
 //ACCESS - private
 const addCartItems = asyncHandler(async (req, res) => {
   const userId = req.params.id;
   const { cartProduct } = req.body;
 
-  try {
-    // const addToCart = await Users.findByIdAndUpdate(
-    const addToCart = await Users.findOne(
-      { _id: userId.toString() }
-      // { $inc: { "shoppingCart.$[element].quantity": 1066 } }, // mongoDB
-      // { arrayFilters: [{ "element.id": cartProduct }] } // mongoDB
-      // (error) => {
-      //   if (error) console.log(error);
-      // }
-      // { upsert: true }
-    )
-      .clone()
-      .exec();
+  const addToCart = await Users.findOne({ _id: userId.toString() }).exec();
 
-    const indexedItem = addToCart.shoppingCart.findIndex((i) => i.id == cartProduct);
+  const indexedItem = addToCart.shoppingCart.findIndex((i) => i.id == cartProduct);
 
-    if (indexedItem >= 0) {
-      addToCart.shoppingCart[indexedItem].quantity += 1;
-    } else {
-      // addToCart.shoppingCart.push(updatedItems);  /// ----------------need to push to cart when no index
-      console.log("didn't work", addToCart.shoppingCart[0], indexedItem);
-    }
+  if (indexedItem >= 0) {
+    addToCart.shoppingCart[indexedItem].quantity += 1;
+  } else {
+    addToCart.shoppingCart.push({ id: cartProduct });
+  }
 
-    const result = await addToCart.save();
+  // addToCart.save((error) => {
+  //   if (error) {
+  //     console.log(error);
+  //     res.status(400);
+  //     throw new Error("Unable to update cart at this time");
+  //   } else {
+  //     res.status(200).json(addToCart);
+  //   }
+  // });
 
-    res.status(200).send(result);
-  } catch (error) {
+  const result = await addToCart.save();
+
+  if (result) {
+    res.status(200).json(result);
+  } else {
+    console.log("error");
+    res.status(400);
+    throw new Error("Unable to update cart at this time");
+  }
+});
+
+//============================================================
+
+//DESC - delete item(s) to cart or decrement quantity
+//ROUTE - PATCH /api/cart/decrease/:id
+//ACCESS - private
+const decrementCartItems = asyncHandler(async (req, res) => {
+  const userId = req.params.id;
+  const { cartProduct } = req.body;
+
+  const decrementCart = await Users.findOne({ _id: userId.toString() }).exec();
+
+  const indexedItem = decrementCart.shoppingCart.findIndex((i) => i.id == cartProduct);
+
+  if (indexedItem >= 0 && decrementCart.shoppingCart[indexedItem].quantity > 1) {
+    decrementCart.shoppingCart[indexedItem].quantity -= 1;
+  } else {
+    decrementCart.shoppingCart.filter((i) => {
+      // ---------filter is not working
+      // return console.log(i.quantity);
+      return i.quantity > 11;
+    });
+
+    console.log("didn't decrease", decrementCart.shoppingCart[indexedItem].quantity, indexedItem);
+  }
+
+  const result = await decrementCart.save();
+
+  if (result) {
+    res.status(200).json(result);
+  } else {
+    console.log("error");
+    res.status(400);
+    throw new Error("Unable to update cart at this time");
+  }
+});
+
+//============================================================
+
+//DESC - delete single item in cart
+//ROUTE - PATCH /api/cart/delete/:id
+//ACCESS - private
+const deleteSingleItem = asyncHandler(async (req, res) => {
+  const userId = req.params.id;
+
+  //   const deleteSingleItems = await Users.findOne({ _id: userId.toString() }).exec();
+
+  //   deleteItems.shoppingCart = [];
+
+  const result = await deleteSingleItems.save();
+
+  if (result) {
+    res.status(200).json(result);
+  } else {
     console.log(error);
     res.status(400);
     throw new Error("Unable to update cart at this time");
@@ -46,59 +103,27 @@ const addCartItems = asyncHandler(async (req, res) => {
 
 //============================================================
 
-//  experimental below
-
-//DESC - get all items in cart
-//ROUTE - GET /api/cart
-//ACCESS - public
-const singleCartItem = asyncHandler(async (req, res) => {
-  const cartItems = await Cart.find();
-
-  try {
-    res.status(200).json(cartItems);
-  } catch (error) {
-    console.log(error);
-    res.status(400).json({ message: `Unable to get cart items: ${error}` });
-  }
-});
-
-//============================================================
-//DESC - get all items in cart
-//ROUTE - GET api/cart
-//ACCESS - public
-const allCartItems = asyncHandler(async (req, res) => {
-  const shopper = await Users.find({ email: req.body.email });
-
-  if (shopper.shoppingCart?.length) {
-    const indexedItem = shopper.shoppingCart.findIndex((i) => i.id === req.id);
-
-    if (state.items[indexedItem]) {
-      state.items[indexedItem].quantity += 1;
-    }
-  }
-
-  try {
-    res.status(200).json(shopper);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: `Unable to get cart items: ${error}` });
-  }
-});
-
-//============================================================
-
-//DESC - decrement item in cart
-//ROUTE - PUT /api/cart/:id
+//DESC - delete all items in cart
+//ROUTE - PATCH /api/cart/delete
 //ACCESS - private
-const decrementItemInCart = asyncHandler(async (req, res) => {
-  const cartItems = await Cart.find();
+const deleteAllCartItems = asyncHandler(async (req, res) => {
+  const userId = req.params.id;
 
-  try {
-    res.status(200).json(cartItems);
-  } catch (error) {
+  const deleteItems = await Users.findOne({ _id: userId.toString() }).exec();
+
+  deleteItems.shoppingCart = [];
+
+  const result = await deleteItems.save();
+
+  if (result) {
+    res.status(200).json(result);
+  } else {
     console.log(error);
-    res.status(500).json({ message: `Unable to get cart items: ${error}` });
+    res.status(400);
+    throw new Error("Unable to update cart at this time");
   }
 });
 
-export { addCartItems, singleCartItem, decrementItemInCart, allCartItems };
+//============================================================
+
+export { addCartItems, decrementCartItems, deleteAllCartItems, deleteSingleItem };

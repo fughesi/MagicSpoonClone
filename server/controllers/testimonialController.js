@@ -34,14 +34,23 @@ const addTestimonial = asyncHandler(async (req, res) => {
     rating,
   });
 
-  testimonial.save((error) => {
-    if (error) {
-      res.status(400);
-      throw new Error("unable to save testimonial at this time");
-    } else {
-      res.status(201).json({ message: "testimonial added successfully" });
-    }
-  });
+  // testimonial.save((error) => {
+  //   if (error) {
+  //     res.status(400);
+  //     throw new Error("unable to save testimonial at this time");
+  //   } else {
+  //     res.status(201).json({ message: "testimonial added successfully" });
+  //   }
+  // });
+
+  const result = await testimonial.save();
+
+  if (result) {
+    res.status(200).json(result);
+  } else {
+    res.status(404);
+    throw new Error("Fetch request failed with error message");
+  }
 });
 
 //============================================================

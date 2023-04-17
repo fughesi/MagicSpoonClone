@@ -8,7 +8,8 @@
   display: grid;
   place-items: center;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 6.25rem calc(100vh - 6.25rem);
+  grid-template-rows: 6.25rem auto;
+  /* grid-template-rows: 6.25rem calc(100vh - 6.25rem); */
   grid-template-areas:
     "a b c"
     "d d d";
@@ -75,7 +76,7 @@
   place-content: center;
   align-items: center;
 
-  transition: all 750ms ease;
+  transition: all 250ms;
 
   opacity: 1;
   pointer-events: auto;
@@ -113,14 +114,13 @@
   position: fixed;
   overscroll-behavior: none;
   background-image: var(--gradient3);
+  grid-template-rows: 6.25rem calc(100vh - 6.25rem);
 }
 
 .hide {
   opacity: 0;
   pointer-events: none;
   touch-action: none;
-
-  transition: all 750ms ease;
 }
 
 .titleLogoLink {
