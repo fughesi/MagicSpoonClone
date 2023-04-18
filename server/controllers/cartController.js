@@ -21,16 +21,6 @@ const addCartItems = asyncHandler(async (req, res) => {
     addToCart.shoppingCart.push({ id: cartProduct });
   }
 
-  // addToCart.save((error) => {
-  //   if (error) {
-  //     console.log(error);
-  //     res.status(400);
-  //     throw new Error("Unable to update cart at this time");
-  //   } else {
-  //     res.status(200).json(addToCart);
-  //   }
-  // });
-
   const result = await addToCart.save();
 
   if (result) {

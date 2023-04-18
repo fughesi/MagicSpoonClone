@@ -88,23 +88,14 @@ const registerUser = asyncHandler(async (req, res) => {
 
   const token = genAuthToken(user);
 
-  // user.save((error) => {
-  //   if (error) {
-  //     console.log(error);
-  //     res.status(400);
-  //     throw new Error("unable to create user at this time");
-  //   } else {
-  //     res.status(201).json({ _id: user.id, email: user.email, token: token });
-  //     console.log(`User ${user.username} created successfully!`);
-  //   }
-  // });
-
   const result = await user.save();
 
   if (result) {
-    res.status(201).json(result);
+    res.status(201).json({ username: user.username, email: user.email, token });
+    console.log(`User ${user.username} created successfully!`);
   } else {
-    res.status(500);
+    console.log(error);
+    res.status(400);
     throw new Error("User could not be created at this time");
   }
 });
