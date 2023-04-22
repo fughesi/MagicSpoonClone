@@ -1,7 +1,8 @@
 <div>
   <h1>Upload image</h1>
   <!-- <% if (locals.upload) { %> successfully uploaded <%= locals.upload %> <% } %> -->
-  <form method="POST" action="/cereals/upload" enctype="multipart/form-data">
+  <form method="POST" action="/upload" enctype="multipart/form-data">
+    <!-- <form method="POST" action="/cereals/upload" enctype="multipart/form-data"> -->
     <input type="text" name="title" id="title" placeholder="title" /> <br />
     <input type="number" name="price" id="price" placeholder="price" /> <br />
     <input type="file" name="image" />

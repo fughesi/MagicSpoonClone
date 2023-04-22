@@ -13,6 +13,7 @@ const productSchema = new mongoose.Schema({
   category: { type: String, required: true },
   ingredients: { type: Array },
   // ingredients: [{ type: Schema.Types.ObjectId, ref: "Ingredients" }],
+  thumbnails: { type: Array },
   stats: { type: Object },
 });
 

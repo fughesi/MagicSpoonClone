@@ -13,12 +13,12 @@ const addCartItems = asyncHandler(async (req, res) => {
 
   const addToCart = await Users.findOne({ _id: userId.toString() }).exec();
 
-  const indexedItem = addToCart.shoppingCart.findIndex((i) => i.id == cartProduct);
+  const indexedItem = addToCart.shoppingCart.findIndex((i) => i._id == cartProduct);
 
   if (indexedItem >= 0) {
     addToCart.shoppingCart[indexedItem].quantity += 1;
   } else {
-    addToCart.shoppingCart.push({ id: cartProduct });
+    addToCart.shoppingCart.push({ _id: cartProduct });
   }
 
   const result = await addToCart.save();
@@ -43,23 +43,22 @@ const decrementCartItems = asyncHandler(async (req, res) => {
 
   const decrementCart = await Users.findOne({ _id: userId.toString() }).exec();
 
-  const indexedItem = decrementCart.shoppingCart.findIndex((i) => i.id == cartProduct);
+  const indexedItem = decrementCart.shoppingCart.findIndex((i) => i._id == cartProduct);
 
   if (indexedItem >= 0 && decrementCart.shoppingCart[indexedItem].quantity > 1) {
     decrementCart.shoppingCart[indexedItem].quantity -= 1;
   } else {
-    decrementCart.shoppingCart.filter((i) => {
-      // ---------filter is not working
-      // return console.log(i.quantity);
-      return i.quantity > 11;
-    });
+    // await Users.findByIdAndUpdate({ _id: userId.toString() }, { $pull: { shoppingCart: { _id: cartProduct } } }).save();
 
-    console.log("didn't decrease", decrementCart.shoppingCart[indexedItem].quantity, indexedItem);
+    console.log("didn't decrease", decrementCart.shoppingCart[indexedItem], indexedItem);
   }
 
+  const filePath = new URL("../images/cereal/1675756651067.png", import.meta.url).pathname;
   const result = await decrementCart.save();
-
+  console.log(filePath);
   if (result) {
+    // res.status(200).sendFile(filePath).json(result);
+    // res.status(200).sendFile(filePath);
     res.status(200).json(result);
   } else {
     console.log("error");
